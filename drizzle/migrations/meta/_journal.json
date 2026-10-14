@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791570342336,
+      "tag": "0000_create_vip_leads",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791650657712,
+      "tag": "0001_create_treino_inteligente_leads",
+      "breakpoints": true
+    }
+  ]
+}
