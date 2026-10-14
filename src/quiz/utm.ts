@@ -16,3 +16,17 @@ export function captureUtm() {
 export function readUtm(): Utm {
   try { return JSON.parse(sessionStorage.getItem(KEY) ?? "{}") as Utm; } catch { return {}; }
 }
+
+export function buildUrlWithUtm(baseUrl: string): string {
+  try {
+    const utms = readUtm();
+    if (!Object.keys(utms).length) return baseUrl;
+    const url = new URL(baseUrl, typeof window !== "undefined" ? window.location.origin : "http://localhost");
+    Object.entries(utms).forEach(([k, v]) => {
+      if (v && !url.searchParams.has(k)) url.searchParams.set(k, v);
+    });
+    return url.toString();
+  } catch {
+    return baseUrl;
+  }
+}

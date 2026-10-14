@@ -15,7 +15,7 @@ export const saveVipLead = createServerFn({ method: "POST" })
       email: data.email,
       phone: data.phone,
       answers: data.answers,
-      recommended_product: rec.recommendedProduct,
+      recommended_product: rec.recommendedProduct === "whitelabel" ? "personalizado" : "mensal",
       personalized_score: rec.personalizedScore,
       monthly_score: rec.mensalScore,
       primary_motivation: rec.primaryMotivation,

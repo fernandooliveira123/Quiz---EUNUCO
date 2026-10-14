@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
 });
 
 type Stage = "landing" | "quiz" | "processing" | "result";
-const KEY = "ti_quiz_progress"; // apenas respostas do quiz, nunca dados pessoais
+const KEY = "ti_quiz_progress_v2"; // invalida versões anteriores e persiste apenas respostas válidas
 
 function Index() {
   const [stage, setStage] = useState<Stage>("landing");
@@ -38,19 +38,25 @@ function Index() {
     track("quiz_landing_view");
     try {
       const saved = JSON.parse(sessionStorage.getItem(KEY) ?? "null") as { stage: Stage; answers: Answers; index: number } | null;
-      if (saved && saved.stage !== "landing") {
+      if (saved && typeof saved === "object" && saved.answers && saved.stage !== "landing") {
         setAnswers(saved.answers);
-        setIndex(Math.min(Math.max(saved.index, 0), QUESTIONS.length - 1));
+        setIndex(Math.min(Math.max(saved.index ?? 0, 0), QUESTIONS.length - 1));
         setStage(saved.stage === "result" && isComplete(saved.answers) ? "result" : "quiz");
       }
     } catch { /* ignore */ }
   }, []);
 
   useEffect(() => {
-    try { if (stage !== "landing") sessionStorage.setItem(KEY, JSON.stringify({ stage: stage === "processing" ? "result" : stage, answers, index })); } catch { /* ignore */ }
+    try {
+      if (stage !== "landing") {
+        sessionStorage.setItem(KEY, JSON.stringify({ stage: stage === "processing" ? "result" : stage, answers, index }));
+      }
+    } catch { /* ignore */ }
   }, [stage, answers, index]);
 
-  useEffect(() => window.scrollTo({ top: 0 }), [stage]);
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [stage]);
 
   useEffect(() => {
     if (stage !== "processing") return;

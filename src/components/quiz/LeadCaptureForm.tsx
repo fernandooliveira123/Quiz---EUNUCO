@@ -54,8 +54,8 @@ export function LeadCaptureForm({ answers, onSaved }: { answers: Answers; onSave
 
   return (
     <form ref={viewed} onSubmit={submit} noValidate className="rounded-2xl border border-border bg-background-2 p-6 sm:p-8">
-      <h2 className="text-2xl font-extrabold leading-tight">Vamos reservar seu lugar na lista VIP?</h2>
-      <p className="mt-3 text-[15px] text-muted-foreground">Preencha seus dados para continuar e acessar o grupo VIP do Treino Inteligente.</p>
+      <h2 className="text-2xl font-extrabold leading-tight">Deseja salvar seu resultado?</h2>
+      <p className="mt-3 text-[15px] text-muted-foreground">Preencha seus dados para registrar seu diagnóstico e receber atendimento prioritário sobre as ofertas.</p>
       <div className="mt-7 space-y-5">
         {FIELDS.map((f) => (
           <div key={f.key}>
@@ -71,7 +71,7 @@ export function LeadCaptureForm({ answers, onSaved }: { answers: Answers; onSave
         <PrivacyConsent checked={consent} onChange={setConsent} error={errors["consent"]} />
         {errors["form"] && <p role="alert" className="text-sm text-destructive">{errors["form"]}</p>}
         <Button type="submit" disabled={busy} className="w-full">
-          {busy ? <><LoaderCircle className="h-5 w-5 animate-spin" /> Salvando cadastro...</> : <>CONFIRMAR MEU CADASTRO <ArrowRight className="h-5 w-5" /></>}
+          {busy ? <><LoaderCircle className="h-5 w-5 animate-spin" /> Salvando...</> : <>SALVAR MEU DIAGNÓSTICO <ArrowRight className="h-5 w-5" /></>}
         </Button>
         <p className="flex items-center justify-center gap-2 text-xs text-muted-foreground"><LockKeyhole className="h-3.5 w-3.5" /> Seus dados são protegidos e não são compartilhados publicamente.</p>
       </div>

@@ -62,7 +62,11 @@ export function QuizContainer({ index, answers, onAnswer, onIndex, onComplete }:
   const [transition, setTransition] = useState<string | null>(null);
   const [locked, setLocked] = useState(false);
   const timers = useRef<number[]>([]);
-  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  useEffect(() => {
+    return () => {
+      timers.current.forEach((t) => clearTimeout(t));
+    };
+  }, []);
   const later = (fn: () => void, ms: number) => timers.current.push(window.setTimeout(fn, ms));
 
   const q = QUESTIONS[index];
