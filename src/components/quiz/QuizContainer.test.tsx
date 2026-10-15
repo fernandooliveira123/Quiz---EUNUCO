@@ -5,8 +5,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QUESTIONS, type Answers, type QuizOption } from "@/quiz/questions";
 import { QuizContainer } from "./QuizContainer";
 
-const ANSWERED = QUESTIONS[2]!; // q3 — a resposta dela abre a frase de transição da q4
-const NEXT = QUESTIONS[3]!; // q4 — tem transitionBefore
+const ANSWERED = QUESTIONS[3]!; // q4 — a resposta dela abre a frase de transição da q5
+const NEXT = QUESTIONS[4]!; // q5 — tem transitionBefore
 const PLAIN = QUESTIONS[0]!; // q1 — a próxima (q2) não tem frase de transição
 
 const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -39,7 +39,7 @@ describe("frase de transição entre perguntas", () => {
   afterEach(() => vi.useRealTimers());
 
   it("mostra a frase com um botão Próximo e não avança sozinha", async () => {
-    const { onIndex } = setup(2);
+    const { onIndex } = setup(3);
 
     pick(ANSWERED.options[0]!);
     await flush(500); // ADVANCE_DELAY: a frase aparece depois da confirmação da resposta
@@ -51,7 +51,7 @@ describe("frase de transição entre perguntas", () => {
     expect(onIndex).not.toHaveBeenCalled();
 
     fireEvent.click(proximo);
-    expect(onIndex).toHaveBeenCalledWith(3);
+    expect(onIndex).toHaveBeenCalledWith(4);
   });
 
   it("avança direto quando a próxima pergunta não tem frase de transição", async () => {
@@ -75,9 +75,9 @@ describe("frase de transição entre perguntas", () => {
     if (!option) throw new Error("Missing q1 option B");
     pick(option);
     await flush(500);
-    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "14");
+    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "13");
     fireEvent.click(screen.getByRole("button", { name: "Voltar para a pergunta anterior" }));
     expect(screen.getByRole("radio", { name: new RegExp(escapeRegExp(option.text)) })).toHaveAttribute("aria-checked", "true");
-    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "7");
+    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "6");
   });
 });

@@ -1,45 +1,50 @@
 import { describe, expect, it } from "vitest";
-import { QUESTIONS, calculateRecommendation, type Answers } from "./questions";
+import { QUESTIONS, calculateRecommendation, decideOfferRoute, type Answers } from "./questions";
 
 const base: Answers = Object.fromEntries(QUESTIONS.map((q) => [q.id, "A"]));
 
 describe("quiz recommendation rules", () => {
-  it("has exactly 14 questions", () => expect(QUESTIONS).toHaveLength(14));
+  it("has exactly 16 questions", () => expect(QUESTIONS).toHaveLength(16));
 
-  it("organizes questions in four stages: Etapa 1 (1–3), Etapa 2 (4–6), Etapa 3 (7–9), Etapa 4 (10–14)", () => {
-    expect(QUESTIONS.map((q) => q.stage)).toEqual([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4]);
+  it("organizes questions in five stages: Etapa 1 (1–4), Etapa 2 (5–8), Etapa 3 (9–11), Etapa 4 (12–14), Etapa 5 (15–16)", () => {
+    expect(QUESTIONS.map((q) => q.stage)).toEqual([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5]);
   });
 
-  it("places transitions only at the beginning of stages 2, 3 and 4", () => {
-    expect(QUESTIONS.filter((q) => q.transitionBefore).map((q) => q.id)).toEqual(["q4", "q7", "q10"]);
+  it("places transitions only at the beginning of stages 2, 3, 4 and 5", () => {
+    expect(QUESTIONS.filter((q) => q.transitionBefore).map((q) => q.id)).toEqual(["q5", "q9", "q12", "q15"]);
   });
 
   it("brand-focused answers recommend White Label Anual", () => {
     const r = calculateRecommendation({
       ...base,
-      q7: "C", // wl: 3, pro: 2
-      q9: "B", // wl: 3, pro: 1
-      q10: "D", // wl: 6
-      q11: "A", // wl: 6
-      q12: "D", // wl: 6
-      q13: "C", // wl: 7
-      q14: "D", // wl: 6
+      q4: "D",
+      q9: "D",
+      q10: "D",
+      q11: "D",
+      q12: "C",
+      q13: "C",
+      q14: "A",
+      q16: "C",
     });
     expect(r.recommendedProduct).toBe("whitelabel");
     expect(r.whitelabelScore).toBeGreaterThan(r.proScore);
     expect(r.whitelabelScore).toBeGreaterThan(r.startScore);
+    expect(r.resultReasons.length).toBeGreaterThan(0);
   });
 
-  it("growth and resources focused answers recommend Pro", () => {
+  it("growth and management focused answers recommend Pro", () => {
     const r = calculateRecommendation({
       ...base,
-      q7: "B", // pro: 3
-      q9: "C", // pro: 3
-      q10: "C", // pro: 5
-      q11: "D", // pro: 4, start: 3
-      q12: "B", // pro: 5, start: 2
-      q13: "B", // pro: 7
-      q14: "B", // pro: 5
+      q1: "C",
+      q4: "B",
+      q6: "B",
+      q8: "C",
+      q9: "B",
+      q12: "B",
+      q13: "B",
+      q14: "C",
+      q15: "B",
+      q16: "B",
     });
     expect(r.recommendedProduct).toBe("pro");
     expect(r.proScore).toBeGreaterThan(r.whitelabelScore);
@@ -49,22 +54,52 @@ describe("quiz recommendation rules", () => {
   it("budget and simplicity focused answers recommend Start", () => {
     const r = calculateRecommendation({
       ...base,
-      q7: "E", // start: 2
-      q9: "E", // start: 1
-      q10: "A", // start: 4, pro: 1
-      q11: "E", // start: 2, pro: 1
-      q12: "A", // start: 6
-      q13: "A", // start: 7
-      q14: "A", // start: 4, pro: 2
+      q1: "A",
+      q4: "A",
+      q5: "A",
+      q8: "A",
+      q9: "A",
+      q10: "A",
+      q12: "A",
+      q13: "A",
+      q15: "A",
+      q16: "A",
     });
     expect(r.recommendedProduct).toBe("start");
     expect(r.startScore).toBeGreaterThan(r.whitelabelScore);
     expect(r.startScore).toBeGreaterThan(r.proScore);
   });
 
-  it("questions 1-6 and 8 do not score", () => {
-    const a = calculateRecommendation({ ...base, q7: "E", q9: "A", q10: "E", q11: "C", q12: "C", q13: "D", q14: "C" });
-    const b = calculateRecommendation({ ...base, q1: "D", q2: "D", q3: "D", q4: "D", q5: "D", q6: "D", q8: "E", q7: "E", q9: "A", q10: "E", q11: "C", q12: "C", q13: "D", q14: "C" });
-    expect([a.startScore, a.proScore, a.whitelabelScore]).toEqual([b.startScore, b.proScore, b.whitelabelScore]);
+  it("extracts primaryMotivation from q16", () => {
+    const r = calculateRecommendation({
+      ...base,
+      q16: "C",
+    });
+    expect(r.primaryMotivation).toBe("Como ter um aplicativo com a identidade visual da minha consultoria.");
+  });
+
+  describe("intelligent offer routing (decideOfferRoute)", () => {
+    it("routes leads with >10 students to /oferta-pro", () => {
+      expect(decideOfferRoute({ ...base, q1: "C", q2: "A" })).toBe("/oferta-pro");
+      expect(decideOfferRoute({ ...base, q1: "D", q2: "B" })).toBe("/oferta-pro");
+    });
+
+    it("routes leads seeking custom brand to /oferta-pro", () => {
+      expect(decideOfferRoute({ ...base, q1: "B", q13: "C" })).toBe("/oferta-pro");
+      expect(decideOfferRoute({ ...base, q1: "B", q16: "C" })).toBe("/oferta-pro");
+      expect(decideOfferRoute({ ...base, q1: "B", q14: "A" })).toBe("/oferta-pro");
+    });
+
+    it("routes online and hybrid consultancies to /oferta-pro", () => {
+      expect(decideOfferRoute({ ...base, q1: "B", q3: "B" })).toBe("/oferta-pro");
+      expect(decideOfferRoute({ ...base, q1: "B", q3: "C" })).toBe("/oferta-pro");
+    });
+
+    it("routes beginners with 0-9 students on spreadsheets/WhatsApp to /oferta-start", () => {
+      expect(decideOfferRoute({ ...base, q1: "A", q2: "A", q13: "A", q14: "C", q16: "A" })).toBe("/oferta-start");
+      expect(decideOfferRoute({ ...base, q1: "B", q2: "B", q3: "A", q13: "A", q14: "C", q16: "A" })).toBe("/oferta-start");
+    });
+
   });
 });
+

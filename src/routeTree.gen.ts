@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GrupoVipRouteImport } from './routes/grupo-vip'
+import { Route as OfertaProRouteImport } from './routes/oferta-pro'
+import { Route as OfertaStartRouteImport } from './routes/oferta-start'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +24,49 @@ const GrupoVipRoute = GrupoVipRouteImport.update({
   path: '/grupo-vip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OfertaProRoute = OfertaProRouteImport.update({
+  id: '/oferta-pro',
+  path: '/oferta-pro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OfertaStartRoute = OfertaStartRouteImport.update({
+  id: '/oferta-start',
+  path: '/oferta-start',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/grupo-vip': typeof GrupoVipRoute
+  '/oferta-pro': typeof OfertaProRoute
+  '/oferta-start': typeof OfertaStartRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/grupo-vip': typeof GrupoVipRoute
+  '/oferta-pro': typeof OfertaProRoute
+  '/oferta-start': typeof OfertaStartRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/grupo-vip': typeof GrupoVipRoute
+  '/oferta-pro': typeof OfertaProRoute
+  '/oferta-start': typeof OfertaStartRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/grupo-vip'
+  fullPaths: '/' | '/grupo-vip' | '/oferta-pro' | '/oferta-start'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/grupo-vip'
-  id: '__root__' | '/' | '/grupo-vip'
+  to: '/' | '/grupo-vip' | '/oferta-pro' | '/oferta-start'
+  id: '__root__' | '/' | '/grupo-vip' | '/oferta-pro' | '/oferta-start'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GrupoVipRoute: typeof GrupoVipRoute
+  OfertaProRoute: typeof OfertaProRoute
+  OfertaStartRoute: typeof OfertaStartRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GrupoVipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/oferta-pro': {
+      id: '/oferta-pro'
+      path: '/oferta-pro'
+      fullPath: '/oferta-pro'
+      preLoaderRoute: typeof OfertaProRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/oferta-start': {
+      id: '/oferta-start'
+      path: '/oferta-start'
+      fullPath: '/oferta-start'
+      preLoaderRoute: typeof OfertaStartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GrupoVipRoute: GrupoVipRoute,
+  OfertaProRoute: OfertaProRoute,
+  OfertaStartRoute: OfertaStartRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

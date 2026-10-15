@@ -1,0 +1,201 @@
+{
+  "name": "Treino Inteligente - Agente IA Qualificador & Roteador de Ofertas",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "treino-inteligente-quiz",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "37f65c9c-7204-432b-a8b4-e0770bcdbdbb",
+      "name": "Webhook Quiz Concluído",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -900,
+        100
+      ],
+      "webhookId": "d96d9799-1cb4-40ab-b971-300de44ee98a"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body || $json;\nconst answers = body.answers || {};\nconst utm = body.utm || {};\nconst initialRoute = body.recommended_route || \"/oferta-start\";\n\n// Dicionário completo das respostas estratégicas do Quiz\nconst DICT = {\n  q1: {\n    pergunta: \"Quantidade de Alunos\",\n    opcoes: {\n      A: \"Ainda não tem alunos / conquistando primeiros\",\n      B: \"De 1 a 9 alunos\",\n      C: \"De 10 a 30 alunos\",\n      D: \"Mais de 30 alunos\"\n    }\n  },\n  q2: {\n    pergunta: \"Entrega Atual de Treinos\",\n    opcoes: {\n      A: \"Planilhas ou documentos\",\n      B: \"WhatsApp / mensagens individuais\",\n      C: \"Aplicativo de prescrição\",\n      D: \"Ferramentas dispersas e descentralizadas\"\n    }\n  },\n  q3: {\n    pergunta: \"Modelo de Atendimento\",\n    opcoes: {\n      A: \"Principalmente presencial\",\n      B: \"Consultoria online\",\n      C: \"Híbrido (presencial + online)\",\n      D: \"Ainda estruturando modelo\"\n    }\n  },\n  q4: {\n    pergunta: \"Meta Principal em 12 Meses\",\n    opcoes: {\n      A: \"Conquistar primeiros alunos\",\n      B: \"Aumentar carteira e faturamento\",\n      C: \"Organizar operação com eficiência\",\n      D: \"Fortalecer marca e autoridade\"\n    }\n  },\n  q7: {\n    pergunta: \"Tempo Gasto por Prescrição\",\n    opcoes: {\n      A: \"Até 3 minutos (rápido)\",\n      B: \"Entre 4 e 10 minutos\",\n      C: \"Entre 11 e 20 minutos\",\n      D: \"Mais de 20 minutos (Gargalo severo de tempo)\"\n    }\n  },\n  q13: {\n    pergunta: \"Preferencia sobre Marca no App\",\n    opcoes: {\n      A: \"Não se importa com a marca\",\n      B: \"Prefere a marca oficial da plataforma\",\n      C: \"Exige aplicativo com marca própria (White Label)\"\n    }\n  },\n  q14: {\n    pergunta: \"Frustração com Outros Aplicativos\",\n    opcoes: {\n      A: \"Gostaria de marca própria, mas o concorrente não oferece\",\n      B: \"Encontrou limitações de personalização e identidade visual\",\n      C: \"Personalização não foi prioridade\",\n      D: \"Não conhece plataformas o suficiente\"\n    }\n  },\n  q16: {\n    pergunta: \"Maior Interesse Imediato\",\n    opcoes: {\n      A: \"Prescrever treinos práticos e rápidos\",\n      B: \"Organizar alunos e rotina em um só lugar\",\n      C: \"Ter o app com sua identidade visual própria (White Label)\",\n      D: \"Adaptação da ferramenta à rotina profissional\"\n    }\n  }\n};\n\nconst dadosLegiveis = {\n  quantidade_alunos: DICT.q1.opcoes[answers.q1] || answers.q1 || \"Não informado\",\n  entrega_treinos_atual: DICT.q2.opcoes[answers.q2] || answers.q2 || \"Não informado\",\n  modelo_atendimento: DICT.q3.opcoes[answers.q3] || answers.q3 || \"Não informado\",\n  meta_12_meses: DICT.q4.opcoes[answers.q4] || answers.q4 || \"Não informado\",\n  tempo_por_treino: DICT.q7.opcoes[answers.q7] || answers.q7 || \"Não informado\",\n  desejo_marca_propria: DICT.q13.opcoes[answers.q13] || answers.q13 || \"Não informado\",\n  dor_concorrentes: DICT.q14.opcoes[answers.q14] || answers.q14 || \"Não informado\",\n  interesse_imediato: DICT.q16.opcoes[answers.q16] || answers.q16 || \"Não informado\"\n};\n\nreturn [{\n  json: {\n    lead_id: body.lead_id || \"\",\n    data_hora: body.created_at || new Date().toISOString(),\n    rota_previa: initialRoute,\n    dados_legiveis: dadosLegiveis,\n    utm: utm,\n    respostas_brutas: answers,\n    // Texto formatado pronto para o agente de IA analisar\n    prompt_analise: `Analise as respostas deste Personal Trainer e defina a oferta ideal:\n- Volume de Alunos: ${dadosLegiveis.quantidade_alunos}\n- Método Atual de Entrega: ${dadosLegiveis.entrega_treinos_atual}\n- Modelo de Atendimento: ${dadosLegiveis.modelo_atendimento}\n- Meta nos Próximos 12 Meses: ${dadosLegiveis.meta_12_meses}\n- Tempo Médio por Treino: ${dadosLegiveis.tempo_por_treino}\n- Desejo de Marca Própria: ${dadosLegiveis.desejo_marca_propria}\n- Insatisfação com Outros Apps: ${dadosLegiveis.dor_concorrentes}\n- Maior Interesse no Treino Inteligente: ${dadosLegiveis.interesse_imediato}`\n  }\n}];"
+      },
+      "id": "febdee0b-5884-428b-8824-d599bdab43d0",
+      "name": "Decodificar & Estruturar Lead",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -680,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt_analise }}",
+        "options": {
+          "systemMessage": "Você é um Especialista Sênior em Estratégia Comercial e Qualificação de Leads da plataforma Treino Inteligente (SaaS/App para Personal Trainers).\n\nSEU OBJETIVO:\nAnalisar as respostas do Personal Trainer e decidir com precisão qual das 2 ofertas abaixo é ideal para ele:\n\n1. ROTA \"/oferta-pro\" -> White Label Anual (R$ 497/ano):\n- Indicado para: Personais com mais de 10 alunos (10 a 30 ou 30+), consultoria online ou híbrida já ativa, desejo explícito de marca própria (White Label / logotipo próprio), dores com concorrentes engessados ou gargalo alto de tempo na prescrição.\n- Por que: Ele já tem faturamento, precisa de autoridade de marca para cobrar mais caro e o investimento anual se paga com 1 único aluno.\n\n2. ROTA \"/oferta-start\" -> White Label Mensal (R$ 44,90/mês):\n- Indicado para: Personais no início de carreira (0 a 9 alunos), que atendem presencialmente ou estão saindo de planilhas/WhatsApp, com orçamento enxuto e foco em testar sem compromisso anual.\n- Por que: Elimina o caos de planilhas com custo mínimo e sem fidelidade.\n\nFORMATO OBRIGATÓRIO DA SUA RESPOSTA:\nResponda APENAS um objeto JSON válido (sem markdown, sem blocos ```json, apenas as chaves):\n{\n  \"rota_recomendada\": \"/oferta-pro\" ou \"/oferta-start\",\n  \"oferta_nome\": \"White Label Anual (R$ 497/ano)\" ou \"White Label Mensal (R$ 44,90/mês)\",\n  \"perfil_resumo\": \"Síntese em 1 ou 2 frases do perfil e maturidade do personal\",\n  \"score_maturidade\": número de 1 a 10,\n  \"dor_principal\": \"A maior dor que ele enfrenta hoje\",\n  \"gatilho_conversao\": \"O melhor argumento ou benefício para abordar e fechar este lead\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -440,
+        100
+      ],
+      "id": "c8b28976-ea59-4099-a56a-6f4c0037a907",
+      "name": "AI Agent Qualificador"
+    },
+    {
+      "parameters": {
+        "options": {
+          "model": "openai/gpt-4o-mini"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        320
+      ],
+      "id": "a8ee0729-f0a1-4445-bb03-b63ddfb65378",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "bppnEjG2CDm5rLKV",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extrai e normaliza o JSON gerado pelo Agente de IA\nconst rawOutput = $json.output || $json.text || $json.content || JSON.stringify($json);\nconst leadAnterior = $('Decodificar & Estruturar Lead').first().json;\n\nlet aiData = {};\ntry {\n  const jsonMatch = rawOutput.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    aiData = JSON.parse(jsonMatch[0]);\n  } else {\n    aiData = JSON.parse(rawOutput);\n  }\n} catch (e) {\n  // Fallback caso a IA não retorne JSON estrito\n  const isPro = rawOutput.includes('/oferta-pro') || rawOutput.includes('Anual');\n  aiData = {\n    rota_recomendada: isPro ? '/oferta-pro' : '/oferta-start',\n    oferta_nome: isPro ? 'White Label Anual (R$ 497/ano)' : 'White Label Mensal (R$ 44,90/mês)',\n    perfil_resumo: 'Análise automática de perfil',\n    score_maturidade: isPro ? 8 : 4,\n    dor_principal: 'Organização e prescrição de treinos',\n    gatilho_conversao: 'Prescrição em menos de 3 minutos'\n  };\n}\n\n// Garante que a rota seja estritamente válida\nlet rotaFinal = aiData.rota_recomendada;\nif (rotaFinal !== '/oferta-pro' && rotaFinal !== '/oferta-start') {\n  rotaFinal = leadAnterior.rota_previa || '/oferta-start';\n}\n\nreturn [{\n  json: {\n    lead_id: leadAnterior.lead_id,\n    data_hora: leadAnterior.data_hora,\n    rota_recomendada: rotaFinal,\n    oferta_nome: aiData.oferta_nome || (rotaFinal === '/oferta-pro' ? 'White Label Anual (R$ 497/ano)' : 'White Label Mensal (R$ 44,90/mês)'),\n    perfil_resumo: aiData.perfil_resumo || '',\n    score_maturidade: aiData.score_maturidade || 5,\n    dor_principal: aiData.dor_principal || '',\n    gatilho_conversao: aiData.gatilho_conversao || '',\n    dados_legiveis: leadAnterior.dados_legiveis,\n    utm: leadAnterior.utm,\n    respostas_brutas: leadAnterior.respostas_brutas\n  }\n}];"
+      },
+      "id": "extract-ai-json",
+      "name": "Extrair & Unificar Parecer da IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"lead_id\": \"{{ $json.lead_id }}\",\n  \"recommended_route\": \"{{ $json.rota_recomendada }}\",\n  \"oferta_nome\": \"{{ $json.oferta_nome }}\",\n  \"perfil_resumo\": \"{{ $json.perfil_resumo }}\",\n  \"score_maturidade\": {{ $json.score_maturidade }},\n  \"dor_principal\": \"{{ $json.dor_principal }}\",\n  \"gatilho_conversao\": \"{{ $json.gatilho_conversao }}\"\n}",
+        "options": {}
+      },
+      "id": "4c6b1b2f-210e-49f1-8680-09c49264e882",
+      "name": "Responder 200 OK com Rota da IA",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        120,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-pro",
+              "leftValue": "={{ $json.rota_recomendada }}",
+              "rightValue": "/oferta-pro",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "947295b3-9b9c-4498-b572-cd792f01481e",
+      "name": "É White Label Anual?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        120,
+        220
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Quiz Concluído": {
+      "main": [
+        [
+          {
+            "node": "Decodificar & Estruturar Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decodificar & Estruturar Lead": {
+      "main": [
+        [
+          {
+            "node": "AI Agent Qualificador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent Qualificador",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent Qualificador": {
+      "main": [
+        [
+          {
+            "node": "Extrair & Unificar Parecer da IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair & Unificar Parecer da IA": {
+      "main": [
+        [
+          {
+            "node": "Responder 200 OK com Rota da IA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "É White Label Anual?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5234b62308f332e73dab1129a5b26c8ce1c09e6ba76ac05f914569f765e08a90"
+  }
+}

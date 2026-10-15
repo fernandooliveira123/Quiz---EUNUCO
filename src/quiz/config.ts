@@ -4,7 +4,20 @@
  * ============================================================
  */
 
-/** LINK DA PÁGINA DE VENDAS / OFERTAS (Start, Pro e White Label Anual). */
+/** CHECKOUT STRIPE - LP1 WHITE LABEL ANUAL (R$ 497 / ano) */
+export const STRIPE_CHECKOUT_PRO_URL = "https://buy.stripe.com/COLOQUE_SEU_LINK_STRIPE_PRO_AQUI";
+export const isStripeProConfigured = !STRIPE_CHECKOUT_PRO_URL.includes("COLOQUE_SEU_LINK_STRIPE_PRO_AQUI") && STRIPE_CHECKOUT_PRO_URL.startsWith("http");
+
+/** CHECKOUT STRIPE - LP2 WHITE LABEL MENSAL (R$ 44,90 / mês) */
+export const STRIPE_CHECKOUT_START_URL = "https://buy.stripe.com/COLOQUE_SEU_LINK_STRIPE_START_AQUI";
+export const isStripeStartConfigured = !STRIPE_CHECKOUT_START_URL.includes("COLOQUE_SEU_LINK_STRIPE_START_AQUI") && STRIPE_CHECKOUT_START_URL.startsWith("http");
+
+/** WEBHOOK N8N - para automação de roteamento e envio de leads */
+export const N8N_WEBHOOK_URL: string = "https://n8n-n8n.sb9az3.easypanel.host/webhook/treino-inteligente-quiz";
+export const isN8nConfigured = Boolean(N8N_WEBHOOK_URL) && N8N_WEBHOOK_URL.startsWith("http");
+
+
+/** LINK DA PÁGINA DE VENDAS / OFERTAS (legado / fallback). */
 export const OFFERS_LP_URL = "https://COLOQUE_SEU_LINK_DA_LP_AQUI";
 export const isOffersLpConfigured = !OFFERS_LP_URL.includes("COLOQUE_SEU_LINK_DA_LP_AQUI") && OFFERS_LP_URL.startsWith("http");
 

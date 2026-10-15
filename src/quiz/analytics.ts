@@ -8,7 +8,7 @@ import { ANALYTICS } from "./config";
 
 export type QuizEvent =
   | "quiz_landing_view" | "quiz_start" | "quiz_question_answered" | "quiz_completed"
-  | "recommendation_generated" | "lead_form_view" | "lead_form_submit" | "lead_captured" | "whatsapp_cta_click";
+  | "recommendation_generated" | "lead_form_view" | "lead_form_submit" | "lead_captured" | "whatsapp_cta_click" | "stripe_checkout_click";
 
 type Params = Record<string, string | number>;
 

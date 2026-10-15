@@ -86,6 +86,30 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_leads: {
+        Row: {
+          id: string
+          created_at: string
+          answers: Json
+          recommended_route: string
+          utm: Json
+        }
+        Insert: {
+          id: string
+          created_at?: string
+          answers: Json
+          recommended_route: string
+          utm?: Json
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          answers?: Json
+          recommended_route?: string
+          utm?: Json
+        }
+        Relationships: []
+      }
       vip_leads: {
         Row: {
           consent: boolean

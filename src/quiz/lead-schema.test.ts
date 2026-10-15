@@ -14,6 +14,6 @@ describe("VIP lead capture", () => {
     expect(leadSchema.safeParse({ ...lead, phone: "(91) 99999-9999" }).success).toBe(false);
   });
   it("requires privacy consent", () => expect(leadSchema.safeParse({ ...lead, consent: false }).success).toBe(false));
-  it("requires all 14 answers", () => expect(leadSchema.safeParse({ ...lead, answers: { q1: "A" } }).success).toBe(false));
+  it("requires all 16 answers", () => expect(leadSchema.safeParse({ ...lead, answers: { q1: "A" } }).success).toBe(false));
   it("rejects the bot honeypot", () => expect(leadSchema.safeParse({ ...lead, website: "spam" }).success).toBe(false));
 });

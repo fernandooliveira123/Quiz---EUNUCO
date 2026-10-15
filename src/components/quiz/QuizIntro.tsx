@@ -20,9 +20,9 @@ export function QuizIntro({ onStart }: { onStart: () => void }) {
         <div className="hero-shade absolute inset-0 -z-10" />
         <div className="mx-auto w-full max-w-7xl px-6 py-14 sm:px-10 sm:py-24">
           <div className="max-w-[620px] animate-fade-up">
-            <p className="mb-6 flex items-center gap-3 text-xs font-semibold text-primary"><span className="h-px w-8 bg-primary" /> DIAGNÓSTICO GRATUITO · 14 PERGUNTAS</p>
+            <p className="mb-6 flex items-center gap-3 text-xs font-semibold text-primary"><span className="h-px w-8 bg-primary" /> DIAGNÓSTICO GRATUITO · 16 PERGUNTAS</p>
             <h1 className="text-4xl font-bold leading-[1.15] sm:text-5xl lg:text-[56px]">Qual versão do Treino Inteligente <span className="text-primary">combina com você?</span></h1>
-            <p className="mt-6 max-w-lg text-base leading-[1.75] text-hero-muted sm:text-lg">Descubra qual solução faz mais sentido para sua rotina como personal trainer. Responda a 14 perguntas rápidas sobre seu trabalho, seus objetivos e o que você procura em uma plataforma de prescrição de treinos.</p>
+            <p className="mt-6 max-w-lg text-base leading-[1.75] text-hero-muted sm:text-lg">Descubra qual solução faz mais sentido para sua rotina como personal trainer. Responda a 16 perguntas rápidas sobre seu trabalho, seus objetivos e o que você procura em uma plataforma de prescrição de treinos.</p>
             <ul className="mt-7 space-y-3">
               {BENEFITS.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-3 text-sm sm:text-base">

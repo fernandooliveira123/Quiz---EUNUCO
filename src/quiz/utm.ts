@@ -30,3 +30,22 @@ export function buildUrlWithUtm(baseUrl: string): string {
     return baseUrl;
   }
 }
+
+/** Anexa parâmetros de rastreamento (lead_id / client_reference_id + UTMs) ao checkout do Stripe. */
+export function buildStripeCheckoutUrl(baseUrl: string, leadId?: string | null): string {
+  try {
+    if (!baseUrl || !baseUrl.startsWith("http")) return baseUrl;
+    const url = new URL(baseUrl);
+    if (leadId) {
+      url.searchParams.set("client_reference_id", leadId);
+      url.searchParams.set("lead_id", leadId);
+    }
+    const utms = readUtm();
+    Object.entries(utms).forEach(([k, v]) => {
+      if (v && !url.searchParams.has(k)) url.searchParams.set(k, v);
+    });
+    return url.toString();
+  } catch {
+    return baseUrl;
+  }
+}

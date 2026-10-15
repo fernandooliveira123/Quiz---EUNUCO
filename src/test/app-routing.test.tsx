@@ -14,4 +14,15 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+
+  it("matches dedicated offer routes for LP1 and LP2", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+
+    const proMatches = router.matchRoutes("/oferta-pro");
+    expect(proMatches.at(-1)?.routeId).toBe("/oferta-pro");
+
+    const startMatches = router.matchRoutes("/oferta-start");
+    expect(startMatches.at(-1)?.routeId).toBe("/oferta-start");
+  });
 });
+
