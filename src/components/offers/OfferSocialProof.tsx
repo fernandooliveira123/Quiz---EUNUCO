@@ -71,7 +71,7 @@ export function OfferSocialProof() {
     {
       sender: "Camila (Aluna de Consultoria)",
       time: "Ontem às 19:42",
-      text: "Professor! Baixei o app aqui, ficou sensacional com a sua logo! 😍 Muito mais fácil de ver os vídeos da execução certinho do que aquela planilha do Excel que desconfigurava toda.",
+      text: "Professor! Baixei o app aqui, ficou sensacional com a sua logo! 😍 Muito mais fácil de ver os vídeos da execução certinho do que arquivos no celular que desconfiguravam toda hora.",
     },
     {
       sender: "Thiago Rocha (Aluno Presencial)",
@@ -90,7 +90,7 @@ export function OfferSocialProof() {
         <h2 className="mt-4 text-2xl font-black sm:text-3xl lg:text-4xl text-foreground">
           Quem usa o Treino Inteligente não volta para{" "}
           <span className="text-primary underline decoration-primary/40 underline-offset-4">
-            planilhas nem para apps genéricos
+            métodos antigos nem para apps genéricos
           </span>
         </h2>
         <p className="mt-3 text-sm text-muted-foreground sm:text-base">

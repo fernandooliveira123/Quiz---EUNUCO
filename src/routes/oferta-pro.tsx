@@ -68,7 +68,7 @@ function OfertaProPage() {
     },
     {
       feature: "Tempo de Prescrição",
-      traditional: "De 15 a 25 minutos por treino no WhatsApp, planilhas ou plataformas burocráticas.",
+      traditional: "De 15 a 25 minutos por treino no WhatsApp, digitação manual ou plataformas burocráticas.",
       treinoInteligente: "Prescrição completa e envio em até 3 minutos com banco inteligente de exercícios.",
     },
     {
@@ -168,7 +168,7 @@ function OfertaProPage() {
                   </span>
                   <span>
                     <strong className="text-foreground">Prescrição Ultrarrápida em até 3 Minutos:</strong>{" "}
-                    elimine de vez as horas perdidas em planilhas ou mensagens.
+                    elimine de vez as horas perdidas em digitação manual ou mensagens soltas.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">

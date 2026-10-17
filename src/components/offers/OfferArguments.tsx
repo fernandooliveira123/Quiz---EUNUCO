@@ -12,7 +12,7 @@ export function OfferArguments({ plan }: Props) {
       icon: Clock,
       tag: "AGILIDADE EXTREMA",
       title: "Prescrição completa de treinos em até 3 minutos",
-      subtitle: "Elimine até 85% do tempo perdido digitando mensagens e montando planilhas.",
+      subtitle: "Elimine até 85% do tempo perdido digitando mensagens e montando treinos manuais.",
       description:
         "Com templates inteligentes, histórico de progressão de carga e substituição rápida de exercícios com 1 clique, você monta fichas completas diretamente pelo celular entre uma aula e outra. O fim das noites de domingo perdidas no computador.",
       bullets: [
@@ -33,7 +33,7 @@ export function OfferArguments({ plan }: Props) {
         : "Transmita autoridade de consultoria de elite desde o primeiro aluno.",
       description: isPro
         ? "Nos aplicativos tradicionais do mercado, o aluno abre o app e vê a marca deles, achando que o resultado é da plataforma. No Treino Inteligente White Label, o aluno só vê a SUA marca, SEU logotipo e SUAS cores no bolso dele."
-        : "Sair do WhatsApp e de planilhas desformatadas transforma a forma como o aluno enxerga seu serviço. Você passa de um 'amigo que manda treinos' para um personal trainer de elite com sistema dedicado.",
+        : "Sair do WhatsApp e de arquivos desformatados no celular transforma a forma como o aluno enxerga seu serviço. Você passa de um 'amigo que manda treinos' para um personal trainer de elite com sistema dedicado.",
       bullets: [
         isPro ? "Aplicativo no bolso do aluno com seu logotipo oficial" : "Design limpo e sem poluição visual",
         "Seus alunos não comparam seu preço com personais amadores",

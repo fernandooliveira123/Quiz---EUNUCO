@@ -288,12 +288,12 @@ const RESULT_COPY: Record<
     title: "A opção que mais combina com seu momento é o Treino Inteligente Start.",
     badge: "MENSALIDADE ESSENCIAL",
     description: [
-      "Pelas suas respostas, você busca simplificar a rotina, parar de perder tempo com planilhas e mensagens e dar os primeiros passos com uma ferramenta prática e acessível.",
+      "Pelas suas respostas, você busca simplificar a rotina, parar de perder tempo com métodos manuais e mensagens soltas e dar os primeiros passos com uma ferramenta prática e acessível.",
       "O plano Start foi desenhado para quem quer prescrever treinos com máxima agilidade em até 3 minutos, com o menor investimento mensal.",
     ],
     benefits: [
       "Prescrição prática e rápida em até 3 minutos para o dia a dia.",
-      "Fim do caos de planilhas e treinos soltos no WhatsApp.",
+      "Fim do improviso de mensagens e treinos soltos no WhatsApp.",
       "Menor investimento mensal para caber com folga no orçamento.",
     ],
   },

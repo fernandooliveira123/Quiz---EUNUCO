@@ -44,7 +44,7 @@ export const Route = createFileRoute("/oferta-start")({
       {
         name: "description",
         content:
-          "A solução ideal para você sair do caos das planilhas e do WhatsApp sem comprometer seu orçamento.",
+          "A solução ideal para você sair do improviso de mensagens e ter seu próprio aplicativo sem comprometer seu orçamento.",
       },
     ],
   }),
@@ -63,7 +63,7 @@ function OfertaStartPage() {
   const comparisonItems = [
     {
       feature: "Organização dos Treinos",
-      traditional: "PDFs espalhados em conversas do WhatsApp, planilhas desformatadas no celular do aluno.",
+      traditional: "PDFs e mensagens espalhadas em conversas do WhatsApp que desformatam no celular do aluno.",
       treinoInteligente: "Tudo centralizado em um aplicativo fluido, intuitivo e com visual profissional.",
     },
     {
@@ -259,10 +259,10 @@ function OfertaStartPage() {
           </div>
         </div>
 
-        {/* COMPARATIVO COM PLANILHAS E WHATSAPP */}
+        {/* COMPARATIVO COM MÉTODOS TRADICIONAIS E WHATSAPP */}
         <OfferComparisonTable
           title="Por que você precisa sair do amadorismo hoje?"
-          subtitle="Compare a experiência de quem usa mensagens e planilhas com quem utiliza o Treino Inteligente:"
+          subtitle="Compare a experiência de quem usa mensagens e métodos manuais com quem utiliza o Treino Inteligente:"
           items={comparisonItems}
         />
 
@@ -280,7 +280,7 @@ function OfertaStartPage() {
             Pronto para economizar horas semanais por R$ 1,50 ao dia?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm sm:text-base text-muted-foreground">
-            Livre-se da bagunça de planilhas e do WhatsApp. Entregue um aplicativo de verdade para seus
+            Livre-se da bagunça de mensagens soltas no WhatsApp. Entregue um aplicativo de verdade para seus
             alunos hoje mesmo.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">

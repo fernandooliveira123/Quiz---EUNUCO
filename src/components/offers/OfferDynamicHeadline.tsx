@@ -108,7 +108,7 @@ function getDynamicCopy(plan: "pro" | "start", answers: Answers): DynamicCopy {
         h1Highlight: "próprio aplicativo",
         h1Suffix: "para proteger sua margem e cobrar até R$ 300 por aluno.",
         subheadline:
-          "Quem tem mais de 10 alunos não pode continuar com ferramentas genéricas ou planilhas. Posicione-se como uma consultoria de elite com aplicativo exclusivo e prescreva treinos em até 3 minutos.",
+          "Quem tem mais de 10 alunos não pode continuar com ferramentas genéricas ou métodos manuais. Posicione-se como uma consultoria de elite com aplicativo exclusivo e prescreva treinos em até 3 minutos.",
       };
     }
 
@@ -138,16 +138,16 @@ function getDynamicCopy(plan: "pro" | "start", answers: Answers): DynamicCopy {
     };
   }
 
-  // 2. Dor das Planilhas
+  // 2. Evolução de Métodos Manuais
   if (q2 === "A") {
     return {
-      badge: "Diagnóstico: Transição de Planilhas · Organização Imediata",
+      badge: "Diagnóstico: Evolução Digital · Organização Imediata",
       badgeIcon: ShieldCheck,
-      h1Prefix: "Abandone de vez as planilhas desformatadas no celular: prescreva treinos em até",
+      h1Prefix: "Evolua para além dos métodos manuais no celular: prescreva treinos em até",
       h1Highlight: "3 minutos em um aplicativo moderno",
       h1Suffix: "sem compromisso de fidelidade.",
       subheadline:
-        "Planilhas passam sensação de serviço amador e consomem seu tempo. Comece a prescrever em um aplicativo fluido e profissional desde o primeiro aluno com investimento acessível.",
+        "Métodos manuais e anotações soltas consomem seu tempo e dificultam o acompanhamento. Comece a prescrever em um aplicativo fluido e profissional desde o primeiro aluno com investimento acessível.",
     };
   }
 
@@ -168,7 +168,7 @@ function getDynamicCopy(plan: "pro" | "start", answers: Answers): DynamicCopy {
   return {
     badge: "Diagnóstico Oficial Treino Inteligente · Entrada Essencial",
     badgeIcon: Zap,
-    h1Prefix: "A solução ideal para você sair do caos das planilhas e do WhatsApp sem",
+    h1Prefix: "A solução ideal para você sair do improviso de mensagens e métodos manuais sem",
     h1Highlight: "comprometer seu orçamento",
     h1Suffix: "ou assumir contratos longos.",
     subheadline:
