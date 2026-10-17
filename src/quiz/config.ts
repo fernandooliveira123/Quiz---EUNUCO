@@ -82,7 +82,7 @@ export const isN8nConfigured = Boolean(N8N_WEBHOOK_URL) && N8N_WEBHOOK_URL.start
 
 
 /** LINK DA PÁGINA DE VENDAS / OFERTAS (legado / fallback). */
-export const OFFERS_LP_URL = "https://COLOQUE_SEU_LINK_DA_LP_AQUI";
+export const OFFERS_LP_URL = "https://meuapp.treinointeligente.pro/oferta-pro";
 export const isOffersLpConfigured = !OFFERS_LP_URL.includes("COLOQUE_SEU_LINK_DA_LP_AQUI") && OFFERS_LP_URL.startsWith("http");
 
 /** LINK DO GRUPO VIP DO WHATSAPP (legado / opcional). */
