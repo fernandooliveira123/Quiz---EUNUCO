@@ -16,6 +16,9 @@ export const isStripeStartConfigured = !STRIPE_CHECKOUT_START_URL.includes("COLO
 export const VSL_VIDEO_PRO_URL = "";
 export const VSL_VIDEO_START_URL = "";
 
+/** VÍDEO DE PROVA SOCIAL - Wistia embed com depoimentos de treinadores */
+export const SOCIAL_PROOF_VIDEO_URL = "https://fast.wistia.net/embed/iframe/2qty6bed6r";
+
 /** WEBHOOK N8N - para automação de roteamento e envio de leads */
 export const N8N_WEBHOOK_URL: string = "https://n8n-n8n.sb9az3.easypanel.host/webhook/treino-inteligente-quiz";
 export const isN8nConfigured = Boolean(N8N_WEBHOOK_URL) && N8N_WEBHOOK_URL.startsWith("http");

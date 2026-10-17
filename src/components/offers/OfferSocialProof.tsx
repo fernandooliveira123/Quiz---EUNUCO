@@ -1,4 +1,18 @@
-import { Star, Quote, CheckCircle, TrendingUp, Users, Clock, Award, MessageCircle } from "lucide-react";
+import {
+  Star,
+  Quote,
+  CheckCircle,
+  TrendingUp,
+  Users,
+  Clock,
+  Award,
+  MessageCircle,
+  Play,
+  ShieldCheck,
+  CheckCircle2,
+  Volume2,
+} from "lucide-react";
+import { SOCIAL_PROOF_VIDEO_URL } from "@/quiz/config";
 
 export function OfferSocialProof() {
   const metrics = [
@@ -115,6 +129,105 @@ export function OfferSocialProof() {
             <div className="mt-0.5 text-[11px] text-muted-foreground">{detail}</div>
           </div>
         ))}
+      </div>
+
+      {/* Bloco de Vídeo de Depoimentos Reais */}
+      <div className="mt-14 rounded-3xl border border-primary/30 bg-gradient-to-b from-card/90 via-card/50 to-background p-6 sm:p-10 shadow-glow relative overflow-hidden backdrop-blur-md">
+        {/* Glow decorativo de fundo */}
+        <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+
+        <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Coluna de Texto Persuasivo */}
+          <div className="lg:col-span-7 space-y-5 text-left">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-bold text-primary">
+              <Play className="h-3.5 w-3.5 fill-current" /> Depoimento em Vídeo
+            </span>
+
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight leading-snug">
+              Veja a experiência real de quem já transformou sua rotina
+            </h3>
+
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Assista ao relato de treinadores que trocaram métodos antigos e mensagens dispersas por uma entrega profissional com aplicativo dedicado.
+            </p>
+
+            {/* Destaques do Depoimento */}
+            <div className="space-y-3.5 pt-2">
+              <div className="flex items-start gap-3">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div>
+                  <strong className="text-sm sm:text-base text-foreground font-bold">
+                    Fim do retrabalho e horas no computador:
+                  </strong>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    Prescrição completa feita direto do celular em menos de 3 minutos.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div>
+                  <strong className="text-sm sm:text-base text-foreground font-bold">
+                    Valorização imediata da consultoria:
+                  </strong>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    Alunos impressionados com a praticidade e o visual de alto nível.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div>
+                  <strong className="text-sm sm:text-base text-foreground font-bold">
+                    Mais alunos atendidos com tranquilidade:
+                  </strong>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    Escalabilidade real sem comprometer o atendimento ou os finais de semana.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Selo de Confiança */}
+            <div className="pt-2 flex items-center gap-2 text-xs font-semibold text-primary">
+              <ShieldCheck className="h-4 w-4 text-primary shrink-0" />
+              <span>Depoimento 100% verificado · Treinadores reais no campo de batalha</span>
+            </div>
+          </div>
+
+          {/* Coluna do Player de Vídeo Vertical (9:16) */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="w-full max-w-[320px] sm:max-w-[340px]">
+              {/* Barra de alerta do som */}
+              <div className="mb-2.5 flex items-center justify-center gap-1.5 rounded-xl bg-primary/10 border border-primary/20 py-1.5 px-3 text-[11px] font-bold text-primary shadow-sm">
+                <Volume2 className="h-3.5 w-3.5 animate-bounce shrink-0" />
+                <span>Toque no play e ative o som do vídeo</span>
+              </div>
+
+              {/* Moldura estilo Smartphone com Glow */}
+              <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[2rem] border-4 border-primary/40 bg-black shadow-glow">
+                <iframe
+                  src={SOCIAL_PROOF_VIDEO_URL}
+                  title="Depoimento de Treinadores - Treino Inteligente"
+                  allow="autoplay; fullscreen"
+                  allowTransparency={true}
+                  frameBorder="0"
+                  scrolling="no"
+                  className="h-full w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Cards de Depoimentos */}
