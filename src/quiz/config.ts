@@ -62,7 +62,7 @@ export const STRIPE_CONFIG = {
 } as const;
 
 /** CHECKOUT STRIPE - LP1 WHITE LABEL ANUAL (R$ 497 / ano com 3 dias de trial a R$ 0,00) */
-export const STRIPE_CHECKOUT_PRO_URL = "https://buy.stripe.com/COLOQUE_SEU_LINK_STRIPE_PRO_AQUI";
+export const STRIPE_CHECKOUT_PRO_URL = "https://buy.stripe.com/cNi14g0Jg97Q7LY2x76sw03";
 export const isStripeProConfigured = !STRIPE_CHECKOUT_PRO_URL.includes("COLOQUE_SEU_LINK_STRIPE_PRO_AQUI") && STRIPE_CHECKOUT_PRO_URL.startsWith("http");
 
 /** CHECKOUT STRIPE - LP2 PRO MENSAL (R$ 44,90 / mês com 3 dias de trial a R$ 0,00) */
