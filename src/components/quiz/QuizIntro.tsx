@@ -1,4 +1,4 @@
-import { ArrowRight, Clock3, Compass, Target, Sparkles } from "lucide-react";
+import { ArrowRight, Clock3, Compass, Target, Sparkles, Dumbbell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import trainerImage from "@/assets/trainer-platform.jpg";
 
@@ -12,7 +12,12 @@ export function QuizIntro({ onStart }: { onStart: () => void }) {
   return (
     <div>
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 sm:px-10">
-        <p className="text-lg font-extrabold">treino<span className="text-primary">.</span><span className="ml-1 font-medium">inteligente</span></p>
+        <div className="flex items-center gap-2">
+          <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary/15 text-primary border border-primary/25 shadow-sm">
+            <Dumbbell className="h-4 w-4" />
+          </div>
+          <p className="text-lg font-extrabold">treino<span className="text-primary">.</span><span className="ml-1 font-medium">inteligente</span></p>
+        </div>
         <span className="hidden text-xs text-muted-foreground sm:block">DIAGNÓSTICO PARA PERSONAL TRAINERS</span>
       </header>
       <section className="landing-hero relative isolate overflow-hidden">

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Dumbbell } from "lucide-react";
 
 interface Props {
   badgeText: string;
@@ -9,7 +9,10 @@ export function OfferHeader({ badgeText }: Props) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3.5 sm:px-8 sm:py-4">
-        <Link to="/" className="flex items-center gap-1.5 transition-opacity hover:opacity-85">
+        <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-85">
+          <div className="grid h-8 w-8 place-items-center rounded-lg bg-primary/15 text-primary border border-primary/25 shadow-sm">
+            <Dumbbell className="h-4 w-4" />
+          </div>
           <p className="text-lg font-black tracking-tight sm:text-xl">
             treino<span className="text-primary">.</span><span className="font-semibold text-foreground/90">inteligente</span>
           </p>
