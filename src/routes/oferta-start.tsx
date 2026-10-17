@@ -5,19 +5,25 @@ import {
   Zap,
   Smartphone,
   ShieldCheck,
-  RotateCcw,
   ExternalLink,
-  Layers,
-  HeartHandshake,
   Clock,
+  HeartHandshake,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { OfferHeader } from "@/components/offers/OfferHeader";
+import { OfferDynamicHeadline } from "@/components/offers/OfferDynamicHeadline";
+import { OfferVslPlayer } from "@/components/offers/OfferVslPlayer";
+import { OfferSocialProof } from "@/components/offers/OfferSocialProof";
+import { OfferArguments } from "@/components/offers/OfferArguments";
 import { OfferGuarantee } from "@/components/offers/OfferGuarantee";
 import { OfferComparisonTable } from "@/components/offers/OfferComparisonTable";
 import { OfferFaqSection } from "@/components/offers/OfferFaqSection";
-import { STRIPE_CHECKOUT_START_URL, isStripeStartConfigured } from "@/quiz/config";
+import {
+  STRIPE_CHECKOUT_START_URL,
+  isStripeStartConfigured,
+  VSL_VIDEO_START_URL,
+} from "@/quiz/config";
 import { buildStripeCheckoutUrl } from "@/quiz/utm";
 import { track } from "@/quiz/analytics";
 
@@ -44,7 +50,6 @@ export const Route = createFileRoute("/oferta-start")({
   }),
   component: OfertaStartPage,
 });
-
 
 function OfertaStartPage() {
   const search = Route.useSearch();
@@ -110,30 +115,30 @@ function OfertaStartPage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <OfferHeader badgeText="Diagnóstico White Label Mensal" />
 
-      <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-16">
-        {/* HERO SECTION DE DIAGNÓSTICO */}
-        <div className="text-center animate-fade-up">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-primary shadow-sm">
-            <Zap className="h-4 w-4" /> Diagnóstico Oficial Treino Inteligente
-          </div>
+      <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+        {/* 1. HEADLINE DINÂMICA BASEADA NAS RESPOSTAS DO QUIZ */}
+        <OfferDynamicHeadline plan="start" />
 
-          <h1 className="mt-5 text-3xl font-extrabold leading-[1.2] sm:text-4xl lg:text-5xl">
-            A solução ideal para você{" "}
-            <span className="text-primary underline decoration-primary/40 underline-offset-4">
-              sair do caos das planilhas e do WhatsApp
-            </span>{" "}
-            sem comprometer seu orçamento.
-          </h1>
+        {/* 2. ESPAÇO PARA VÍDEO VSL (VIDEO SALES LETTER) */}
+        <OfferVslPlayer
+          planTitle="Treino Inteligente White Label Mensal"
+          videoUrl={VSL_VIDEO_START_URL}
+          ctaText="COMEÇAR AGORA POR R$ 44,90/MÊS"
+          ctaHref={isStripeStartConfigured ? stripeUrl : "#oferta-card"}
+          onCtaClick={handleCheckoutClick}
+        />
 
-          <p className="mx-auto mt-6 max-w-3xl text-base text-muted-foreground leading-relaxed sm:text-lg">
-            Pare de perder horas do seu dia montando treinos manuais e passando mensagens desorganizadas.
-            Com o <strong className="text-foreground">Treino Inteligente Mensal</strong>, você prescreve
-            treinos em até 3 minutos e transmite autoridade profissional pelo valor de um cafezinho por dia.
-          </p>
-        </div>
+        {/* 3. PROVA SOCIAL (MÉTRICAS + DEPOIMENTOS + WHATSAPP) */}
+        <OfferSocialProof />
+
+        {/* 4. ARGUMENTOS ESTRATÉGICOS (3 MINUTOS + ENTRADA ACESSÍVEL + FIM DO WHATSAPP) */}
+        <OfferArguments plan="start" />
 
         {/* CARD PRINCIPAL DE PREÇO E OFERTA */}
-        <div className="mt-12 rounded-3xl border-2 border-primary/60 bg-gradient-to-b from-card to-background p-6 sm:p-10 shadow-glow relative overflow-hidden">
+        <div
+          id="oferta-card"
+          className="mt-16 rounded-3xl border-2 border-primary/60 bg-gradient-to-b from-card to-background p-6 sm:p-10 shadow-glow relative overflow-hidden"
+        >
           <div className="absolute -top-12 -right-12 h-44 w-44 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -220,7 +225,7 @@ function OfertaStartPage() {
                       rel="noopener noreferrer"
                       onClick={handleCheckoutClick}
                     >
-                      COMEÇAR POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5" />
+                      ASSINAR POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5 ml-2" />
                     </a>
                   </Button>
                 ) : (
@@ -234,23 +239,23 @@ function OfertaStartPage() {
                       )
                     }
                   >
-                    COMEÇAR POR R$ 44,90/MÊS <ExternalLink className="h-5 w-5" />
+                    ASSINAR POR R$ 44,90/MÊS <ExternalLink className="h-5 w-5 ml-2" />
                   </Button>
                 )}
               </div>
 
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <ShieldCheck className="h-4 w-4 text-primary" />
-                <span>Garantia incondicional de 7 dias · Pagamento seguro pelo Stripe</span>
+                <span>Garantia incondicional de 7 dias · Pagamento seguro</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* COMPARATIVO COM A ROTINA MANUAL */}
+        {/* COMPARATIVO COM PLANILHAS E WHATSAPP */}
         <OfferComparisonTable
-          title="Por que abandonar as planilhas e o WhatsApp hoje?"
-          subtitle="Compare a sua rotina atual com a agilidade e o profissionalismo do Treino Inteligente:"
+          title="Por que você precisa sair do amadorismo hoje?"
+          subtitle="Compare a experiência de quem usa mensagens e planilhas com quem utiliza o Treino Inteligente:"
           items={comparisonItems}
         />
 
@@ -265,10 +270,11 @@ function OfertaStartPage() {
         {/* CTA FINAL DE CONVERSÃO */}
         <div className="my-14 rounded-3xl border border-primary/40 bg-card/90 p-8 text-center shadow-card sm:p-12">
           <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">
-            Pronto para prescrever treinos em 3 minutos sem comprometer seu orçamento?
+            Pronto para economizar horas semanais por R$ 1,50 ao dia?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm sm:text-base text-muted-foreground">
-            Dê o primeiro passo rumo a uma consultoria organizada e livre-se do retrabalho diário.
+            Livre-se da bagunça de planilhas e do WhatsApp. Entregue um aplicativo de verdade para seus
+            alunos hoje mesmo.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
             {isStripeStartConfigured ? (
@@ -279,7 +285,7 @@ function OfertaStartPage() {
                   rel="noopener noreferrer"
                   onClick={handleCheckoutClick}
                 >
-                  COMEÇAR POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5" />
+                  COMEÇAR AGORA POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5 ml-2" />
                 </a>
               </Button>
             ) : (
@@ -293,13 +299,13 @@ function OfertaStartPage() {
                   )
                 }
               >
-                COMEÇAR POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5" />
+                COMEÇAR AGORA POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
             )}
 
             {/* Alternativa para o plano anual */}
             <div className="mt-4 text-xs sm:text-sm text-muted-foreground">
-              Já tem mais de 10 alunos e quer sua marca própria com desconto anual?{" "}
+              Já tem mais de 10 alunos ou quer seu app com marca própria?{" "}
               <Link
                 to="/oferta-pro"
                 search={{
@@ -312,7 +318,7 @@ function OfertaStartPage() {
                 }}
                 className="text-primary font-bold hover:underline"
               >
-                Conheça o plano White Label Anual (R$ 497/ano) →
+                Conheça a opção White Label Anual (R$ 497/ano ou ~R$ 41/mês) →
               </Link>
             </div>
           </div>

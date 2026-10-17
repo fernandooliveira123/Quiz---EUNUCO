@@ -12,6 +12,10 @@ export const isStripeProConfigured = !STRIPE_CHECKOUT_PRO_URL.includes("COLOQUE_
 export const STRIPE_CHECKOUT_START_URL = "https://buy.stripe.com/COLOQUE_SEU_LINK_STRIPE_START_AQUI";
 export const isStripeStartConfigured = !STRIPE_CHECKOUT_START_URL.includes("COLOQUE_SEU_LINK_STRIPE_START_AQUI") && STRIPE_CHECKOUT_START_URL.startsWith("http");
 
+/** VÍDEO VSL - URLs de vídeo para a LP1 (Pro) e LP2 (Start). Suporta YouTube, Vimeo, Panda Video, Wistia ou MP4 direto. */
+export const VSL_VIDEO_PRO_URL = "";
+export const VSL_VIDEO_START_URL = "";
+
 /** WEBHOOK N8N - para automação de roteamento e envio de leads */
 export const N8N_WEBHOOK_URL: string = "https://n8n-n8n.sb9az3.easypanel.host/webhook/treino-inteligente-quiz";
 export const isN8nConfigured = Boolean(N8N_WEBHOOK_URL) && N8N_WEBHOOK_URL.startsWith("http");

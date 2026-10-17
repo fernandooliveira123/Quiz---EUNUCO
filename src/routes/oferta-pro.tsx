@@ -2,23 +2,28 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Check,
-  Crown,
-  Sparkles,
-  Zap,
-  Users,
-  TrendingUp,
   Gift,
   ExternalLink,
   ShieldCheck,
-  Layers,
+  Zap,
+  Users,
+  TrendingUp,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { OfferHeader } from "@/components/offers/OfferHeader";
+import { OfferDynamicHeadline } from "@/components/offers/OfferDynamicHeadline";
+import { OfferVslPlayer } from "@/components/offers/OfferVslPlayer";
+import { OfferSocialProof } from "@/components/offers/OfferSocialProof";
+import { OfferArguments } from "@/components/offers/OfferArguments";
 import { OfferGuarantee } from "@/components/offers/OfferGuarantee";
 import { OfferComparisonTable } from "@/components/offers/OfferComparisonTable";
 import { OfferFaqSection } from "@/components/offers/OfferFaqSection";
-import { STRIPE_CHECKOUT_PRO_URL, isStripeProConfigured } from "@/quiz/config";
+import {
+  STRIPE_CHECKOUT_PRO_URL,
+  isStripeProConfigured,
+  VSL_VIDEO_PRO_URL,
+} from "@/quiz/config";
 import { buildStripeCheckoutUrl } from "@/quiz/utm";
 import { track } from "@/quiz/analytics";
 
@@ -45,7 +50,6 @@ export const Route = createFileRoute("/oferta-pro")({
   }),
   component: OfertaProPage,
 });
-
 
 function OfertaProPage() {
   const search = Route.useSearch();
@@ -111,31 +115,30 @@ function OfertaProPage() {
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <OfferHeader badgeText="Diagnóstico White Label Anual" />
 
-      <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-16">
-        {/* HERO SECTION DE DIAGNÓSTICO */}
-        <div className="text-center animate-fade-up">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-primary shadow-sm">
-            <Crown className="h-4 w-4" /> Diagnóstico Oficial Treino Inteligente
-          </div>
+      <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
+        {/* 1. HEADLINE DINÂMICA BASEADA NAS RESPOSTAS DO QUIZ */}
+        <OfferDynamicHeadline plan="pro" />
 
-          <h1 className="mt-5 text-3xl font-extrabold leading-[1.2] sm:text-4xl lg:text-5xl">
-            Sua consultoria atingiu o nível onde você precisa do seu{" "}
-            <span className="text-primary underline decoration-primary/40 underline-offset-4">
-              próprio aplicativo
-            </span>{" "}
-            para proteger sua margem e cobrar mais caro dos seus alunos.
-          </h1>
+        {/* 2. ESPAÇO PARA VÍDEO VSL (VIDEO SALES LETTER) */}
+        <OfferVslPlayer
+          planTitle="Treino Inteligente White Label Anual"
+          videoUrl={VSL_VIDEO_PRO_URL}
+          ctaText="QUERO MEU APLICATIVO WHITE LABEL AGORA"
+          ctaHref={isStripeProConfigured ? stripeUrl : "#oferta-card"}
+          onCtaClick={handleCheckoutClick}
+        />
 
-          <p className="mx-auto mt-6 max-w-3xl text-base text-muted-foreground leading-relaxed sm:text-lg">
-            Pare de promover marcas de terceiros que tratam seu trabalho como commodity. Com o{" "}
-            <strong className="text-foreground">Treino Inteligente White Label Anual</strong>, você
-            entrega uma experiência de aplicativo com a sua marca e prescreve treinos completos em até 3
-            minutos.
-          </p>
-        </div>
+        {/* 3. PROVA SOCIAL (MÉTRICAS + DEPOIMENTOS + WHATSAPP) */}
+        <OfferSocialProof />
+
+        {/* 4. ARGUMENTOS ESTRATÉGICOS (3 MINUTOS + MARCA PRÓPRIA + RETORNO FINANCEIRO + FIM DO CAOS) */}
+        <OfferArguments plan="pro" />
 
         {/* CARD PRINCIPAL DE ANCORAGEM E OFERTA */}
-        <div className="mt-12 rounded-3xl border-2 border-primary/60 bg-gradient-to-b from-card to-background p-6 sm:p-10 shadow-glow relative overflow-hidden">
+        <div
+          id="oferta-card"
+          className="mt-16 rounded-3xl border-2 border-primary/60 bg-gradient-to-b from-card to-background p-6 sm:p-10 shadow-glow relative overflow-hidden"
+        >
           <div className="absolute -top-12 -right-12 h-44 w-44 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -221,7 +224,7 @@ function OfertaProPage() {
                       rel="noopener noreferrer"
                       onClick={handleCheckoutClick}
                     >
-                      QUERO MEU APP WHITE LABEL <ArrowRight className="h-5 w-5" />
+                      QUERO MEU APP WHITE LABEL <ArrowRight className="h-5 w-5 ml-2" />
                     </a>
                   </Button>
                 ) : (
@@ -235,7 +238,7 @@ function OfertaProPage() {
                       )
                     }
                   >
-                    QUERO MEU APP WHITE LABEL (R$ 497/ANO) <ExternalLink className="h-5 w-5" />
+                    QUERO MEU APP WHITE LABEL (R$ 497/ANO) <ExternalLink className="h-5 w-5 ml-2" />
                   </Button>
                 )}
               </div>
@@ -319,7 +322,7 @@ function OfertaProPage() {
             Pronto para ter seu aplicativo próprio por menos de R$ 42/mês?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm sm:text-base text-muted-foreground">
-            Junte-se aos personal trainers que saíram da dependência de concorrentes e construíram sua
+            Junte-se aos mais de 3.400 personal trainers que saíram da dependência de concorrentes e construíram sua
             própria marca digital com o Treino Inteligente.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
@@ -331,7 +334,7 @@ function OfertaProPage() {
                   rel="noopener noreferrer"
                   onClick={handleCheckoutClick}
                 >
-                  GARANTIR WHITE LABEL ANUAL (R$ 497/ANO) <ArrowRight className="h-5 w-5" />
+                  GARANTIR WHITE LABEL ANUAL (R$ 497/ANO) <ArrowRight className="h-5 w-5 ml-2" />
                 </a>
               </Button>
             ) : (
@@ -345,7 +348,7 @@ function OfertaProPage() {
                   )
                 }
               >
-                GARANTIR WHITE LABEL ANUAL (R$ 497/ANO) <ArrowRight className="h-5 w-5" />
+                GARANTIR WHITE LABEL ANUAL (R$ 497/ANO) <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
             )}
 
