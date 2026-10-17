@@ -66,7 +66,7 @@ export const STRIPE_CHECKOUT_PRO_URL = "https://buy.stripe.com/COLOQUE_SEU_LINK_
 export const isStripeProConfigured = !STRIPE_CHECKOUT_PRO_URL.includes("COLOQUE_SEU_LINK_STRIPE_PRO_AQUI") && STRIPE_CHECKOUT_PRO_URL.startsWith("http");
 
 /** CHECKOUT STRIPE - LP2 PRO MENSAL (R$ 44,90 / mês com 3 dias de trial a R$ 0,00) */
-export const STRIPE_CHECKOUT_START_URL = "https://buy.stripe.com/COLOQUE_SEU_LINK_STRIPE_START_AQUI";
+export const STRIPE_CHECKOUT_START_URL = "https://buy.stripe.com/6oU28keA63NweamgnX6sw02";
 export const isStripeStartConfigured = !STRIPE_CHECKOUT_START_URL.includes("COLOQUE_SEU_LINK_STRIPE_START_AQUI") && STRIPE_CHECKOUT_START_URL.startsWith("http");
 
 /** VÍDEO VSL - URLs de vídeo para a LP1 (Pro) e LP2 (Start). Suporta YouTube, Vimeo, Panda Video, Wistia ou MP4 direto. */
