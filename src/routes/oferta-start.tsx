@@ -45,7 +45,7 @@ export const Route = createFileRoute("/oferta-start")({
       {
         name: "description",
         content:
-          "Plano Pro Mensal por apenas R$ 44,90/mês, com 3 dias de teste grátis por R$ 0,00 hoje em nosso checkout, alunos ilimitados e White-label liberado.",
+          "Plano Pro Mensal por apenas R$ 44,90/mês, com 3 dias de teste grátis por R$ 0,00 hoje em nosso checkout, alunos ilimitados e aplicativo com a sua própria marca.",
       },
     ],
   }),
@@ -65,7 +65,7 @@ function OfertaStartPage() {
     {
       feature: "Identidade Visual e Marca",
       traditional: "Marca do aplicativo concorrente em destaque, parecendo que o serviço é da plataforma e não seu.",
-      treinoInteligente: "Aplicativo 100% White-label liberado com seu logotipo, cores e identidade da sua consultoria.",
+      treinoInteligente: "Aplicativo liberado com seu logotipo oficial, cores e identidade da sua consultoria.",
     },
     {
       feature: "Limite de Alunos",
@@ -98,12 +98,12 @@ function OfertaStartPage() {
     {
       question: "Como funciona o teste gratuito de 3 dias por R$ 0,00?",
       answer:
-        "No momento da assinatura em nosso checkout seguro, você paga R$ 0,00. Seu cartão é apenas autenticado com criptografia bancária e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 44,90 só ocorre no 4º dia se você decidir continuar.",
+        "No momento da assinatura em nosso checkout seguro, você paga R$ 0,00. Seu cartão é apenas autenticado com criptografia bancária e seu acesso completo à plataforma (com aplicativo na sua marca e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 44,90 só ocorre no 4º dia se você decidir continuar.",
     },
     {
-      question: "O Plano Pro Mensal inclui White-label e alunos ilimitados?",
+      question: "O Plano Pro Mensal inclui personalização com a minha marca e alunos ilimitados?",
       answer:
-        "Sim! Tanto o Plano Pro Mensal quanto o Anual oferecem Alunos Ilimitados e Personalização White-label 100% liberada com seu logotipo, cores e nome da sua consultoria.",
+        "Sim! Tanto o Plano Pro Mensal quanto o Anual oferecem Alunos Ilimitados e aplicativo personalizado com seu logotipo, cores e o nome da sua consultoria.",
     },
     {
       question: "Existe algum contrato de fidelidade ou taxa de adesão?",
@@ -113,10 +113,10 @@ function OfertaStartPage() {
     {
       question: "Como funciona o cancelamento da assinatura?",
       answer:
-        "Você tem total autonomia direto pelo botão 'Gerenciar Assinatura' na sua área de configurações. Se cancelar durante os 3 dias de trial, o cancelamento é imediato com custo zero. Se cancelar após a cobrança, ela não se renova e você continua usando até fechar os 30 dias que já pagou.",
+        "Você tem total autonomia direto pelo botão 'Gerenciar Assinatura' na sua área de configurações. Se cancelar durante os 3 dias de teste grátis, o cancelamento é imediato com custo zero. Se cancelar após a cobrança, ela não se renova e você continua usando até fechar os 30 dias que já pagou.",
     },
     {
-      question: "Posso migrar para o plano White-label Anual mais tarde?",
+      question: "Posso migrar para o plano Anual mais tarde?",
       answer:
         "Com certeza! A qualquer momento você pode migrar para o plano anual para garantir 2 meses grátis de economia (R$ 497/ano equivale a apenas R$ 41,41/mês) e suporte prioritário direto via WhatsApp.",
     },
@@ -174,8 +174,8 @@ function OfertaStartPage() {
                     <Check className="h-4 w-4" />
                   </span>
                   <span>
-                    <strong className="text-foreground">Personalização White-label 100% Liberada:</strong> seu
-                    logotipo oficial, cores e identidade da sua consultoria no app.
+                    <strong className="text-foreground">Aplicativo com Sua Marca Liberado:</strong> seu
+                    logotipo oficial, cores e o nome da sua consultoria no app.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">
@@ -244,7 +244,7 @@ function OfertaStartPage() {
                 </div>
                 <p className="text-xs text-foreground/80 leading-relaxed">
                   • <strong>Hoje:</strong> R$ 0,00 no cartão em nosso checkout seguro. Acesso liberado na hora.<br />
-                  • <strong>Dias 1 a 3:</strong> Teste livre com alunos ilimitados e White-label.<br />
+                  • <strong>Dias 1 a 3:</strong> Teste livre com alunos ilimitados e seu aplicativo personalizado.<br />
                   • <strong>Dia 4:</strong> R$ 44,90/mês (menos de R$ 1,50/dia). Cancele com 1 clique antes do 4º dia em seu painel sem pagar nada.
                 </p>
               </div>
@@ -377,7 +377,7 @@ function OfertaStartPage() {
                 }}
                 className="text-primary font-bold hover:underline"
               >
-                Conheça a opção White Label Anual (R$ 497/ano ou ~R$ 41/mês) →
+                Conheça a opção do Plano Anual com Sua Marca (R$ 497/ano ou ~R$ 41/mês) →
               </Link>
             </div>
           </div>

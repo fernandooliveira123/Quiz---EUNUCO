@@ -26,21 +26,21 @@ export function OfferArguments({ plan }: Props) {
       icon: Crown,
       tag: "AUTORIDADE DE MARCA",
       title: isPro
-        ? "Aplicativo 100% White-label com a sua marca, logo e cores"
-        : "Aplicativo 100% White-label liberado com seu logotipo oficial",
+        ? "Aplicativo exclusivo com a sua própria marca, logotipo e cores"
+        : "Aplicativo liberado com seu próprio logotipo e identidade",
       subtitle: isPro
-        ? "Pare de promover plataformas concorrentes: tenha aplicativo exclusivo e suporte prioritário via WhatsApp."
+        ? "Pare de promover plataformas de terceiros: tenha seu próprio aplicativo e suporte prioritário via WhatsApp."
         : "Transmita autoridade de consultoria de elite com sua própria marca desde o primeiro aluno.",
       description: isPro
-        ? "Nos aplicativos tradicionais do mercado, o aluno abre o app e vê a marca deles. No Treino Inteligente White-label Anual, o aluno só vê a SUA marca, SEU logotipo e SUAS cores no bolso dele, com alunos ilimitados e suporte prioritário via WhatsApp."
-        : "Sair do WhatsApp e de arquivos desformatados no celular transforma a percepção do aluno. Mesmo no plano mensal, o White-label é 100% liberado com sua marca, seu logo e alunos ilimitados.",
+        ? "Nos aplicativos comuns do mercado, o aluno abre o app e vê o nome de outra empresa. No Treino Inteligente Anual, o aluno só vê a SUA marca, SEU logotipo e SUAS cores no celular dele, com alunos ilimitados e suporte prioritário via WhatsApp."
+        : "Sair do WhatsApp e de arquivos desformatados no celular transforma a percepção do seu aluno. Desde o primeiro dia, seu aplicativo tem seu logotipo, suas cores e alunos ilimitados.",
       bullets: [
-        "Aplicativo no bolso do aluno com seu logotipo oficial",
+        "Aplicativo no celular do aluno com o logotipo da sua consultoria",
         "Alunos ilimitados em ambos os planos para você crescer sem travas",
-        isPro ? "Suporte prioritário direto via WhatsApp com especialistas" : "Suporte padrão completo e onboarding simplificado",
+        isPro ? "Suporte prioritário direto via WhatsApp com especialistas" : "Suporte completo e passo a passo simples para começar no mesmo dia",
       ],
       highlightBox: isPro
-        ? "Você vira a referência: o aluno sente que você tem uma equipe própria de tecnologia."
+        ? "Você vira a referência: o aluno sente que você tem um aplicativo próprio de alto nível."
         : "Postura de profissional moderno desde o primeiro aluno da sua carteira.",
     },
     {

@@ -15,17 +15,17 @@
  *    - Valor: R$ 44,90 / mês (renovação mensal livre)
  *    - Trial: 3 dias grátis (Hoje no Checkout: R$ 0,00)
  *    - Limite de Alunos: Ilimitado
- *    - Personalização White-label: 100% Liberada (Logo, nome do app e cores)
+ *    - Personalização com Sua Marca: 100% Liberada (Logo, nome do app e cores)
  *    - Suporte: Suporte padrão
  * 
- * 2. Plano White-label Anual:
+ * 2. Plano Anual com Sua Marca:
  *    - plan_tier: 'white_label_annual'
  *    - ID do Preço na Stripe: price_1UQXwZ5wqqnwKADLSI1Sn60D
  *    - Valor: R$ 497,00 / ano (equivale a R$ 41,41/mês)
  *    - Economia: 2 meses grátis (economia de R$ 41,80/ano)
- *    - Trial: 3 dias grátis (Hoje no Checkout: R$ 0,00)
+ *    - Teste: 3 dias grátis (Hoje no Checkout: R$ 0,00)
  *    - Limite de Alunos: Ilimitado
- *    - Personalização White-label: 100% Liberada (Logo, nome do app e cores)
+ *    - Personalização com Sua Marca: 100% Liberada (Logo, nome do app e cores)
  *    - Suporte: Suporte prioritário via WhatsApp
  */
 
@@ -49,7 +49,7 @@ export const STRIPE_CONFIG = {
     planTier: "white_label_annual",
     priceId: STRIPE_PRICE_ID_WHITELABEL_ANNUAL,
     mode: "subscription" as const,
-    name: "Plano White-label Anual",
+    name: "Plano Anual com a Sua Marca",
     priceAnnual: 497.00,
     priceMonthlyEquivalent: 41.41,
     annualSavings: 41.80, // 2 meses grátis vs pagar 12x R$ 44,90
@@ -100,18 +100,18 @@ export const PRODUCTS = {
     name: "Treino Inteligente Pro Mensal",
     badge: "3 Dias Grátis · Mensalidade Livre",
     headline: "Comece hoje por R$ 0,00 e organize sua rotina.",
-    description: "Ideal para quem busca máxima flexibilidade, alunos ilimitados e White-label liberado por apenas R$ 44,90/mês sem fidelidade.",
+    description: "Ideal para quem busca máxima flexibilidade, alunos ilimitados e aplicativo com sua própria marca por apenas R$ 44,90/mês sem fidelidade.",
   },
   pro: {
     id: "pro",
     name: "Treino Inteligente Pro Mensal",
     badge: "3 Dias Grátis · Mensalidade Livre",
-    headline: "Recursos avançados com alunos ilimitados e White-label liberado.",
+    headline: "Recursos avançados com alunos ilimitados e seu próprio aplicativo liberado.",
     description: "Perfeito para profissionais que querem agilidade de 3 minutos, alunos ilimitados e liberdade para cancelar quando quiser.",
   },
   whitelabel: {
     id: "white_label_annual",
-    name: "Treino Inteligente White-label Anual",
+    name: "Treino Inteligente com Sua Marca (Anual)",
     badge: "3 Dias Grátis · 2 Meses Grátis de Economia",
     headline: "A plataforma completa com sua identidade visual e suporte prioritário.",
     description: "Para quem quer se posicionar como autoridade máxima, com aplicativo exclusivo, alunos ilimitados, economia de R$ 41,80/ano e suporte prioritário via WhatsApp.",

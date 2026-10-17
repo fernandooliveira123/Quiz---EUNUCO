@@ -24,7 +24,7 @@ export function OfferGuarantee() {
           </h3>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Ao assinar qualquer um dos planos, <strong className="text-foreground">hoje você paga exatamente R$ 0,00</strong>. Em nosso checkout seguro, seu cartão é apenas autenticado com criptografia bancária e o acesso completo à plataforma (com alunos ilimitados e White-label 100% liberado) é ativado na mesma hora.
+            Ao assinar qualquer um dos planos, <strong className="text-foreground">hoje você paga exatamente R$ 0,00</strong>. Em nosso checkout seguro, seu cartão é apenas autenticado com criptografia bancária e o acesso completo à plataforma (com alunos ilimitados e o aplicativo com a sua própria marca) é ativado na mesma hora.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-foreground/90">
@@ -37,7 +37,7 @@ export function OfferGuarantee() {
             <div className="flex items-start gap-2">
               <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
               <span>
-                <strong>Garantia Estendida:</strong> mesmo após o término do trial, você tem 7 dias corridos de garantia incondicional de reembolso.
+                <strong>Garantia Estendida:</strong> mesmo após o término dos 3 dias de teste grátis, você tem 7 dias corridos de garantia incondicional de reembolso.
               </span>
             </div>
           </div>

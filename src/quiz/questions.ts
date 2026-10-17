@@ -258,11 +258,11 @@ const RESULT_COPY: Record<
   { title: string; badge: string; description: string[]; benefits: string[] }
 > = {
   whitelabel: {
-    title: "A opção ideal para você é o Treino Inteligente White-label Anual.",
+    title: "A opção ideal para você é o Plano Anual com Sua Marca Própria.",
     badge: "3 DIAS GRÁTIS · 2 MESES DE ECONOMIA",
     description: [
       "Pelas suas respostas, você busca superar as limitações das ferramentas tradicionais do mercado e posicionar sua própria marca no centro do atendimento aos alunos.",
-      "Com a versão White-label Anual, seus alunos acessam os treinos em um aplicativo com a sua identidade visual, seu logotipo e suas cores, com alunos ilimitados e suporte prioritário via WhatsApp.",
+      "Com o Plano Anual, seus alunos acessam os treinos em um aplicativo com o seu logotipo e as suas cores, com alunos ilimitados e suporte prioritário via WhatsApp.",
     ],
     benefits: [
       "3 dias de teste grátis com R$ 0,00 cobrados hoje em nosso checkout.",
@@ -277,12 +277,12 @@ const RESULT_COPY: Record<
     badge: "3 DIAS GRÁTIS · MENSALIDADE LIVRE",
     description: [
       "Pelas suas respostas, você busca agilidade para prescrever treinos em até 3 minutos e recursos completos para organizar e escalar seus atendimentos sem complicações.",
-      "O plano Pro Mensal oferece todas as funcionalidades avançadas de prescrição, alunos ilimitados e White-label liberado com a flexibilidade da renovação mensal.",
+      "O plano Pro Mensal oferece todas as funcionalidades avançadas de prescrição, alunos ilimitados e aplicativo com a sua própria marca liberado com a flexibilidade da renovação mensal.",
     ],
     benefits: [
       "3 dias de teste grátis com R$ 0,00 cobrados hoje em nosso checkout.",
       "Prescrição e atualização de treinos em até 3 minutos.",
-      "Alunos ilimitados e personalização White-label liberada.",
+      "Alunos ilimitados e aplicativo com seu logotipo e cores liberado.",
       "Assinatura mensal flexível de R$ 44,90/mês sem fidelidade.",
     ],
   },
@@ -291,12 +291,12 @@ const RESULT_COPY: Record<
     badge: "3 DIAS GRÁTIS · MENSALIDADE LIVRE",
     description: [
       "Pelas suas respostas, você busca simplificar a rotina, parar de perder tempo com métodos manuais e mensagens soltas e dar os primeiros passos com uma ferramenta prática e acessível.",
-      "O plano Pro Mensal foi desenhado para quem quer prescrever treinos com máxima agilidade em até 3 minutos, com alunos ilimitados e White-label liberado por apenas R$ 44,90/mês.",
+      "O plano Pro Mensal foi desenhado para quem quer prescrever treinos com máxima agilidade em até 3 minutos, com alunos ilimitados e aplicativo com sua própria marca por apenas R$ 44,90/mês.",
     ],
     benefits: [
       "3 dias de teste grátis com R$ 0,00 cobrados hoje em nosso checkout.",
       "Prescrição prática e rápida em até 3 minutos para o dia a dia.",
-      "Alunos ilimitados e personalização White-label liberada.",
+      "Alunos ilimitados e aplicativo com seu logotipo e cores liberado.",
       "Apenas R$ 44,90/mês sem taxa de adesão e sem fidelidade.",
     ],
   },

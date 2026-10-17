@@ -42,7 +42,7 @@ export const Route = createFileRoute("/oferta-pro")({
   validateSearch: (search) => searchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Seu Diagnóstico: White Label Anual | Treino Inteligente" },
+      { title: "Seu Diagnóstico: Plano Anual com Sua Marca | Treino Inteligente" },
       {
         name: "description",
         content:
@@ -66,7 +66,7 @@ function OfertaProPage() {
     {
       feature: "Identidade Visual e Marca",
       traditional: "Marca do aplicativo concorrente em destaque. Seus alunos acham que o serviço é da plataforma, não seu.",
-      treinoInteligente: "Aplicativo 100% White-label com seu logotipo, cores e identidade. Alunos só veem a sua marca.",
+      treinoInteligente: "Aplicativo exclusivo com seu logotipo, cores e identidade. Seus alunos só veem a SUA marca.",
     },
     {
       feature: "Limite de Alunos",
@@ -99,15 +99,15 @@ function OfertaProPage() {
     {
       question: "Como funciona o teste gratuito de 3 dias por R$ 0,00?",
       answer:
-        "No momento da assinatura em nosso checkout seguro, você paga R$ 0,00. Seu cartão é apenas autenticado com criptografia bancária e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 497 só ocorre no 4º dia se você decidir continuar.",
+        "No momento da assinatura em nosso checkout seguro, você paga R$ 0,00. Seu cartão é apenas autenticado com criptografia bancária e seu acesso completo à plataforma (com aplicativo personalizado na sua marca e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 497 só ocorre no 4º dia se você decidir continuar.",
     },
     {
       question: "Como funciona o cancelamento da assinatura?",
       answer:
-        "Você tem total autonomia direto pelo botão 'Gerenciar Assinatura' na sua área de configurações. Se cancelar durante os 3 dias de trial, o cancelamento é imediato com custo zero. Se cancelar após a cobrança, ela não se renova e você continua usando até completar os 12 meses já pagos.",
+        "Você tem total autonomia direto pelo botão 'Gerenciar Assinatura' na sua área de configurações. Se cancelar durante os 3 dias de teste grátis, o cancelamento é imediato com custo zero. Se cancelar após a cobrança, ela não se renova e você continua usando até completar os 12 meses já pagos.",
     },
     {
-      question: "O que está incluído no Plano White-label Anual?",
+      question: "O que está incluído no Plano Anual com a Sua Marca?",
       answer:
         "Tudo incluso sem taxas ocultas: aplicativo exclusivo com sua logo, cores e nome da sua consultoria, alunos ilimitados, prescrição em até 3 minutos, suporte prioritário direto via WhatsApp e 2 meses grátis de economia (R$ 497/ano equivale a apenas R$ 41,41/mês).",
     },
@@ -125,7 +125,7 @@ function OfertaProPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
-      <OfferHeader badgeText="White-label Anual · 3 Dias de Teste Grátis" />
+      <OfferHeader badgeText="Plano Anual com Sua Marca · 3 Dias de Teste Grátis" />
 
       <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         {/* 1. HEADLINE DINÂMICA BASEADA NAS RESPOSTAS DO QUIZ */}
@@ -133,7 +133,7 @@ function OfertaProPage() {
 
         {/* 2. ESPAÇO PARA VÍDEO VSL (VIDEO SALES LETTER) */}
         <OfferVslPlayer
-          planTitle="Treino Inteligente White-label Anual"
+          planTitle="Treino Inteligente com Sua Marca (Plano Anual)"
           videoUrl={VSL_VIDEO_PRO_URL}
           ctaText="COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)"
           ctaHref={isStripeProConfigured ? stripeUrl : "#oferta-card"}
@@ -157,7 +157,7 @@ function OfertaProPage() {
             {/* Coluna da esquerda: entregáveis e ancoragem */}
             <div className="lg:col-span-7 space-y-4">
               <span className="inline-block rounded-md bg-primary/20 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
-                Plano White-label Anual · Alunos Ilimitados
+                Plano Anual com Sua Marca · Alunos Ilimitados
               </span>
 
               <h2 className="text-2xl font-black sm:text-3xl text-foreground">
@@ -170,8 +170,8 @@ function OfertaProPage() {
                     <Check className="h-4 w-4" />
                   </span>
                   <span>
-                    <strong className="text-foreground">Personalização White-label 100% Liberada:</strong> seu
-                    logotipo oficial, cores e nome da sua consultoria no bolso do aluno.
+                    <strong className="text-foreground">Aplicativo Exclusivo com Sua Marca:</strong> seu
+                    logotipo oficial, cores e o nome da sua consultoria direto no celular do aluno.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">
@@ -304,7 +304,7 @@ function OfertaProPage() {
               Tudo o que você precisa para acelerar sua consultoria neste ano
             </h2>
             <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-              Ao garantir sua licença White Label Anual hoje, você recebe gratuitamente:
+              Ao garantir seu Plano Anual com Sua Marca hoje, você recebe gratuitamente:
             </p>
           </div>
 
@@ -346,7 +346,7 @@ function OfertaProPage() {
 
         {/* COMPARATIVO COM SOLUÇÕES CONCORRENTES */}
         <OfferComparisonTable
-          title="Por que o White Label Anual é a melhor decisão?"
+          title="Por que ter o seu próprio aplicativo é a melhor decisão?"
           subtitle="Veja a diferença real entre insistir nas ferramentas genéricas do mercado e investir na sua própria marca:"
           items={comparisonItems}
         />
@@ -423,7 +423,7 @@ function OfertaProPage() {
                 }}
                 className="text-primary font-bold hover:underline"
               >
-                Conheça a opção White Label Mensal por R$ 44,90/mês sem fidelidade →
+                Conheça a opção Pro Mensal por R$ 44,90/mês sem fidelidade →
               </Link>
             </div>
           </div>

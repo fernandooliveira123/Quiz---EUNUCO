@@ -19,7 +19,7 @@ export function WhatsAppSuccess({ leadId }: { leadId: string }) {
         Seu perfil foi analisado e seus dados foram registrados com sucesso.
       </p>
       <p className="mt-3 text-center text-[15px] leading-relaxed text-muted-foreground">
-        Agora você já pode conferir as condições exclusivas das nossas opções de mensalidade (Start e Pro) e da versão personalizada White Label Anual.
+        Agora você já pode conferir as condições exclusivas das nossas opções de planos com aplicativo próprio para a sua consultoria.
       </p>
 
       <ul className="mt-8 space-y-3 rounded-2xl border border-border bg-card p-5">
@@ -29,11 +29,11 @@ export function WhatsAppSuccess({ leadId }: { leadId: string }) {
         </li>
         <li className="flex items-center gap-3 text-[15px]">
           <Sparkles className="h-5 w-5 shrink-0 text-primary" aria-hidden />
-          <span><strong>Pro:</strong> Mensalidade completa com recursos avançados.</span>
+          <span><strong>Pro Mensal:</strong> Mensalidade flexível com aplicativo na sua marca e alunos ilimitados.</span>
         </li>
         <li className="flex items-center gap-3 text-[15px]">
           <Crown className="h-5 w-5 shrink-0 text-primary" aria-hidden />
-          <span><strong>White Label Anual:</strong> Plataforma com a sua marca própria (logo e cores).</span>
+          <span><strong>Plano Anual:</strong> Maior economia com aplicativo exclusivo na sua marca e suporte prioritário.</span>
         </li>
       </ul>
 
@@ -61,7 +61,7 @@ export function WhatsAppSuccess({ leadId }: { leadId: string }) {
       </div>
 
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        Acesso direto às ofertas de White Label e Mensalidade do Treino Inteligente.
+        Acesso direto às opções com aplicativo personalizado do Treino Inteligente.
       </p>
     </section>
   );

@@ -78,10 +78,10 @@ function getDynamicCopy(plan: "pro" | "start", answers: Answers): DynamicCopy {
         badge: "Diagnóstico: Personal com Carteira Ativa · Frustração com Apps Concorrentes",
         badgeIcon: Crown,
         h1Prefix: "Pare de fazer propaganda para o aplicativo dos outros: tenha o seu",
-        h1Highlight: "próprio aplicativo White Label",
+        h1Highlight: "próprio aplicativo com a sua marca",
         h1Suffix: "para proteger sua margem e cobrar mais caro.",
         subheadline:
-          "Seus alunos não devem associar seu esforço a uma plataforma de terceiros. Com o Treino Inteligente White Label Anual, você coloca sua logo e suas cores no bolso do aluno e prescreve fichas completas em até 3 minutos.",
+          "Seus alunos devem associar a qualidade do treino à sua consultoria, não a uma plataforma de terceiros. Com o Treino Inteligente Anual, você coloca seu logotipo e suas cores no bolso do aluno e prescreve fichas completas em até 3 minutos.",
       };
     }
 
@@ -114,13 +114,13 @@ function getDynamicCopy(plan: "pro" | "start", answers: Answers): DynamicCopy {
 
     // Default Pro
     return {
-      badge: "Diagnóstico Oficial Treino Inteligente · White Label Anual",
+      badge: "Diagnóstico Oficial Treino Inteligente · Plano Anual com Sua Marca",
       badgeIcon: Crown,
       h1Prefix: "Sua consultoria atingiu o nível onde você precisa do seu",
       h1Highlight: "próprio aplicativo",
       h1Suffix: "para proteger sua margem e cobrar mais caro dos seus alunos.",
       subheadline:
-        "Pare de promover marcas de terceiros que tratam seu trabalho como commodity. Tenha seu próprio aplicativo exclusivo com seu logotipo e prescreva treinos completos em até 3 minutos.",
+        "Pare de promover marcas de terceiros que fazem seu trabalho parecer comum e desvalorizado. Tenha seu próprio aplicativo exclusivo com seu logotipo e prescreva treinos completos em até 3 minutos.",
     };
   }
 
