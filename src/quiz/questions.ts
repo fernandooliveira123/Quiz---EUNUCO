@@ -258,43 +258,46 @@ const RESULT_COPY: Record<
   { title: string; badge: string; description: string[]; benefits: string[] }
 > = {
   whitelabel: {
-    title: "A opção ideal para você é o Treino Inteligente White Label Anual.",
-    badge: "MARCA PRÓPRIA · PLANO ANUAL",
+    title: "A opção ideal para você é o Treino Inteligente White-label Anual.",
+    badge: "3 DIAS GRÁTIS · 2 MESES DE ECONOMIA",
     description: [
       "Pelas suas respostas, você busca superar as limitações das ferramentas tradicionais do mercado e posicionar sua própria marca no centro do atendimento aos alunos.",
-      "Com a versão White Label Anual, seus alunos acessam os treinos em um aplicativo com a sua identidade visual, seu logotipo e suas cores, enquanto você prescreve treinos completos em até 3 minutos.",
+      "Com a versão White-label Anual, seus alunos acessam os treinos em um aplicativo com a sua identidade visual, seu logotipo e suas cores, com alunos ilimitados e suporte prioritário via WhatsApp.",
     ],
     benefits: [
+      "3 dias de teste grátis com R$ 0,00 cobrados hoje no Stripe.",
       "Aplicativo personalizado com a sua marca, logotipo e cores para os alunos.",
-      "Prescrição ágil em até 3 minutos, eliminando horas de trabalho operacional.",
-      "Experiência exclusiva sem logotipos de plataformas concorrentes.",
-      "Condição especial com a melhor economia na contratação anual.",
+      "Alunos ilimitados sem taxas adicionais por aluno.",
+      "Suporte prioritário direto via WhatsApp com especialistas.",
+      "2 meses grátis de economia (equivale a apenas R$ 41,41/mês).",
     ],
   },
   pro: {
-    title: "A opção que mais combina com seus objetivos é o Treino Inteligente Pro.",
-    badge: "MENSALIDADE COMPLETA",
+    title: "A opção que mais combina com seus objetivos é o Treino Inteligente Pro Mensal.",
+    badge: "3 DIAS GRÁTIS · MENSALIDADE LIVRE",
     description: [
       "Pelas suas respostas, você busca agilidade para prescrever treinos em até 3 minutos e recursos completos para organizar e escalar seus atendimentos sem complicações.",
-      "O plano Pro oferece todas as funcionalidades avançadas de prescrição e acompanhamento com a flexibilidade da assinatura mensal.",
+      "O plano Pro Mensal oferece todas as funcionalidades avançadas de prescrição, alunos ilimitados e White-label liberado com a flexibilidade da renovação mensal.",
     ],
     benefits: [
+      "3 dias de teste grátis com R$ 0,00 cobrados hoje no Stripe.",
       "Prescrição e atualização de treinos em até 3 minutos.",
-      "Organização centralizada de alunos, treinos e acompanhamento em um só lugar.",
-      "Assinatura mensal flexível com suporte ao crescimento da consultoria.",
+      "Alunos ilimitados e personalização White-label liberada.",
+      "Assinatura mensal flexível de R$ 44,90/mês sem fidelidade.",
     ],
   },
   start: {
-    title: "A opção que mais combina com seu momento é o Treino Inteligente Start.",
-    badge: "MENSALIDADE ESSENCIAL",
+    title: "A opção que mais combina com seu momento é o Treino Inteligente Pro Mensal.",
+    badge: "3 DIAS GRÁTIS · MENSALIDADE LIVRE",
     description: [
       "Pelas suas respostas, você busca simplificar a rotina, parar de perder tempo com métodos manuais e mensagens soltas e dar os primeiros passos com uma ferramenta prática e acessível.",
-      "O plano Start foi desenhado para quem quer prescrever treinos com máxima agilidade em até 3 minutos, com o menor investimento mensal.",
+      "O plano Pro Mensal foi desenhado para quem quer prescrever treinos com máxima agilidade em até 3 minutos, com alunos ilimitados e White-label liberado por apenas R$ 44,90/mês.",
     ],
     benefits: [
+      "3 dias de teste grátis com R$ 0,00 cobrados hoje no Stripe.",
       "Prescrição prática e rápida em até 3 minutos para o dia a dia.",
-      "Fim do improviso de mensagens e treinos soltos no WhatsApp.",
-      "Menor investimento mensal para caber com folga no orçamento.",
+      "Alunos ilimitados e personalização White-label liberada.",
+      "Apenas R$ 44,90/mês sem taxa de adesão e sem fidelidade.",
     ],
   },
 };

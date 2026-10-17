@@ -8,6 +8,8 @@ import {
   Zap,
   Users,
   TrendingUp,
+  Clock,
+  MessageCircle,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -64,7 +66,17 @@ function OfertaProPage() {
     {
       feature: "Identidade Visual e Marca",
       traditional: "Marca do aplicativo concorrente em destaque. Seus alunos acham que o serviço é da plataforma, não seu.",
-      treinoInteligente: "Aplicativo 100% com sua marca, seu logotipo e suas cores. Autoridade máxima no bolso do aluno.",
+      treinoInteligente: "Aplicativo 100% White-label com seu logotipo, cores e identidade. Alunos só veem a sua marca.",
+    },
+    {
+      feature: "Limite de Alunos",
+      traditional: "Cobranças extras por faixas de alunos que encarecem conforme sua consultoria cresce.",
+      treinoInteligente: "Alunos Ilimitados! Cadastre e atenda quantos alunos quiser sem nenhuma cobrança por aluno adicional.",
+    },
+    {
+      feature: "Condição de Entrada",
+      traditional: "Cobrança imediata e contratos com multas pesadas de fidelidade.",
+      treinoInteligente: "Teste 3 dias grátis por R$ 0,00 hoje no Stripe. Cancele com 1 clique antes do 4º dia sem custo.",
     },
     {
       feature: "Tempo de Prescrição",
@@ -72,48 +84,48 @@ function OfertaProPage() {
       treinoInteligente: "Prescrição completa e envio em até 3 minutos com banco inteligente de exercícios.",
     },
     {
-      feature: "Capacidade de Cobrança",
-      traditional: "Margem comprimida e dificuldade de cobrar mais de R$ 150/mês por parecer serviço amador.",
-      treinoInteligente: "Percepção de serviço premium: você pode cobrar R$ 250 a R$ 400/mês entregando um app próprio.",
+      feature: "Suporte e Atendimento",
+      traditional: "Tickets lentos ou robôs que demoram dias para responder dúvidas urgentes.",
+      treinoInteligente: "Suporte Prioritário Direto via WhatsApp com especialistas da nossa equipe.",
     },
     {
-      feature: "Custo-Benefício Real",
-      traditional: "Mensalidades que encarecem com o tempo ou exigem taxas adicionais por personalização.",
-      treinoInteligente: "Apenas R$ 41,41/mês no plano anual. Menos que a mensalidade de 1 único aluno.",
+      feature: "Economia Real",
+      traditional: "Mensalidades avulsas que somam mais de R$ 538/ano sem desconto.",
+      treinoInteligente: "Apenas R$ 41,41/mês no plano anual (R$ 497/ano com 2 meses grátis — economia de R$ 41,80/ano).",
     },
   ];
 
   const faqItems = [
     {
-      question: "Como funciona a personalização White Label com a minha marca?",
+      question: "Como funciona o teste gratuito de 3 dias por R$ 0,00?",
       answer:
-        "Assim que você entra no Treino Inteligente, nossa equipe e o sistema de onboarding aplicam seu logotipo, paleta de cores e nome da sua consultoria. Seus alunos acessam uma interface que valoriza 100% o seu trabalho, sem menção a marcas concorrentes.",
+        "No momento da assinatura, você paga R$ 0,00 no Stripe Checkout. Seu cartão é apenas autenticado com segurança e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 497 só ocorre no 4º dia.",
     },
     {
-      question: "O que é a prescrição em até 3 minutos?",
+      question: "Como funciona o cancelamento pelo Portal do Cliente Stripe?",
       answer:
-        "É a nossa tecnologia exclusiva de montagem ágil: com templates estruturados, filtros avançados por objetivo, histórico de cargas e substituição rápida de exercícios, você monta um protocolo completo em até 3 minutos, economizando mais de 10 horas semanais.",
+        "Você tem total autonomia através do Portal do Cliente Stripe (botão 'Gerenciar Assinatura'). Se cancelar durante os 3 dias de trial, a assinatura é cancelada imediatamente sem cobrar nenhum centavo. Se cancelar após a cobrança, ela não renova e você continua usando até completar os 12 meses já pagos.",
     },
     {
-      question: "Por que o plano anual de R$ 497 é mais vantajoso?",
+      question: "O que está incluído no Plano White-label Anual?",
       answer:
-        "Porque ele garante a plataforma liberada pelo ano todo por um valor que equivale a cerca de R$ 41 por mês — menos do que a mensalidade de um único aluno seu. Você economiza mais de R$ 300 em relação a contratações avulsas e ainda ganha todos os bônus de escala.",
+        "Tudo incluso sem taxas ocultas: aplicativo exclusivo com sua logo, cores e nome da sua consultoria, alunos ilimitados, prescrição em até 3 minutos, suporte prioritário direto via WhatsApp e 2 meses grátis de economia (R$ 497/ano equivale a apenas R$ 41,41/mês).",
     },
     {
       question: "Meus alunos precisam pagar para usar o aplicativo?",
       answer:
-        "Não! O acesso para seus alunos é 100% gratuito. Eles recebem o convite, acessam o treino pelo celular e você tem controle total.",
+        "Não! O acesso para seus alunos é 100% gratuito. Eles recebem o convite, baixam o app com a sua identidade visual e você tem controle total da evolução deles.",
     },
     {
-      question: "Como funciona a garantia de 7 dias?",
+      question: "Como funciona a garantia incondicional de 7 dias?",
       answer:
-        "Você tem 7 dias corridos a partir da assinatura para testar todas as funcionalidades. Se não ficar totalmente impressionado com a velocidade de prescrição e com a experiência da sua marca, basta nos enviar um e-mail e estornamos 100% do seu valor.",
+        "Além dos 3 dias grátis por R$ 0,00, você conta com 7 dias corridos de garantia incondicional após o início da anuidade. Se não ficar totalmente impressionado com os resultados, basta nos enviar um e-mail e estornamos 100% do seu valor.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
-      <OfferHeader badgeText="Diagnóstico White Label Anual" />
+      <OfferHeader badgeText="White-label Anual · 3 Dias de Teste Grátis" />
 
       <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         {/* 1. HEADLINE DINÂMICA BASEADA NAS RESPOSTAS DO QUIZ */}
@@ -121,14 +133,14 @@ function OfertaProPage() {
 
         {/* 2. ESPAÇO PARA VÍDEO VSL (VIDEO SALES LETTER) */}
         <OfferVslPlayer
-          planTitle="Treino Inteligente White Label Anual"
+          planTitle="Treino Inteligente White-label Anual"
           videoUrl={VSL_VIDEO_PRO_URL}
-          ctaText="QUERO MEU APLICATIVO WHITE LABEL AGORA"
+          ctaText="COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)"
           ctaHref={isStripeProConfigured ? stripeUrl : "#oferta-card"}
           onCtaClick={handleCheckoutClick}
         />
 
-        {/* 3. PROVA SOCIAL (MÉTRICAS + DEPOIMENTOS + WHATSAPP) */}
+        {/* 3. PROVA SOCIAL (MÉTRICAS + VÍDEO WISTIA + DEPOIMENTOS + WHATSAPP) */}
         <OfferSocialProof />
 
         {/* 4. ARGUMENTOS ESTRATÉGICOS (3 MINUTOS + MARCA PRÓPRIA + RETORNO FINANCEIRO + FIM DO CAOS) */}
@@ -145,21 +157,30 @@ function OfertaProPage() {
             {/* Coluna da esquerda: entregáveis e ancoragem */}
             <div className="lg:col-span-7 space-y-4">
               <span className="inline-block rounded-md bg-primary/20 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
-                Plano White Label Anual · Licença Completa
+                Plano White-label Anual · Alunos Ilimitados
               </span>
 
               <h2 className="text-2xl font-black sm:text-3xl text-foreground">
                 Tudo o que sua consultoria precisa para se posicionar como autoridade máxima:
               </h2>
 
-              <ul className="space-y-3 pt-2">
+              <ul className="space-y-3.5 pt-2">
                 <li className="flex items-start gap-3 text-sm sm:text-base">
                   <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
                     <Check className="h-4 w-4" />
                   </span>
                   <span>
-                    <strong className="text-foreground">Aplicativo White Label Exclusivo:</strong> com
-                    sua logo, suas cores e identidade da sua consultoria.
+                    <strong className="text-foreground">Personalização White-label 100% Liberada:</strong> seu
+                    logotipo oficial, cores e nome da sua consultoria no bolso do aluno.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3 text-sm sm:text-base">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
+                    <Users className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <strong className="text-foreground">Alunos Ilimitados:</strong> atenda 10, 50 ou mais
+                    de 100 alunos sem pagar um centavo a mais por aluno novo.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">
@@ -168,16 +189,16 @@ function OfertaProPage() {
                   </span>
                   <span>
                     <strong className="text-foreground">Prescrição Ultrarrápida em até 3 Minutos:</strong>{" "}
-                    elimine de vez as horas perdidas em digitação manual ou mensagens soltas.
+                    banco de vídeos demonstrativos e adaptação de protocolos com 1 toque.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">
                   <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
-                    <Users className="h-4 w-4" />
+                    <MessageCircle className="h-4 w-4" />
                   </span>
                   <span>
-                    <strong className="text-foreground">Suporte a Carteira Ampliada:</strong> atenda mais
-                    de 30 alunos com organização total e histórico de treinos.
+                    <strong className="text-foreground">Suporte Prioritário Direto via WhatsApp:</strong> canal
+                    ágil com especialistas para tirar dúvidas e acelerar sua operação.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">
@@ -185,8 +206,8 @@ function OfertaProPage() {
                     <TrendingUp className="h-4 w-4" />
                   </span>
                   <span>
-                    <strong className="text-foreground">Maior Economia de Escala:</strong> melhor
-                    condição por aluno do mercado na contratação anual.
+                    <strong className="text-foreground">2 Meses Grátis de Economia:</strong> economia de
+                    R$ 41,80/ano em relação à contratação mensal (apenas R$ 41,41/mês).
                   </span>
                 </li>
               </ul>
@@ -194,25 +215,34 @@ function OfertaProPage() {
 
             {/* Coluna da direita: preço ancorado e checkout */}
             <div className="lg:col-span-5 rounded-2xl border border-border bg-card/90 p-6 sm:p-7 text-center shadow-card">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Condição Especial de Diagnóstico
+              <span className="inline-block rounded-full bg-primary/15 border border-primary/30 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
+                3 Dias Grátis · R$ 0,00 Hoje
               </span>
 
-              <div className="mt-3">
-                <div className="text-xs text-muted-foreground line-through">De R$ 890,00/ano</div>
-                <div className="mt-1 flex items-baseline justify-center gap-1">
-                  <span className="text-sm font-semibold text-muted-foreground">12x de</span>
-                  <span className="text-4xl sm:text-5xl font-black text-foreground">R$ 49,60</span>
+              <div className="mt-4">
+                <div className="text-xs text-muted-foreground uppercase font-bold tracking-wide">
+                  No momento do checkout
                 </div>
-                <div className="mt-1 text-sm font-bold text-primary">
-                  ou apenas R$ 497 à vista no plano anual
+                <div className="mt-1 flex items-baseline justify-center gap-1">
+                  <span className="text-4xl sm:text-5xl font-black text-primary">R$ 0,00</span>
+                  <span className="text-sm font-bold text-foreground">hoje</span>
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  Primeira cobrança de <strong className="text-foreground">R$ 497,00/ano</strong> somente no 4º dia
                 </div>
               </div>
 
               {/* Bloco de Ancoragem Chave do Briefing */}
-              <div className="mt-4 rounded-xl border border-primary/30 bg-primary/10 p-3 text-xs sm:text-sm font-semibold text-primary leading-snug">
-                ⚡ Equivale a cerca de <strong className="underline">R$ 41/mês</strong> — menos que a
-                mensalidade de 1 único aluno da sua consultoria!
+              <div className="mt-4 rounded-xl border border-primary/30 bg-primary/10 p-3 text-xs sm:text-sm font-semibold text-primary leading-snug text-left space-y-1.5">
+                <div className="flex items-center gap-1.5 font-bold">
+                  <Clock className="h-4 w-4 shrink-0" />
+                  <span>Como funciona seu teste de 3 dias:</span>
+                </div>
+                <p className="text-xs text-foreground/80 leading-relaxed">
+                  • <strong>Hoje:</strong> R$ 0,00 no cartão. Acesso liberado na hora.<br />
+                  • <strong>Dias 1 a 3:</strong> Teste livre com alunos ilimitados e sua marca.<br />
+                  • <strong>Dia 4:</strong> R$ 497/ano (~R$ 41,41/mês). Cancele com 1 clique antes do 4º dia pelo Portal Stripe sem custo.
+                </p>
               </div>
 
               <div className="mt-6">
@@ -229,9 +259,9 @@ function OfertaProPage() {
                       onClick={handleCheckoutClick}
                       className="flex items-center justify-center gap-2"
                     >
-                      <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                        <span>QUERO MEU APP WHITE LABEL</span>
-                        <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                      <span className="flex flex-col items-center justify-center gap-0.5">
+                        <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                        <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
                       </span>
                       <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                     </a>
@@ -247,9 +277,9 @@ function OfertaProPage() {
                       )
                     }
                   >
-                    <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                      <span>QUERO MEU APP WHITE LABEL</span>
-                      <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                    <span className="flex flex-col items-center justify-center gap-0.5">
+                      <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                      <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
                     </span>
                     <ExternalLink className="h-5 w-5 shrink-0 ml-1" />
                   </Button>
@@ -258,7 +288,7 @@ function OfertaProPage() {
 
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <ShieldCheck className="h-4 w-4 text-primary" />
-                <span>Garantia de 7 dias · Pagamento 100% seguro pelo Stripe</span>
+                <span>Portal Stripe com cancelamento em 1 clique · Garantia de 7 dias</span>
               </div>
             </div>
           </div>

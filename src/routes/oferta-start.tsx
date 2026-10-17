@@ -8,6 +8,7 @@ import {
   ExternalLink,
   Clock,
   HeartHandshake,
+  Users,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -40,11 +41,11 @@ export const Route = createFileRoute("/oferta-start")({
   validateSearch: (search) => searchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Seu Diagnóstico: White Label Mensal | Treino Inteligente" },
+      { title: "Seu Diagnóstico: Pro Mensal | Treino Inteligente" },
       {
         name: "description",
         content:
-          "A solução ideal para você sair do improviso de mensagens e ter seu próprio aplicativo sem comprometer seu orçamento.",
+          "Plano Pro Mensal por apenas R$ 44,90/mês, com 3 dias de teste grátis por R$ 0,00 hoje no Stripe, alunos ilimitados e White-label liberado.",
       },
     ],
   }),
@@ -57,63 +58,78 @@ function OfertaStartPage() {
   const stripeUrl = buildStripeCheckoutUrl(STRIPE_CHECKOUT_START_URL, leadId);
 
   const handleCheckoutClick = () => {
-    track("stripe_checkout_click", { plan: "whitelabel_mensal", lead_id: leadId ?? "" });
+    track("stripe_checkout_click", { plan: "pro_mensal", lead_id: leadId ?? "" });
   };
 
   const comparisonItems = [
     {
-      feature: "Organização dos Treinos",
-      traditional: "PDFs e mensagens espalhadas em conversas do WhatsApp que desformatam no celular do aluno.",
-      treinoInteligente: "Tudo centralizado em um aplicativo fluido, intuitivo e com visual profissional.",
+      feature: "Identidade Visual e Marca",
+      traditional: "Marca do aplicativo concorrente em destaque, parecendo que o serviço é da plataforma e não seu.",
+      treinoInteligente: "Aplicativo 100% White-label liberado com seu logotipo, cores e identidade da sua consultoria.",
+    },
+    {
+      feature: "Limite de Alunos",
+      traditional: "Plataformas que cobram taxas adicionais por faixas de alunos conforme você cresce.",
+      treinoInteligente: "Alunos Ilimitados! Cadastre e atenda quantos alunos quiser sem nenhuma cobrança por aluno novo.",
+    },
+    {
+      feature: "Condição de Entrada",
+      traditional: "Cobrança imediata e contratos com multas pesadas de fidelidade.",
+      treinoInteligente: "Teste 3 dias grátis por R$ 0,00 hoje no Stripe. Cancele com 1 clique antes do 4º dia sem custo.",
     },
     {
       feature: "Tempo de Prescrição",
       traditional: "Mais de 20 minutos por treino montando texto ou copiando e colando blocos.",
-      treinoInteligente: "Prescrição e atualização de fichas em até 3 minutos.",
+      treinoInteligente: "Prescrição e atualização completa de fichas em até 3 minutos no celular.",
     },
     {
       feature: "Compromisso Financeiro",
       traditional: "Plataformas que exigem contratos de 12 meses ou taxas de adesão abusivas.",
-      treinoInteligente: "Apenas R$ 44,90/mês. Zero fidelidade, zero multa e cancele quando quiser.",
+      treinoInteligente: "Apenas R$ 44,90/mês. Zero fidelidade, zero taxa de adesão e cancele quando quiser.",
     },
     {
       feature: "Percepção do Aluno",
       traditional: "Sensação de atendimento caseiro e amador por usar mensagens soltas.",
-      treinoInteligente: "Postura de profissional moderno e organizado desde o primeiro aluno.",
+      treinoInteligente: "Postura de profissional moderno e organizado com aplicativo exclusivo desde o primeiro aluno.",
     },
   ];
 
   const faqItems = [
+    {
+      question: "Como funciona o teste gratuito de 3 dias por R$ 0,00?",
+      answer:
+        "No momento da assinatura, você paga R$ 0,00 no Stripe Checkout. Seu cartão é apenas autenticado com segurança e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 44,90 só ocorre no 4º dia se você decidir continuar.",
+    },
+    {
+      question: "O Plano Pro Mensal inclui White-label e alunos ilimitados?",
+      answer:
+        "Sim! Tanto o Plano Pro Mensal quanto o Anual oferecem Alunos Ilimitados e Personalização White-label 100% liberada com seu logotipo, cores e nome da sua consultoria.",
+    },
     {
       question: "Existe algum contrato de fidelidade ou taxa de adesão?",
       answer:
         "Absolutamente não! O plano mensal é de apenas R$ 44,90 por mês, sem qualquer taxa de adesão ou contrato de fidelidade. Você usa pelo tempo que quiser e pode cancelar a qualquer momento em um único clique.",
     },
     {
-      question: "Serve para quem tem poucos alunos ou está começando?",
+      question: "Como funciona o cancelamento pelo Portal do Cliente Stripe?",
       answer:
-        "Sim, este plano foi desenhado sob medida para você! Ele permite que você comece com o pé direito, economizando tempo e transmitindo profissionalismo desde o primeiro aluno, sem pesar no seu orçamento.",
+        "Você tem total autonomia através do Portal do Cliente Stripe (botão 'Gerenciar Assinatura'). Se cancelar durante os 3 dias de trial, a assinatura é cancelada imediatamente sem cobrar nenhum centavo. Se cancelar após a cobrança, ela não renova e você continua usando até fechar os 30 dias que já pagou.",
     },
     {
-      question: "Como funciona a prescrição de treinos em até 3 minutos?",
+      question: "Posso migrar para o plano White-label Anual mais tarde?",
       answer:
-        "O sistema possui modelos inteligentes e substituição rápida de exercícios. Você escolhe o objetivo, ajusta séries e repetições e envia para o celular do aluno em até 3 minutos.",
-    },
-    {
-      question: "Posso migrar para o plano anual mais tarde?",
-      answer:
-        "Com certeza! Conforme sua base de alunos crescer e você quiser seu aplicativo com a sua marca própria e economia de escala, você pode migrar facilmente para o plano anual.",
+        "Com certeza! A qualquer momento você pode migrar para o plano anual para garantir 2 meses grátis de economia (R$ 497/ano equivale a apenas R$ 41,41/mês) e suporte prioritário direto via WhatsApp.",
     },
     {
       question: "Como funciona a garantia de 7 dias?",
       answer:
-        "Se em até 7 dias você achar que o Treino Inteligente não facilitou sua rotina diária de treinos, basta nos solicitar o reembolso e devolveremos 100% do valor pago.",
+        "Além dos 3 dias grátis por R$ 0,00, você conta com 7 dias corridos de garantia incondicional após o início da cobrança. Se achar que a ferramenta não facilitou sua rotina, basta solicitar o reembolso e devolveremos 100% do valor.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
-      <OfferHeader badgeText="Diagnóstico White Label Mensal" />
+      <OfferHeader badgeText="Plano Pro Mensal · 3 Dias de Teste Grátis" />
 
       <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         {/* 1. HEADLINE DINÂMICA BASEADA NAS RESPOSTAS DO QUIZ */}
@@ -121,9 +137,9 @@ function OfertaStartPage() {
 
         {/* 2. ESPAÇO PARA VÍDEO VSL (VIDEO SALES LETTER) */}
         <OfferVslPlayer
-          planTitle="Treino Inteligente White Label Mensal"
+          planTitle="Treino Inteligente Pro Mensal"
           videoUrl={VSL_VIDEO_START_URL}
-          ctaText="COMEÇAR AGORA POR R$ 44,90/MÊS"
+          ctaText="COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)"
           ctaHref={isStripeStartConfigured ? stripeUrl : "#oferta-card"}
           onCtaClick={handleCheckoutClick}
         />
@@ -145,7 +161,7 @@ function OfertaStartPage() {
             {/* Coluna da esquerda: entregáveis */}
             <div className="lg:col-span-7 space-y-4">
               <span className="inline-block rounded-md bg-primary/20 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
-                Assinatura Mensal · Sem Fidelidade
+                Plano Pro Mensal · Alunos Ilimitados
               </span>
 
               <h2 className="text-2xl font-black sm:text-3xl text-foreground">
@@ -155,11 +171,29 @@ function OfertaStartPage() {
               <ul className="space-y-3.5 pt-2">
                 <li className="flex items-start gap-3 text-sm sm:text-base">
                   <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
+                    <Check className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <strong className="text-foreground">Personalização White-label 100% Liberada:</strong> seu
+                    logotipo oficial, cores e identidade da sua consultoria no app.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3 text-sm sm:text-base">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
+                    <Users className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <strong className="text-foreground">Alunos Ilimitados:</strong> atenda seus alunos atuais
+                    e expanda sua carteira sem travas e sem cobranças por aluno adicional.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3 text-sm sm:text-base">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
                     <Clock className="h-4 w-4" />
                   </span>
                   <span>
                     <strong className="text-foreground">Prescrição Rápida em até 3 Minutos:</strong>{" "}
-                    crie e atualize treinos com facilidade, sem burocracia ou lentidão.
+                    crie e atualize treinos com facilidade pelo celular, com biblioteca demonstrativa completa.
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">
@@ -176,17 +210,8 @@ function OfertaStartPage() {
                     <HeartHandshake className="h-4 w-4" />
                   </span>
                   <span>
-                    <strong className="text-foreground">Acesso Completo Sem Fidelidade:</strong> sem
-                    contratos longos, sem taxas ocultas. Cancele a qualquer momento.
-                  </span>
-                </li>
-                <li className="flex items-start gap-3 text-sm sm:text-base">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
-                    <Check className="h-4 w-4" />
-                  </span>
-                  <span>
-                    <strong className="text-foreground">Alunos Ilimitados para Começar:</strong>{" "}
-                    atenda seus alunos atuais e tenha espaço para crescer sua carteira.
+                    <strong className="text-foreground">Zero Contrato de Fidelidade:</strong> renovação
+                    mensal livre de R$ 44,90. Cancele quando quiser com 1 clique pelo Portal Stripe.
                   </span>
                 </li>
               </ul>
@@ -194,26 +219,34 @@ function OfertaStartPage() {
 
             {/* Coluna da direita: preço e botão de checkout */}
             <div className="lg:col-span-5 rounded-2xl border border-border bg-card/90 p-6 sm:p-7 text-center shadow-card">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Condição Acessível de Início
+              <span className="inline-block rounded-full bg-primary/15 border border-primary/30 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
+                3 Dias Grátis · R$ 0,00 Hoje
               </span>
 
-              <div className="mt-3">
-                <div className="text-xs text-muted-foreground line-through">De R$ 89,90/mês</div>
-                <div className="mt-1 flex items-baseline justify-center gap-1">
-                  <span className="text-sm font-semibold text-muted-foreground">Por apenas</span>
-                  <span className="text-4xl sm:text-5xl font-black text-foreground">R$ 44,90</span>
-                  <span className="text-sm font-semibold text-muted-foreground">/mês</span>
+              <div className="mt-4">
+                <div className="text-xs text-muted-foreground uppercase font-bold tracking-wide">
+                  No momento do checkout
                 </div>
-                <div className="mt-1 text-xs font-bold text-primary uppercase tracking-wide">
-                  Sem taxa de adesão · Cancele quando quiser
+                <div className="mt-1 flex items-baseline justify-center gap-1">
+                  <span className="text-4xl sm:text-5xl font-black text-primary">R$ 0,00</span>
+                  <span className="text-sm font-bold text-foreground">hoje</span>
+                </div>
+                <div className="mt-1 text-xs text-muted-foreground">
+                  Primeira cobrança de <strong className="text-foreground">R$ 44,90/mês</strong> somente no 4º dia
                 </div>
               </div>
 
-              {/* Ancoragem de custo diário */}
-              <div className="mt-4 rounded-xl border border-primary/30 bg-primary/10 p-3 text-xs sm:text-sm font-semibold text-primary leading-snug">
-                ⚡ Menos de <strong className="underline">R$ 1,50 por dia</strong> para economizar horas
-                de trabalho e impressionar seus alunos!
+              {/* Ancoragem de custo diário e passos do teste */}
+              <div className="mt-4 rounded-xl border border-primary/30 bg-primary/10 p-3 text-xs sm:text-sm font-semibold text-primary leading-snug text-left space-y-1.5">
+                <div className="flex items-center gap-1.5 font-bold">
+                  <Clock className="h-4 w-4 shrink-0" />
+                  <span>Como funciona seu teste de 3 dias:</span>
+                </div>
+                <p className="text-xs text-foreground/80 leading-relaxed">
+                  • <strong>Hoje:</strong> R$ 0,00 no cartão. Acesso completo liberado na hora.<br />
+                  • <strong>Dias 1 a 3:</strong> Teste livre com alunos ilimitados e White-label.<br />
+                  • <strong>Dia 4:</strong> R$ 44,90/mês (menos de R$ 1,50/dia). Cancele com 1 clique antes do 4º dia pelo Portal Stripe sem pagar nada.
+                </p>
               </div>
 
               <div className="mt-6">
@@ -230,7 +263,10 @@ function OfertaStartPage() {
                       onClick={handleCheckoutClick}
                       className="flex items-center justify-center gap-2"
                     >
-                      <span>ASSINAR POR R$ 44,90/MÊS</span>
+                      <span className="flex flex-col items-center justify-center gap-0.5">
+                        <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                        <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
+                      </span>
                       <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                     </a>
                   </Button>
@@ -245,7 +281,10 @@ function OfertaStartPage() {
                       )
                     }
                   >
-                    <span>ASSINAR POR R$ 44,90/MÊS</span>
+                    <span className="flex flex-col items-center justify-center gap-0.5">
+                      <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                      <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
+                    </span>
                     <ExternalLink className="h-5 w-5 shrink-0 ml-1" />
                   </Button>
                 )}
@@ -253,7 +292,7 @@ function OfertaStartPage() {
 
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <ShieldCheck className="h-4 w-4 text-primary" />
-                <span>Garantia incondicional de 7 dias · Pagamento seguro</span>
+                <span>Portal Stripe com cancelamento em 1 clique · Garantia de 7 dias</span>
               </div>
             </div>
           </div>

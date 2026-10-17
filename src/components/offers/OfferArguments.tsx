@@ -26,18 +26,18 @@ export function OfferArguments({ plan }: Props) {
       icon: Crown,
       tag: "AUTORIDADE DE MARCA",
       title: isPro
-        ? "Aplicativo 100% White Label com a sua marca e logotipo"
-        : "Visual moderno que eleva sua percepção profissional",
+        ? "Aplicativo 100% White-label com a sua marca, logo e cores"
+        : "Aplicativo 100% White-label liberado com seu logotipo oficial",
       subtitle: isPro
-        ? "Pare de promover plataformas de terceiros que tratam seu trabalho como commodity."
-        : "Transmita autoridade de consultoria de elite desde o primeiro aluno.",
+        ? "Pare de promover plataformas concorrentes: tenha aplicativo exclusivo e suporte prioritário via WhatsApp."
+        : "Transmita autoridade de consultoria de elite com sua própria marca desde o primeiro aluno.",
       description: isPro
-        ? "Nos aplicativos tradicionais do mercado, o aluno abre o app e vê a marca deles, achando que o resultado é da plataforma. No Treino Inteligente White Label, o aluno só vê a SUA marca, SEU logotipo e SUAS cores no bolso dele."
-        : "Sair do WhatsApp e de arquivos desformatados no celular transforma a forma como o aluno enxerga seu serviço. Você passa de um 'amigo que manda treinos' para um personal trainer de elite com sistema dedicado.",
+        ? "Nos aplicativos tradicionais do mercado, o aluno abre o app e vê a marca deles. No Treino Inteligente White-label Anual, o aluno só vê a SUA marca, SEU logotipo e SUAS cores no bolso dele, com alunos ilimitados e suporte prioritário via WhatsApp."
+        : "Sair do WhatsApp e de arquivos desformatados no celular transforma a percepção do aluno. Mesmo no plano mensal, o White-label é 100% liberado com sua marca, seu logo e alunos ilimitados.",
       bullets: [
-        isPro ? "Aplicativo no bolso do aluno com seu logotipo oficial" : "Design limpo e sem poluição visual",
-        "Seus alunos não comparam seu preço com personais amadores",
-        "Poder de cobrar de 2x a 3x mais por cada plano de consultoria",
+        "Aplicativo no bolso do aluno com seu logotipo oficial",
+        "Alunos ilimitados em ambos os planos para você crescer sem travas",
+        isPro ? "Suporte prioritário direto via WhatsApp com especialistas" : "Suporte padrão completo e onboarding simplificado",
       ],
       highlightBox: isPro
         ? "Você vira a referência: o aluno sente que você tem uma equipe própria de tecnologia."
@@ -47,22 +47,22 @@ export function OfferArguments({ plan }: Props) {
       icon: Calculator,
       tag: "ANÁLISE FINANCEIRA",
       title: isPro
-        ? "A matemática é imbatível: 1 único aluno paga o ano todo"
-        : "Menos de R$ 1,50 por dia, sem taxa de adesão e sem fidelidade",
+        ? "Comece hoje por R$ 0,00: 3 dias grátis + 2 meses de economia"
+        : "Comece hoje por R$ 0,00: 3 dias grátis e cancele quando quiser",
       subtitle: isPro
-        ? "O plano anual de R$ 497 equivale a apenas R$ 41,41 por mês."
-        : "Acesso completo por R$ 44,90/mês para você testar com risco zero.",
+        ? "O plano anual de R$ 497 equivale a R$ 41,41/mês — economia de R$ 41,80/ano!"
+        : "Apenas R$ 44,90/mês a partir do 4º dia, sem taxa de adesão e sem fidelidade.",
       description: isPro
-        ? "Se você cobra uma média de R$ 150 a R$ 250 pela sua consultoria, um único aluno pagando de 2 a 3 meses já quita 100% do seu investimento de 1 ano inteiro na plataforma. Todo o restante da sua carteira de alunos é lucro líquido direto no seu bolso."
-        : "Por um valor menor que um cafezinho por dia, você elimina o caos do seu dia a dia. E o melhor: sem nenhum contrato de fidelidade de 12 meses e sem taxa de adesão surpresa. Cancele quando quiser com 1 clique.",
+        ? "No checkout você paga R$ 0,00 hoje. O cartão é apenas validado com segurança pela Stripe. Você aproveita 3 dias inteiros de teste. No 4º dia, o valor anual de R$ 497 é debitado (menos que 1 mensalidade de aluno por ano!). Cancele com 1 clique antes do 4º dia pelo Portal Stripe sem custo."
+        : "No checkout você paga R$ 0,00 hoje. Após os 3 dias grátis, o valor é de apenas R$ 44,90/mês (menos de R$ 1,50 por dia). Sem taxa de adesão, sem contrato de fidelidade de 12 meses e cancelamento autônomo com 1 clique pelo Portal do Cliente Stripe.",
       bullets: [
-        isPro ? "Apenas ~R$ 41,41/mês (menos que 1 mensalidade de aluno)" : "Apenas R$ 44,90/mês com renovação mensal livre",
-        "Zero taxa de setup ou custos ocultos de personalização",
-        "Retorno sobre o investimento comprovado logo no primeiro mês",
+        "Hoje no Checkout: R$ 0,00 (validação segura pelo Stripe)",
+        isPro ? "2 meses grátis de economia (R$ 41,80/ano economizados)" : "Renovação mensal flexível sem multas contratuais",
+        "Cancelamento com 1 clique antes do 4º dia sem cobrança",
       ],
       highlightBox: isPro
-        ? "Custo menor que 1 almoço por mês para ter seu próprio aplicativo."
-        : "Sem multas contratuais, sem burocracia e com liberdade absoluta.",
+        ? "Custo equivalente a R$ 41,41/mês: 1 único aluno paga o ano inteiro da plataforma."
+        : "Menos de R$ 1,50 por dia para ter aplicativo próprio e alunos ilimitados.",
     },
     {
       icon: Layers,
