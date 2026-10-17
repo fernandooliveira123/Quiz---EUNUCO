@@ -130,9 +130,9 @@ function getDynamicCopy(plan: "pro" | "start", answers: Answers): DynamicCopy {
     return {
       badge: "Diagnóstico: Início de Consultoria · Fim do Caos do WhatsApp",
       badgeIcon: Zap,
-      h1Prefix: "Chega de perder mensagens e treinos no WhatsApp: organize seus alunos em um",
-      h1Highlight: "aplicativo profissional moderno",
-      h1Suffix: "por menos de R$ 1,50 por dia.",
+      h1Prefix: "Organize seus alunos em um",
+      h1Highlight: "aplicativo personalizado com a sua logo,",
+      h1Suffix: "moderno e profissional por menos de R$ 1,50 por dia.",
       subheadline:
         "Sua rotina não precisa ser um emaranhado de conversas perdidas e PDFs desformatados. Entregue um aplicativo de verdade para seus primeiros alunos pagando apenas R$ 44,90/mês, sem taxa de adesão e sem fidelidade.",
     };
@@ -168,9 +168,9 @@ function getDynamicCopy(plan: "pro" | "start", answers: Answers): DynamicCopy {
   return {
     badge: "Diagnóstico Oficial Treino Inteligente · Entrada Essencial",
     badgeIcon: Zap,
-    h1Prefix: "A solução ideal para você sair do improviso de mensagens e métodos manuais sem",
-    h1Highlight: "comprometer seu orçamento",
-    h1Suffix: "ou assumir contratos longos.",
+    h1Prefix: "Organize seus alunos em um",
+    h1Highlight: "aplicativo personalizado com a sua logo,",
+    h1Suffix: "moderno e profissional por menos de R$ 1,50 por dia.",
     subheadline:
       "Comece a prescrever com agilidade em até 3 minutos, organize seus alunos em um aplicativo moderno e teste sem qualquer compromisso de fidelidade por apenas R$ 44,90/mês.",
   };
