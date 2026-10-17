@@ -118,22 +118,22 @@ export function OfferVslPlayer({
           <Button
             asChild
             size="lg"
-            className="w-full sm:w-auto min-w-[320px] text-base font-black uppercase tracking-wide shadow-glow h-14"
+            className="w-full sm:w-auto min-w-0 sm:min-w-[320px] text-sm sm:text-base font-black uppercase tracking-wide shadow-glow h-auto min-h-14 py-3.5 px-5 whitespace-normal text-center leading-snug rounded-xl"
             onClick={onCtaClick}
           >
-            <a href={ctaHref}>
-              {ctaText}
-              <Zap className="h-5 w-5 ml-2 fill-current" />
+            <a href={ctaHref} className="flex items-center justify-center gap-2">
+              <span>{ctaText}</span>
+              <Zap className="h-5 w-5 shrink-0 ml-1 fill-current" />
             </a>
           </Button>
         ) : (
           <Button
             size="lg"
-            className="w-full sm:w-auto min-w-[320px] text-base font-black uppercase tracking-wide shadow-glow h-14"
+            className="w-full sm:w-auto min-w-0 sm:min-w-[320px] text-sm sm:text-base font-black uppercase tracking-wide shadow-glow h-auto min-h-14 py-3.5 px-5 whitespace-normal text-center leading-snug rounded-xl flex items-center justify-center gap-2"
             onClick={onCtaClick}
           >
-            {ctaText}
-            <Zap className="h-5 w-5 ml-2 fill-current" />
+            <span>{ctaText}</span>
+            <Zap className="h-5 w-5 shrink-0 ml-1 fill-current" />
           </Button>
         )}
 

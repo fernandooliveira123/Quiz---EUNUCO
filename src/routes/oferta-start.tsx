@@ -218,28 +218,35 @@ function OfertaStartPage() {
 
               <div className="mt-6">
                 {isStripeStartConfigured ? (
-                  <Button asChild size="lg" className="w-full text-base font-black shadow-glow py-6">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl"
+                  >
                     <a
                       href={stripeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleCheckoutClick}
+                      className="flex items-center justify-center gap-2"
                     >
-                      ASSINAR POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5 ml-2" />
+                      <span>ASSINAR POR R$ 44,90/MÊS</span>
+                      <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                     </a>
                   </Button>
                 ) : (
                   <Button
                     type="button"
                     size="lg"
-                    className="w-full text-base font-black py-6"
+                    className="w-full h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                     onClick={() =>
                       alert(
                         "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_START_URL em src/quiz/config.ts",
                       )
                     }
                   >
-                    ASSINAR POR R$ 44,90/MÊS <ExternalLink className="h-5 w-5 ml-2" />
+                    <span>ASSINAR POR R$ 44,90/MÊS</span>
+                    <ExternalLink className="h-5 w-5 shrink-0 ml-1" />
                   </Button>
                 )}
               </div>
@@ -278,28 +285,35 @@ function OfertaStartPage() {
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
             {isStripeStartConfigured ? (
-              <Button asChild size="lg" className="w-full max-w-md font-black shadow-glow py-6 text-base">
+              <Button
+                asChild
+                size="lg"
+                className="w-full max-w-md h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl"
+              >
                 <a
                   href={stripeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleCheckoutClick}
+                  className="flex items-center justify-center gap-2"
                 >
-                  COMEÇAR AGORA POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5 ml-2" />
+                  <span>COMEÇAR AGORA POR R$ 44,90/MÊS</span>
+                  <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                 </a>
               </Button>
             ) : (
               <Button
                 type="button"
                 size="lg"
-                className="w-full max-w-md font-black py-6 text-base"
+                className="w-full max-w-md h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                 onClick={() =>
                   alert(
                     "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_START_URL em src/quiz/config.ts",
                   )
                 }
               >
-                COMEÇAR AGORA POR R$ 44,90/MÊS <ArrowRight className="h-5 w-5 ml-2" />
+                <span>COMEÇAR AGORA POR R$ 44,90/MÊS</span>
+                <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
               </Button>
             )}
 

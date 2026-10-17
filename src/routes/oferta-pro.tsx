@@ -217,28 +217,41 @@ function OfertaProPage() {
 
               <div className="mt-6">
                 {isStripeProConfigured ? (
-                  <Button asChild size="lg" className="w-full text-base font-black shadow-glow py-6">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl"
+                  >
                     <a
                       href={stripeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={handleCheckoutClick}
+                      className="flex items-center justify-center gap-2"
                     >
-                      QUERO MEU APP WHITE LABEL <ArrowRight className="h-5 w-5 ml-2" />
+                      <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                        <span>QUERO MEU APP WHITE LABEL</span>
+                        <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                      </span>
+                      <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                     </a>
                   </Button>
                 ) : (
                   <Button
                     type="button"
                     size="lg"
-                    className="w-full text-base font-black py-6"
+                    className="w-full h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                     onClick={() =>
                       alert(
                         "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_PRO_URL em src/quiz/config.ts",
                       )
                     }
                   >
-                    QUERO MEU APP WHITE LABEL (R$ 497/ANO) <ExternalLink className="h-5 w-5 ml-2" />
+                    <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                      <span>QUERO MEU APP WHITE LABEL</span>
+                      <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                    </span>
+                    <ExternalLink className="h-5 w-5 shrink-0 ml-1" />
                   </Button>
                 )}
               </div>
@@ -327,28 +340,41 @@ function OfertaProPage() {
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
             {isStripeProConfigured ? (
-              <Button asChild size="lg" className="w-full max-w-md font-black shadow-glow py-6 text-base">
+              <Button
+                asChild
+                size="lg"
+                className="w-full max-w-md h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl"
+              >
                 <a
                   href={stripeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleCheckoutClick}
+                  className="flex items-center justify-center gap-2"
                 >
-                  GARANTIR WHITE LABEL ANUAL (R$ 497/ANO) <ArrowRight className="h-5 w-5 ml-2" />
+                  <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                    <span>GARANTIR WHITE LABEL ANUAL</span>
+                    <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                  </span>
+                  <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                 </a>
               </Button>
             ) : (
               <Button
                 type="button"
                 size="lg"
-                className="w-full max-w-md font-black py-6 text-base"
+                className="w-full max-w-md h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                 onClick={() =>
                   alert(
                     "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_PRO_URL em src/quiz/config.ts",
                   )
                 }
               >
-                GARANTIR WHITE LABEL ANUAL (R$ 497/ANO) <ArrowRight className="h-5 w-5 ml-2" />
+                <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                  <span>GARANTIR WHITE LABEL ANUAL</span>
+                  <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                </span>
+                <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
               </Button>
             )}
 
