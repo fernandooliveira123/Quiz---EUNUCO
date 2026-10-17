@@ -24,14 +24,14 @@ export function OfferGuarantee() {
           </h3>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Ao assinar qualquer um dos planos, <strong className="text-foreground">hoje você paga exatamente R$ 0,00</strong>. Seu cartão é apenas autenticado com segurança pelo Stripe e o acesso completo à plataforma (com alunos ilimitados e White-label 100% liberado) é ativado na mesma hora.
+            Ao assinar qualquer um dos planos, <strong className="text-foreground">hoje você paga exatamente R$ 0,00</strong>. Em nosso checkout seguro, seu cartão é apenas autenticado com criptografia bancária e o acesso completo à plataforma (com alunos ilimitados e White-label 100% liberado) é ativado na mesma hora.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-foreground/90">
             <div className="flex items-start gap-2">
               <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
               <span>
-                <strong>Cancelamento em 1 clique:</strong> encerre pelo Portal do Cliente Stripe antes do 4º dia e nenhum centavo será cobrado.
+                <strong>Cancelamento em 1 clique:</strong> encerre direto no seu painel de configurações antes do 4º dia e nenhum centavo será cobrado.
               </span>
             </div>
             <div className="flex items-start gap-2">

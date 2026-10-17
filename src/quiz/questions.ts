@@ -265,7 +265,7 @@ const RESULT_COPY: Record<
       "Com a versão White-label Anual, seus alunos acessam os treinos em um aplicativo com a sua identidade visual, seu logotipo e suas cores, com alunos ilimitados e suporte prioritário via WhatsApp.",
     ],
     benefits: [
-      "3 dias de teste grátis com R$ 0,00 cobrados hoje no Stripe.",
+      "3 dias de teste grátis com R$ 0,00 cobrados hoje em nosso checkout.",
       "Aplicativo personalizado com a sua marca, logotipo e cores para os alunos.",
       "Alunos ilimitados sem taxas adicionais por aluno.",
       "Suporte prioritário direto via WhatsApp com especialistas.",
@@ -280,7 +280,7 @@ const RESULT_COPY: Record<
       "O plano Pro Mensal oferece todas as funcionalidades avançadas de prescrição, alunos ilimitados e White-label liberado com a flexibilidade da renovação mensal.",
     ],
     benefits: [
-      "3 dias de teste grátis com R$ 0,00 cobrados hoje no Stripe.",
+      "3 dias de teste grátis com R$ 0,00 cobrados hoje em nosso checkout.",
       "Prescrição e atualização de treinos em até 3 minutos.",
       "Alunos ilimitados e personalização White-label liberada.",
       "Assinatura mensal flexível de R$ 44,90/mês sem fidelidade.",
@@ -294,7 +294,7 @@ const RESULT_COPY: Record<
       "O plano Pro Mensal foi desenhado para quem quer prescrever treinos com máxima agilidade em até 3 minutos, com alunos ilimitados e White-label liberado por apenas R$ 44,90/mês.",
     ],
     benefits: [
-      "3 dias de teste grátis com R$ 0,00 cobrados hoje no Stripe.",
+      "3 dias de teste grátis com R$ 0,00 cobrados hoje em nosso checkout.",
       "Prescrição prática e rápida em até 3 minutos para o dia a dia.",
       "Alunos ilimitados e personalização White-label liberada.",
       "Apenas R$ 44,90/mês sem taxa de adesão e sem fidelidade.",

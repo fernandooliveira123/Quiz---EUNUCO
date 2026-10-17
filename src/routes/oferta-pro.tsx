@@ -76,7 +76,7 @@ function OfertaProPage() {
     {
       feature: "Condição de Entrada",
       traditional: "Cobrança imediata e contratos com multas pesadas de fidelidade.",
-      treinoInteligente: "Teste 3 dias grátis por R$ 0,00 hoje no Stripe. Cancele com 1 clique antes do 4º dia sem custo.",
+      treinoInteligente: "Teste 3 dias grátis por R$ 0,00 hoje em nosso checkout seguro. Cancele com 1 clique antes do 4º dia sem custo.",
     },
     {
       feature: "Tempo de Prescrição",
@@ -99,12 +99,12 @@ function OfertaProPage() {
     {
       question: "Como funciona o teste gratuito de 3 dias por R$ 0,00?",
       answer:
-        "No momento da assinatura, você paga R$ 0,00 no Stripe Checkout. Seu cartão é apenas autenticado com segurança e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 497 só ocorre no 4º dia.",
+        "No momento da assinatura em nosso checkout seguro, você paga R$ 0,00. Seu cartão é apenas autenticado com criptografia bancária e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 497 só ocorre no 4º dia se você decidir continuar.",
     },
     {
-      question: "Como funciona o cancelamento pelo Portal do Cliente Stripe?",
+      question: "Como funciona o cancelamento da assinatura?",
       answer:
-        "Você tem total autonomia através do Portal do Cliente Stripe (botão 'Gerenciar Assinatura'). Se cancelar durante os 3 dias de trial, a assinatura é cancelada imediatamente sem cobrar nenhum centavo. Se cancelar após a cobrança, ela não renova e você continua usando até completar os 12 meses já pagos.",
+        "Você tem total autonomia direto pelo botão 'Gerenciar Assinatura' na sua área de configurações. Se cancelar durante os 3 dias de trial, o cancelamento é imediato com custo zero. Se cancelar após a cobrança, ela não se renova e você continua usando até completar os 12 meses já pagos.",
     },
     {
       question: "O que está incluído no Plano White-label Anual?",
@@ -241,7 +241,7 @@ function OfertaProPage() {
                 <p className="text-xs text-foreground/80 leading-relaxed">
                   • <strong>Hoje:</strong> R$ 0,00 no cartão. Acesso liberado na hora.<br />
                   • <strong>Dias 1 a 3:</strong> Teste livre com alunos ilimitados e sua marca.<br />
-                  • <strong>Dia 4:</strong> R$ 497/ano (~R$ 41,41/mês). Cancele com 1 clique antes do 4º dia pelo Portal Stripe sem custo.
+                  • <strong>Dia 4:</strong> R$ 497/ano (~R$ 41,41/mês). Cancele com 1 clique antes do 4º dia em seu painel sem nenhum custo.
                 </p>
               </div>
 
@@ -273,7 +273,7 @@ function OfertaProPage() {
                     className="w-full h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                     onClick={() =>
                       alert(
-                        "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_PRO_URL em src/quiz/config.ts",
+                        "Link de checkout seguro não configurado. Defina STRIPE_CHECKOUT_PRO_URL em src/quiz/config.ts",
                       )
                     }
                   >
@@ -288,7 +288,7 @@ function OfertaProPage() {
 
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <ShieldCheck className="h-4 w-4 text-primary" />
-                <span>Portal Stripe com cancelamento em 1 clique · Garantia de 7 dias</span>
+                <span>Cancelamento em 1 clique no painel · Garantia incondicional de 7 dias</span>
               </div>
             </div>
           </div>
@@ -383,8 +383,8 @@ function OfertaProPage() {
                   className="flex items-center justify-center gap-2"
                 >
                   <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                    <span>GARANTIR WHITE LABEL ANUAL</span>
-                    <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                    <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                    <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
                   </span>
                   <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                 </a>
@@ -396,13 +396,13 @@ function OfertaProPage() {
                 className="w-full max-w-md h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                 onClick={() =>
                   alert(
-                    "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_PRO_URL em src/quiz/config.ts",
+                    "Link de checkout seguro não configurado. Defina STRIPE_CHECKOUT_PRO_URL em src/quiz/config.ts",
                   )
                 }
               >
                 <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                  <span>GARANTIR WHITE LABEL ANUAL</span>
-                  <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 497/ANO)</span>
+                  <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                  <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
                 </span>
                 <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
               </Button>

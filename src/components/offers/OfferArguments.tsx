@@ -53,10 +53,10 @@ export function OfferArguments({ plan }: Props) {
         ? "O plano anual de R$ 497 equivale a R$ 41,41/mês — economia de R$ 41,80/ano!"
         : "Apenas R$ 44,90/mês a partir do 4º dia, sem taxa de adesão e sem fidelidade.",
       description: isPro
-        ? "No checkout você paga R$ 0,00 hoje. O cartão é apenas validado com segurança pela Stripe. Você aproveita 3 dias inteiros de teste. No 4º dia, o valor anual de R$ 497 é debitado (menos que 1 mensalidade de aluno por ano!). Cancele com 1 clique antes do 4º dia pelo Portal Stripe sem custo."
-        : "No checkout você paga R$ 0,00 hoje. Após os 3 dias grátis, o valor é de apenas R$ 44,90/mês (menos de R$ 1,50 por dia). Sem taxa de adesão, sem contrato de fidelidade de 12 meses e cancelamento autônomo com 1 clique pelo Portal do Cliente Stripe.",
+        ? "Em nosso checkout seguro você paga R$ 0,00 hoje. Seu cartão é apenas autenticado com criptografia bancária em nossa operação. Você aproveita 3 dias inteiros de teste. No 4º dia, o valor anual de R$ 497 é debitado (menos que 1 mensalidade de aluno por ano!). Cancele com 1 clique antes do 4º dia direto no seu painel sem custo."
+        : "Em nosso checkout seguro você paga R$ 0,00 hoje. Após os 3 dias grátis, o valor é de apenas R$ 44,90/mês (menos de R$ 1,50 por dia). Sem taxa de adesão, sem contrato de fidelidade de 12 meses e cancelamento autônomo com 1 clique direto no seu painel.",
       bullets: [
-        "Hoje no Checkout: R$ 0,00 (validação segura pelo Stripe)",
+        "Hoje no Checkout: R$ 0,00 (validação segura e criptografada)",
         isPro ? "2 meses grátis de economia (R$ 41,80/ano economizados)" : "Renovação mensal flexível sem multas contratuais",
         "Cancelamento com 1 clique antes do 4º dia sem cobrança",
       ],

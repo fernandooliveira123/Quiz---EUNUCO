@@ -45,7 +45,7 @@ export const Route = createFileRoute("/oferta-start")({
       {
         name: "description",
         content:
-          "Plano Pro Mensal por apenas R$ 44,90/mês, com 3 dias de teste grátis por R$ 0,00 hoje no Stripe, alunos ilimitados e White-label liberado.",
+          "Plano Pro Mensal por apenas R$ 44,90/mês, com 3 dias de teste grátis por R$ 0,00 hoje em nosso checkout, alunos ilimitados e White-label liberado.",
       },
     ],
   }),
@@ -75,7 +75,7 @@ function OfertaStartPage() {
     {
       feature: "Condição de Entrada",
       traditional: "Cobrança imediata e contratos com multas pesadas de fidelidade.",
-      treinoInteligente: "Teste 3 dias grátis por R$ 0,00 hoje no Stripe. Cancele com 1 clique antes do 4º dia sem custo.",
+      treinoInteligente: "Teste 3 dias grátis por R$ 0,00 hoje em nosso checkout seguro. Cancele com 1 clique antes do 4º dia sem custo.",
     },
     {
       feature: "Tempo de Prescrição",
@@ -98,7 +98,7 @@ function OfertaStartPage() {
     {
       question: "Como funciona o teste gratuito de 3 dias por R$ 0,00?",
       answer:
-        "No momento da assinatura, você paga R$ 0,00 no Stripe Checkout. Seu cartão é apenas autenticado com segurança e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 44,90 só ocorre no 4º dia se você decidir continuar.",
+        "No momento da assinatura em nosso checkout seguro, você paga R$ 0,00. Seu cartão é apenas autenticado com criptografia bancária e seu acesso completo à plataforma (com aplicativo White-label e alunos ilimitados) é liberado imediatamente. Você tem 3 dias inteiros para testar na prática. A primeira cobrança de R$ 44,90 só ocorre no 4º dia se você decidir continuar.",
     },
     {
       question: "O Plano Pro Mensal inclui White-label e alunos ilimitados?",
@@ -111,9 +111,9 @@ function OfertaStartPage() {
         "Absolutamente não! O plano mensal é de apenas R$ 44,90 por mês, sem qualquer taxa de adesão ou contrato de fidelidade. Você usa pelo tempo que quiser e pode cancelar a qualquer momento em um único clique.",
     },
     {
-      question: "Como funciona o cancelamento pelo Portal do Cliente Stripe?",
+      question: "Como funciona o cancelamento da assinatura?",
       answer:
-        "Você tem total autonomia através do Portal do Cliente Stripe (botão 'Gerenciar Assinatura'). Se cancelar durante os 3 dias de trial, a assinatura é cancelada imediatamente sem cobrar nenhum centavo. Se cancelar após a cobrança, ela não renova e você continua usando até fechar os 30 dias que já pagou.",
+        "Você tem total autonomia direto pelo botão 'Gerenciar Assinatura' na sua área de configurações. Se cancelar durante os 3 dias de trial, o cancelamento é imediato com custo zero. Se cancelar após a cobrança, ela não se renova e você continua usando até fechar os 30 dias que já pagou.",
     },
     {
       question: "Posso migrar para o plano White-label Anual mais tarde?",
@@ -211,7 +211,7 @@ function OfertaStartPage() {
                   </span>
                   <span>
                     <strong className="text-foreground">Zero Contrato de Fidelidade:</strong> renovação
-                    mensal livre de R$ 44,90. Cancele quando quiser com 1 clique pelo Portal Stripe.
+                    mensal livre de R$ 44,90. Cancele quando quiser com 1 clique direto no seu painel.
                   </span>
                 </li>
               </ul>
@@ -243,9 +243,9 @@ function OfertaStartPage() {
                   <span>Como funciona seu teste de 3 dias:</span>
                 </div>
                 <p className="text-xs text-foreground/80 leading-relaxed">
-                  • <strong>Hoje:</strong> R$ 0,00 no cartão. Acesso completo liberado na hora.<br />
+                  • <strong>Hoje:</strong> R$ 0,00 no cartão em nosso checkout seguro. Acesso liberado na hora.<br />
                   • <strong>Dias 1 a 3:</strong> Teste livre com alunos ilimitados e White-label.<br />
-                  • <strong>Dia 4:</strong> R$ 44,90/mês (menos de R$ 1,50/dia). Cancele com 1 clique antes do 4º dia pelo Portal Stripe sem pagar nada.
+                  • <strong>Dia 4:</strong> R$ 44,90/mês (menos de R$ 1,50/dia). Cancele com 1 clique antes do 4º dia em seu painel sem pagar nada.
                 </p>
               </div>
 
@@ -277,7 +277,7 @@ function OfertaStartPage() {
                     className="w-full h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                     onClick={() =>
                       alert(
-                        "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_START_URL em src/quiz/config.ts",
+                        "Link de checkout seguro não configurado. Defina STRIPE_CHECKOUT_START_URL em src/quiz/config.ts",
                       )
                     }
                   >
@@ -292,7 +292,7 @@ function OfertaStartPage() {
 
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <ShieldCheck className="h-4 w-4 text-primary" />
-                <span>Portal Stripe com cancelamento em 1 clique · Garantia de 7 dias</span>
+                <span>Ambiente seguro com cancelamento em 1 clique · Garantia de 7 dias</span>
               </div>
             </div>
           </div>
@@ -336,7 +336,10 @@ function OfertaStartPage() {
                   onClick={handleCheckoutClick}
                   className="flex items-center justify-center gap-2"
                 >
-                  <span>COMEÇAR AGORA POR R$ 44,90/MÊS</span>
+                  <span className="flex flex-col items-center justify-center gap-0.5">
+                    <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                    <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
+                  </span>
                   <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                 </a>
               </Button>
@@ -347,11 +350,14 @@ function OfertaStartPage() {
                 className="w-full max-w-md h-auto min-h-14 py-3.5 px-4 text-sm sm:text-base font-black shadow-glow whitespace-normal text-center leading-tight rounded-xl flex items-center justify-center gap-2"
                 onClick={() =>
                   alert(
-                    "Link de checkout Stripe não configurado. Defina STRIPE_CHECKOUT_START_URL em src/quiz/config.ts",
+                    "Link de checkout seguro não configurado. Defina STRIPE_CHECKOUT_START_URL em src/quiz/config.ts",
                   )
                 }
               >
-                <span>COMEÇAR AGORA POR R$ 44,90/MÊS</span>
+                <span className="flex flex-col items-center justify-center gap-0.5">
+                  <span>COMEÇAR 3 DIAS GRÁTIS</span>
+                  <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
+                </span>
                 <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
               </Button>
             )}
