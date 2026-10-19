@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Sparkles,
   Check,
@@ -6,6 +6,11 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
+  X,
+  Maximize2,
 } from "lucide-react";
 import installedHomeScreenImg from "@/assets/app_installed_home_screen.png";
 import settingsBrandingImg from "@/assets/app_settings_branding.png";
@@ -65,16 +70,42 @@ const MOCKUP_TABS = [
 
 export function AppBrandingShowcase({ plan = "pro" }: AppBrandingShowcaseProps) {
   const [activeTabIdx, setActiveTabIdx] = useState(0);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   const activeTab = MOCKUP_TABS[activeTabIdx] ?? MOCKUP_TABS[0]!;
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setActiveTabIdx((prev) => (prev - 1 + MOCKUP_TABS.length) % MOCKUP_TABS.length);
+    setZoomLevel(1);
+  }, []);
+
+  const handleNext = useCallback(() => {
+    setActiveTabIdx((prev) => (prev + 1) % MOCKUP_TABS.length);
+    setZoomLevel(1);
+  }, []);
+
+  const openZoom = () => {
+    setZoomLevel(1);
+    setIsZoomOpen(true);
   };
 
-  const handleNext = () => {
-    setActiveTabIdx((prev) => (prev + 1) % MOCKUP_TABS.length);
+  const closeZoom = () => {
+    setIsZoomOpen(false);
+    setZoomLevel(1);
   };
+
+  // Suporte a teclado no modo Zoom (ESC fecha, setas navegam)
+  useEffect(() => {
+    if (!isZoomOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeZoom();
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "ArrowRight") handleNext();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isZoomOpen, handlePrev, handleNext]);
 
   return (
     <section className="my-12 sm:my-20 relative w-full overflow-hidden px-1 sm:px-0">
@@ -125,23 +156,42 @@ export function AppBrandingShowcase({ plan = "pro" }: AppBrandingShowcaseProps) 
       {/* Vitrine Principal do Mockup Selecionado */}
       <div className="rounded-2xl sm:rounded-3xl border border-border/90 bg-card/90 shadow-2xl p-3.5 sm:p-6 lg:p-8 relative overflow-hidden backdrop-blur-md">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-          {/* Lado Esquerdo: Imagem do Mockup */}
+          {/* Lado Esquerdo: Imagem do Mockup com Botão de Zoom */}
           <div className="lg:col-span-7 flex flex-col items-center">
             <div className="relative w-full max-w-[340px] sm:max-w-[440px] lg:max-w-none rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-zinc-800 bg-black shadow-2xl overflow-hidden group">
-              <img
-                src={activeTab.image}
-                alt={activeTab.alt}
-                className="w-full h-auto max-h-[360px] sm:max-h-[500px] object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
+              {/* Imagem clicável para zoom */}
+              <div
+                onClick={openZoom}
+                className="cursor-zoom-in relative overflow-hidden"
+                title="Clique para ampliar em tela cheia"
+              >
+                <img
+                  src={activeTab.image}
+                  alt={activeTab.alt}
+                  className="w-full h-auto max-h-[360px] sm:max-h-[500px] object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
 
-              {/* Tag de identificação sobre a imagem */}
-              <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 bg-background/90 backdrop-blur-md border border-primary/40 rounded-lg sm:rounded-xl px-2.5 py-1 sm:px-3 sm:py-1.5 shadow-md flex items-center gap-1.5 sm:gap-2">
+              {/* Tag de identificação sobre a imagem (Canto Superior Esquerdo) */}
+              <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 bg-background/90 backdrop-blur-md border border-primary/40 rounded-lg sm:rounded-xl px-2.5 py-1 sm:px-3 sm:py-1.5 shadow-md flex items-center gap-1.5 sm:gap-2 pointer-events-none">
                 <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-[10px] sm:text-xs font-bold text-foreground truncate max-w-[220px]">
+                <span className="text-[10px] sm:text-xs font-bold text-foreground truncate max-w-[180px] sm:max-w-[220px]">
                   {activeTab.subtitle}
                 </span>
               </div>
+
+              {/* BOTÃO DE ZOOM (Canto Superior Direito - Exatamente como solicitado) */}
+              <button
+                type="button"
+                onClick={openZoom}
+                className="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 bg-background/95 hover:bg-primary hover:text-primary-foreground backdrop-blur-md border border-primary/50 text-foreground rounded-lg sm:rounded-xl px-2.5 py-1 sm:px-3 sm:py-1.5 shadow-lg flex items-center gap-1.5 transition-all cursor-pointer z-20 group/zoom"
+                title="Ampliar print em alta definição"
+                aria-label="Abrir zoom do print"
+              >
+                <ZoomIn className="h-3.5 w-3.5 text-primary group-hover/zoom:text-primary-foreground group-hover/zoom:scale-110 transition-transform" />
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider">Zoom</span>
+              </button>
 
               {/* Botões de seta para navegar entre os 3 mockups na própria imagem */}
               <button
@@ -162,9 +212,12 @@ export function AppBrandingShowcase({ plan = "pro" }: AppBrandingShowcaseProps) 
               </button>
             </div>
 
-            <div className="mt-2.5 text-center text-[11px] sm:text-xs text-muted-foreground flex items-center gap-1.5">
+            <div
+              onClick={openZoom}
+              className="mt-2.5 text-center text-[11px] sm:text-xs text-muted-foreground flex items-center gap-1.5 cursor-pointer hover:text-primary transition-colors"
+            >
               <Eye className="h-3 w-3 text-primary shrink-0" />
-              <span>Print real capturado diretamente da plataforma</span>
+              <span>Clique no botão de Zoom ou na imagem para ampliar em tela cheia</span>
             </div>
           </div>
 
@@ -199,7 +252,7 @@ export function AppBrandingShowcase({ plan = "pro" }: AppBrandingShowcaseProps) 
             </div>
 
             {/* Botão de Próxima Tela */}
-            <div className="pt-1">
+            <div className="pt-1 flex items-center gap-4">
               <button
                 type="button"
                 onClick={handleNext}
@@ -247,6 +300,130 @@ export function AppBrandingShowcase({ plan = "pro" }: AppBrandingShowcaseProps) 
           </div>
         </div>
       </div>
+
+      {/* LIGHTBOX MODAL FULLSCREEN DE ZOOM EM ALTA DEFINIÇÃO */}
+      {isZoomOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-3 sm:p-6 animate-in fade-in duration-200"
+          onClick={closeZoom}
+        >
+          {/* Barra Superior do Zoom */}
+          <div
+            className="w-full max-w-5xl flex items-center justify-between gap-3 p-2 rounded-2xl bg-zinc-900/90 border border-white/10 backdrop-blur-md z-20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <span className="h-2.5 w-2.5 rounded-full bg-primary animate-pulse shrink-0" />
+              <div className="min-w-0">
+                <span className="text-xs sm:text-sm font-black text-white block truncate">
+                  {activeTab.title} — {activeTab.subtitle}
+                </span>
+                <span className="text-[10px] sm:text-xs text-zinc-400">
+                  Etapa {activeTabIdx + 1} de {MOCKUP_TABS.length} · Alta Resolução
+                </span>
+              </div>
+            </div>
+
+            {/* Controles de Zoom e Fechar */}
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => setZoomLevel((z) => Math.max(0.8, z - 0.25))}
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-zinc-800 text-white hover:bg-zinc-700 flex items-center justify-center transition-colors"
+                title="Diminuir zoom"
+              >
+                <ZoomOut className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setZoomLevel((z) => Math.min(2.5, z + 0.25))}
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-zinc-800 text-white hover:bg-zinc-700 flex items-center justify-center transition-colors"
+                title="Aumentar zoom"
+              >
+                <ZoomIn className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setZoomLevel(1)}
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-zinc-800 text-white hover:bg-zinc-700 flex items-center justify-center transition-colors hidden sm:flex"
+                title="Resetar zoom"
+              >
+                <RotateCcw className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={closeZoom}
+                className="h-8 w-8 sm:h-9 sm:w-9 rounded-xl bg-primary text-primary-foreground hover:opacity-90 flex items-center justify-center transition-opacity shadow-glow ml-1"
+                title="Fechar zoom (ESC)"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Área Central da Imagem com Zoom */}
+          <div
+            className="relative flex-1 w-full max-w-5xl flex items-center justify-center my-3 overflow-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Seta Esquerda */}
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-zinc-900/80 border border-white/20 text-white flex items-center justify-center hover:bg-primary hover:text-black transition-all shadow-xl z-20"
+              title="Anterior"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+
+            {/* Imagem em Alta Resolução com Zoom dinâmico */}
+            <div className="max-h-[75vh] sm:max-h-[80vh] flex items-center justify-center overflow-auto p-2">
+              <img
+                src={activeTab.image}
+                alt={activeTab.alt}
+                style={{ transform: `scale(${zoomLevel})` }}
+                className="max-h-[72vh] sm:max-h-[78vh] w-auto object-contain rounded-2xl shadow-2xl transition-transform duration-200 cursor-grab active:cursor-grabbing border border-white/10"
+              />
+            </div>
+
+            {/* Seta Direita */}
+            <button
+              type="button"
+              onClick={handleNext}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-zinc-900/80 border border-white/20 text-white flex items-center justify-center hover:bg-primary hover:text-black transition-all shadow-xl z-20"
+              title="Próximo"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Barra Inferior com Miniaturas no Modo Zoom */}
+          <div
+            className="w-full max-w-xl flex items-center justify-center gap-2 sm:gap-3 p-2 rounded-2xl bg-zinc-900/80 border border-white/10 backdrop-blur-md z-20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {MOCKUP_TABS.map((tab, idx) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => {
+                  setActiveTabIdx(idx);
+                  setZoomLevel(1);
+                }}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+                  activeTabIdx === idx
+                    ? "bg-primary text-black border-primary shadow-glow"
+                    : "bg-zinc-800 text-zinc-300 border-zinc-700 hover:text-white"
+                }`}
+              >
+                <span>{tab.mobileLabel}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
