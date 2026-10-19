@@ -18,6 +18,8 @@ import { OfferDynamicHeadline } from "@/components/offers/OfferDynamicHeadline";
 import { OfferVslPlayer } from "@/components/offers/OfferVslPlayer";
 import { OfferSocialProof } from "@/components/offers/OfferSocialProof";
 import { OfferArguments } from "@/components/offers/OfferArguments";
+import { AppMockup3DCarousel } from "@/components/offers/AppMockup3DCarousel";
+import { AppFeaturesGrid } from "@/components/offers/AppFeaturesGrid";
 import { OfferGuarantee } from "@/components/offers/OfferGuarantee";
 import { OfferComparisonTable } from "@/components/offers/OfferComparisonTable";
 import { OfferFaqSection } from "@/components/offers/OfferFaqSection";
@@ -145,6 +147,12 @@ function OfertaProPage() {
 
         {/* 4. ARGUMENTOS ESTRATÉGICOS (3 MINUTOS + MARCA PRÓPRIA + RETORNO FINANCEIRO + FIM DO CAOS) */}
         <OfferArguments plan="pro" />
+
+        {/* 5. CARROSSEL 3D DE TELAS E FUNCIONALIDADES DO APLICATIVO */}
+        <AppMockup3DCarousel />
+
+        {/* 6. GRID DAS FUNCIONALIDADES TÉCNICAS E CIENTÍFICAS */}
+        <AppFeaturesGrid />
 
         {/* CARD PRINCIPAL DE ANCORAGEM E OFERTA */}
         <div
