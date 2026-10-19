@@ -52,7 +52,18 @@ Use estes links prontos para rastrear de onde vieram seus alunos e leads no CRM:
 
 ---
 
-## ⚙️ 4. Infraestrutura & Automações
+## 🎬 4. VSLs Oficiais Cadastradas (VTurb / ConverteAI)
+
+* **VSL Plano Anual (`/oferta-pro`):**
+  * ID do Player: `vid-6ad6744d57190eb9fffe845f`
+  * Script CDN: `https://scripts.converteai.net/341570ba-7a10-4f90-9a49-b824f6bbb6e2/players/6ad6744d57190eb9fffe845f/v4/player.js`
+* **VSL Plano Mensal (`/oferta-start`):**
+  * ID do Player: `vid-6ad67433bbe21fec2d043348`
+  * Script CDN: `https://scripts.converteai.net/341570ba-7a10-4f90-9a49-b824f6bbb6e2/players/6ad67433bbe21fec2d043348/v4/player.js`
+
+---
+
+## ⚙️ 5. Infraestrutura & Automações
 
 * **Webhook do n8n:**
   https://n8n-n8n.sb9az3.easypanel.host/webhook/treino-inteligente-quiz

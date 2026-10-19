@@ -77,8 +77,8 @@ export const VSL_VIDEO_START_URL = "";
 export const VTURB_START_PLAYER_ID = "6ad67433bbe21fec2d043348";
 export const VTURB_START_SCRIPT_URL = "https://scripts.converteai.net/341570ba-7a10-4f90-9a49-b824f6bbb6e2/players/6ad67433bbe21fec2d043348/v4/player.js";
 
-export const VTURB_PRO_PLAYER_ID = "";
-export const VTURB_PRO_SCRIPT_URL = "";
+export const VTURB_PRO_PLAYER_ID = "6ad6744d57190eb9fffe845f";
+export const VTURB_PRO_SCRIPT_URL = "https://scripts.converteai.net/341570ba-7a10-4f90-9a49-b824f6bbb6e2/players/6ad6744d57190eb9fffe845f/v4/player.js";
 
 /** VÍDEO DE PROVA SOCIAL - Wistia embed com depoimentos de treinadores */
 export const SOCIAL_PROOF_VIDEO_URL = "https://fast.wistia.net/embed/iframe/2qty6bed6r";
