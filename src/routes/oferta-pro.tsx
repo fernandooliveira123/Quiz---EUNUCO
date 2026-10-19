@@ -214,8 +214,8 @@ function OfertaProPage() {
                     <TrendingUp className="h-4 w-4" />
                   </span>
                   <span>
-                    <strong className="text-foreground">2 Meses Grátis de Economia:</strong> economia de
-                    R$ 41,80/ano em relação à contratação mensal (apenas R$ 41,41/mês).
+                    <strong className="text-foreground">Economia Imediata de R$ 500,00:</strong> de R$ 997,00
+                    por apenas R$ 497,00/ano (equivalente a R$ 41,41/mês — menos de R$ 1,40 por dia).
                   </span>
                 </li>
               </ul>
@@ -223,13 +223,33 @@ function OfertaProPage() {
 
             {/* Coluna da direita: preço ancorado e checkout */}
             <div className="lg:col-span-5 rounded-2xl border border-border bg-card/90 p-6 sm:p-7 text-center shadow-card">
-              <span className="inline-block rounded-full bg-primary/15 border border-primary/30 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
-                3 Dias Grátis · R$ 0,00 Hoje
+              <span className="inline-block rounded-full bg-primary/15 border border-primary/30 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-primary">
+                🔥 Oferta Especial de Lançamento · 50% OFF
               </span>
+
+              {/* Ancoragem visual R$ 997 -> R$ 497 */}
+              <div className="mt-4 rounded-xl border border-border/80 bg-background/80 p-4 shadow-inner">
+                <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground font-semibold">
+                  <span>De</span>
+                  <span className="line-through text-destructive font-bold decoration-destructive decoration-2">
+                    R$ 997,00
+                  </span>
+                  <span>por apenas:</span>
+                </div>
+                <div className="mt-1 flex items-baseline justify-center gap-1.5">
+                  <span className="text-3xl sm:text-4xl font-black text-foreground tracking-tight">
+                    R$ 497,00
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-muted-foreground">/ano</span>
+                </div>
+                <div className="mt-1.5 text-xs text-primary font-bold">
+                  (Equivalente a apenas R$ 41,41/mês · Economia de R$ 500,00 + 2 meses grátis)
+                </div>
+              </div>
 
               <div className="mt-4">
                 <div className="text-xs text-muted-foreground uppercase font-bold tracking-wide">
-                  No momento do checkout
+                  No momento do checkout hoje
                 </div>
                 <div className="mt-1 flex items-baseline justify-center gap-1">
                   <span className="text-4xl sm:text-5xl font-black text-primary">R$ 0,00</span>
@@ -247,7 +267,7 @@ function OfertaProPage() {
                   <span>Como funciona seu teste de 3 dias:</span>
                 </div>
                 <p className="text-xs text-foreground/80 leading-relaxed">
-                  • <strong>Hoje:</strong> R$ 0,00 no cartão. Acesso liberado na hora.<br />
+                  • <strong>Hoje:</strong> R$ 0,00 no cartão em nosso checkout seguro. Acesso liberado na hora.<br />
                   • <strong>Dias 1 a 3:</strong> Teste livre com alunos ilimitados e sua marca.<br />
                   • <strong>Dia 4:</strong> R$ 497/ano (~R$ 41,41/mês). Cancele com 1 clique antes do 4º dia em seu painel sem nenhum custo.
                 </p>
@@ -267,10 +287,7 @@ function OfertaProPage() {
                       onClick={handleCheckoutClick}
                       className="flex items-center justify-center gap-2"
                     >
-                      <span className="flex flex-col items-center justify-center gap-0.5">
-                        <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                        <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
-                      </span>
+                      <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
                       <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                     </a>
                   </Button>
@@ -285,11 +302,8 @@ function OfertaProPage() {
                       )
                     }
                   >
-                    <span className="flex flex-col items-center justify-center gap-0.5">
-                      <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                      <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
-                    </span>
-                    <ExternalLink className="h-5 w-5 shrink-0 ml-1" />
+                    <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
+                    <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                   </Button>
                 )}
               </div>
@@ -390,10 +404,7 @@ function OfertaProPage() {
                   onClick={handleCheckoutClick}
                   className="flex items-center justify-center gap-2"
                 >
-                  <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                    <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                    <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
-                  </span>
+                  <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
                   <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                 </a>
               </Button>
@@ -408,10 +419,7 @@ function OfertaProPage() {
                   )
                 }
               >
-                <span className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-                  <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                  <span className="text-xs sm:text-sm font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 497/ANO)</span>
-                </span>
+                <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
                 <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
               </Button>
             )}

@@ -9,6 +9,7 @@ import {
   Clock,
   HeartHandshake,
   Users,
+  TrendingUp,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -215,11 +216,20 @@ function OfertaStartPage() {
                 </li>
                 <li className="flex items-start gap-3 text-sm sm:text-base">
                   <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
+                    <TrendingUp className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <strong className="text-foreground">77% de Desconto Promocional:</strong> de R$ 197,00
+                    por apenas R$ 44,90/mês (menos de R$ 1,50 por dia) e economia de R$ 152,10 todo mês.
+                  </span>
+                </li>
+                <li className="flex items-start gap-3 text-sm sm:text-base">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-primary/20 text-primary mt-0.5">
                     <HeartHandshake className="h-4 w-4" />
                   </span>
                   <span>
                     <strong className="text-foreground">Zero Contrato de Fidelidade:</strong> renovação
-                    mensal livre de R$ 44,90. Cancele quando quiser com 1 clique direto no seu painel.
+                    mensal livre. Cancele quando quiser com 1 clique direto no seu painel.
                   </span>
                 </li>
               </ul>
@@ -227,13 +237,33 @@ function OfertaStartPage() {
 
             {/* Coluna da direita: preço e botão de checkout */}
             <div className="lg:col-span-5 rounded-2xl border border-border bg-card/90 p-6 sm:p-7 text-center shadow-card">
-              <span className="inline-block rounded-full bg-primary/15 border border-primary/30 px-3 py-1 text-xs font-black uppercase tracking-wider text-primary">
-                3 Dias Grátis · R$ 0,00 Hoje
+              <span className="inline-block rounded-full bg-primary/15 border border-primary/30 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-primary">
+                🔥 Oferta Especial de Entrada · 77% OFF
               </span>
+
+              {/* Ancoragem visual R$ 197 -> R$ 44,90 */}
+              <div className="mt-4 rounded-xl border border-border/80 bg-background/80 p-4 shadow-inner">
+                <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground font-semibold">
+                  <span>De</span>
+                  <span className="line-through text-destructive font-bold decoration-destructive decoration-2">
+                    R$ 197,00
+                  </span>
+                  <span>por apenas:</span>
+                </div>
+                <div className="mt-1 flex items-baseline justify-center gap-1.5">
+                  <span className="text-3xl sm:text-4xl font-black text-foreground tracking-tight">
+                    R$ 44,90
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-muted-foreground">/mês</span>
+                </div>
+                <div className="mt-1.5 text-xs text-primary font-bold">
+                  (Menos de R$ 1,50 por dia · Economia de R$ 152,10/mês sem fidelidade!)
+                </div>
+              </div>
 
               <div className="mt-4">
                 <div className="text-xs text-muted-foreground uppercase font-bold tracking-wide">
-                  No momento do checkout
+                  No momento do checkout hoje
                 </div>
                 <div className="mt-1 flex items-baseline justify-center gap-1">
                   <span className="text-4xl sm:text-5xl font-black text-primary">R$ 0,00</span>
@@ -271,10 +301,7 @@ function OfertaStartPage() {
                       onClick={handleCheckoutClick}
                       className="flex items-center justify-center gap-2"
                     >
-                      <span className="flex flex-col items-center justify-center gap-0.5">
-                        <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                        <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
-                      </span>
+                      <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
                       <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                     </a>
                   </Button>
@@ -289,11 +316,8 @@ function OfertaStartPage() {
                       )
                     }
                   >
-                    <span className="flex flex-col items-center justify-center gap-0.5">
-                      <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                      <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
-                    </span>
-                    <ExternalLink className="h-5 w-5 shrink-0 ml-1" />
+                    <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
+                    <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                   </Button>
                 )}
               </div>
@@ -344,10 +368,7 @@ function OfertaStartPage() {
                   onClick={handleCheckoutClick}
                   className="flex items-center justify-center gap-2"
                 >
-                  <span className="flex flex-col items-center justify-center gap-0.5">
-                    <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                    <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
-                  </span>
+                  <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
                   <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
                 </a>
               </Button>
@@ -362,10 +383,7 @@ function OfertaStartPage() {
                   )
                 }
               >
-                <span className="flex flex-col items-center justify-center gap-0.5">
-                  <span>COMEÇAR 3 DIAS GRÁTIS</span>
-                  <span className="text-xs font-bold opacity-90">(R$ 0,00 HOJE · DEPOIS R$ 44,90/MÊS)</span>
-                </span>
+                <span>COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)</span>
                 <ArrowRight className="h-5 w-5 shrink-0 ml-1" />
               </Button>
             )}
