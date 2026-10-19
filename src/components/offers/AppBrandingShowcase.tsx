@@ -1,10 +1,6 @@
 import { useState } from "react";
 import {
   Sparkles,
-  Smartphone,
-  Palette,
-  CheckCircle2,
-  Sliders,
   Check,
   Eye,
   ArrowRight,
@@ -67,17 +63,8 @@ const MOCKUP_TABS = [
   },
 ];
 
-const COLOR_PRESETS = [
-  { id: "emerald", label: "Verde Titanium", color: "#10b981", border: "border-emerald-500", glow: "shadow-emerald-500/30" },
-  { id: "cyan", label: "Azul Elétrico", color: "#06b6d4", border: "border-cyan-500", glow: "shadow-cyan-500/30" },
-  { id: "amber", label: "Dourado", color: "#f59e0b", border: "border-amber-500", glow: "shadow-amber-500/30" },
-  { id: "violet", label: "Roxo", color: "#8b5cf6", border: "border-violet-500", glow: "shadow-violet-500/30" },
-];
-
 export function AppBrandingShowcase({ plan = "pro" }: AppBrandingShowcaseProps) {
   const [activeTabIdx, setActiveTabIdx] = useState(0);
-  const [trainerName, setTrainerName] = useState("Fernando Oliveira");
-  const [selectedColor, setSelectedColor] = useState(COLOR_PRESETS[0]!);
 
   const activeTab = MOCKUP_TABS[activeTabIdx] ?? MOCKUP_TABS[0]!;
 
@@ -257,78 +244,6 @@ export function AppBrandingShowcase({ plan = "pro" }: AppBrandingShowcaseProps) 
                 </div>
               );
             })}
-          </div>
-        </div>
-      </div>
-
-      {/* Mini Simulador Interativo de Nome & Cores (100% responsivo) */}
-      <div className="mt-6 sm:mt-8 rounded-2xl sm:rounded-3xl border border-primary/30 bg-gradient-to-r from-card/90 via-background to-card/90 p-4 sm:p-6 shadow-card">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
-          <div className="space-y-1 text-center lg:text-left max-w-lg">
-            <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-primary">
-              <Sliders className="h-3.5 w-3.5" />
-              Simulador Instantâneo
-            </span>
-            <h3 className="text-base sm:text-lg font-black text-foreground">
-              Como ficará o ícone do seu app?
-            </h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Digite seu nome ou consultoria e escolha a cor oficial para ver o ícone simulado.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
-            <div className="space-y-1 w-full sm:w-auto">
-              <label className="text-[10px] sm:text-[11px] font-bold text-muted-foreground uppercase">
-                Nome do Personal / Consultoria:
-              </label>
-              <input
-                type="text"
-                value={trainerName}
-                onChange={(e) => setTrainerName(e.target.value)}
-                placeholder="Ex: Fernando Oliveira..."
-                className="h-9 sm:h-10 w-full sm:w-48 px-3 rounded-xl border border-border bg-background text-xs font-bold text-foreground focus:outline-none focus:border-primary"
-                maxLength={25}
-              />
-            </div>
-
-            <div className="space-y-1 w-full sm:w-auto">
-              <label className="text-[10px] sm:text-[11px] font-bold text-muted-foreground uppercase">
-                Cor da Marca:
-              </label>
-              <div className="flex items-center justify-center gap-1.5">
-                {COLOR_PRESETS.map((p) => (
-                  <button
-                    key={p.id}
-                    type="button"
-                    onClick={() => setSelectedColor(p)}
-                    className={`h-8 sm:h-9 px-2 sm:px-2.5 rounded-xl border flex items-center gap-1 text-[11px] sm:text-xs font-bold transition-all ${
-                      selectedColor.id === p.id
-                        ? `${p.border} bg-card text-foreground ring-2 ring-primary`
-                        : "border-border/60 bg-background/60 text-muted-foreground"
-                    }`}
-                  >
-                    <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full" style={{ backgroundColor: p.color }} />
-                    <span className="text-[10px] sm:text-xs">{p.label.split(" ")[0]}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Ícone Renderizado */}
-            <div
-              className="h-12 w-12 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center p-1 text-center shadow-lg shrink-0 transition-all duration-300"
-              style={{
-                backgroundColor: "#ffffff",
-                border: `2px solid ${selectedColor.color}`,
-                boxShadow: `0 0 16px ${selectedColor.color}45`,
-              }}
-            >
-              <span className="text-sm sm:text-base leading-none">🏋️</span>
-              <span className="text-[7px] sm:text-[8px] font-black uppercase text-zinc-900 leading-none mt-1 truncate max-w-full">
-                {trainerName.split(" ")[0]?.slice(0, 7) || "APP"}
-              </span>
-            </div>
           </div>
         </div>
       </div>
