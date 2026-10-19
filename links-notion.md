@@ -1,0 +1,62 @@
+# 🚀 Hub Central de Links — Treino Inteligente
+
+> 💡 **Projeto:** Quiz de Diagnóstico & Páginas de Vendas Personalizadas  
+> 🌐 **Domínio Principal:** https://meuapp.treinointeligente.pro  
+> 🔑 **PIN de Acesso ao CRM:** `treino2026`
+
+---
+
+## 📌 1. Links Principais de Produção
+
+| Canal / Página | URL Oficial | Descrição / Objetivo |
+| :--- | :--- | :--- |
+| **🎯 Quiz de Entrada** | https://meuapp.treinointeligente.pro/ | Diagnóstico de 16 perguntas, captura de WhatsApp/E-mail e recomendação inteligente |
+| **👑 Oferta Pro Anual (Sua Marca)** | https://meuapp.treinointeligente.pro/oferta-pro | Página de vendas Anual: R$ 997 ➔ R$ 497/ano (~R$ 41,41/mês) · 3 Dias a R$ 0,00 |
+| **⚡ Oferta Pro Mensal** | https://meuapp.treinointeligente.pro/oferta-start | Página de vendas Mensal: R$ 197 ➔ R$ 44,90/mês · 3 Dias a R$ 0,00 |
+| **📊 Painel CRM de Vendas** | https://meuapp.treinointeligente.pro/crm | Acompanhamento de Leads, Testes (3 dias) e Compradores com WhatsApp 1-clique |
+
+---
+
+## 💳 2. Links Diretos de Checkout Seguro (Stripe)
+
+| Plano | Valor Ancorado | Condição no Checkout | Link Direto do Stripe |
+| :--- | :--- | :--- | :--- |
+| **Anual com Sua Marca** | R$ 997 ➔ **R$ 497,00/ano** | R$ 0,00 hoje (1ª cobrança no 4º dia) | https://buy.stripe.com/cNi14g0Jg97Q7LY2x76sw03 |
+| **Mensal de Entrada** | R$ 197 ➔ **R$ 44,90/mês** | R$ 0,00 hoje (1ª cobrança no 4º dia) | https://buy.stripe.com/6oU28keA63NweamgnX6sw02 |
+
+> ℹ️ *Os links no botão da página já anexam automaticamente `?client_reference_id={lead_id}` e o e-mail do lead para rastreamento no CRM.*
+
+---
+
+## 🎯 3. Gerador de Links com UTMs (Campanhas & Tráfego)
+
+Use estes links prontos para rastrear de onde vieram seus alunos e leads no CRM:
+
+### 📱 Tráfego Orgânico (Redes Sociais)
+* **Link para Bio do Instagram:**
+  https://meuapp.treinointeligente.pro/?utm_source=instagram&utm_medium=bio&utm_campaign=organico
+* **Link para Stories do Instagram:**
+  https://meuapp.treinointeligente.pro/?utm_source=instagram&utm_medium=stories&utm_campaign=arrasta_cima
+* **Link para Canal do YouTube:**
+  https://meuapp.treinointeligente.pro/?utm_source=youtube&utm_medium=video&utm_campaign=descricao
+
+### 📢 Tráfego Pago (Meta Ads / Facebook / Instagram Ads)
+* **Link para Anúncios (Parâmetros Dinâmicos do Meta):**
+  https://meuapp.treinointeligente.pro/?utm_source=meta&utm_medium=cpc&utm_campaign={{campaign.name}}&utm_content={{ad.name}}
+
+### 💬 Recuperação no WhatsApp
+* **Envio Direto da Oferta Anual:**
+  https://meuapp.treinointeligente.pro/oferta-pro?utm_source=whatsapp&utm_medium=recuperacao&utm_campaign=anual
+* **Envio Direto da Oferta Mensal:**
+  https://meuapp.treinointeligente.pro/oferta-start?utm_source=whatsapp&utm_medium=recuperacao&utm_campaign=mensal
+
+---
+
+## ⚙️ 4. Infraestrutura & Automações
+
+* **Webhook do n8n:**
+  https://n8n-n8n.sb9az3.easypanel.host/webhook/treino-inteligente-quiz
+* **Supabase Project:**
+  https://twvlpehsqxquafsvkfge.supabase.co
+* **Tabelas do Banco:** `treino_inteligente_leads` & `quiz_leads`
+* **Repositório GitHub:** https://github.com/fernandooliveira123/Quiz---EUNUCO.git

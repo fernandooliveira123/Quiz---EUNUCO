@@ -28,6 +28,8 @@ import {
   STRIPE_CHECKOUT_PRO_URL,
   isStripeProConfigured,
   VSL_VIDEO_PRO_URL,
+  VTURB_PRO_PLAYER_ID,
+  VTURB_PRO_SCRIPT_URL,
 } from "@/quiz/config";
 import { buildStripeCheckoutUrl } from "@/quiz/utm";
 import { track } from "@/quiz/analytics";
@@ -147,6 +149,8 @@ function OfertaProPage() {
         <OfferVslPlayer
           planTitle="Treino Inteligente com Sua Marca (Plano Anual)"
           videoUrl={VSL_VIDEO_PRO_URL}
+          vturbId={VTURB_PRO_PLAYER_ID}
+          vturbScriptUrl={VTURB_PRO_SCRIPT_URL}
           ctaText="COMEÇAR 3 DIAS GRÁTIS (R$ 0,00 HOJE)"
           ctaHref={isStripeProConfigured ? stripeUrl : "#oferta-card"}
           onCtaClick={handleCheckoutClick}

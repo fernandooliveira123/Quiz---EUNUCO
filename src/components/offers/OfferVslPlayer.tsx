@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { Play, Volume2, VolumeX, ShieldCheck, Zap, Sparkles, CheckCircle2, Lock } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Play, Volume2, VolumeX, ShieldCheck, Zap, CheckCircle2, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import defaultPoster from "@/assets/vsl-poster.jpg";
 
 interface Props {
   videoUrl?: string;
+  vturbId?: string;
+  vturbScriptUrl?: string;
   planTitle: string;
   ctaText?: string;
   onCtaClick?: () => void;
@@ -13,6 +15,8 @@ interface Props {
 
 export function OfferVslPlayer({
   videoUrl,
+  vturbId,
+  vturbScriptUrl,
   planTitle,
   ctaText = "QUERO MEU APLICATIVO AGORA",
   onCtaClick,
@@ -21,7 +25,31 @@ export function OfferVslPlayer({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
+  const hasVturb = Boolean(vturbId && vturbScriptUrl);
   const hasRealVideo = Boolean(videoUrl && videoUrl.startsWith("http"));
+
+  useEffect(() => {
+    if (!hasVturb || !vturbId || !vturbScriptUrl) return;
+
+    const scriptId = `vturb-script-${vturbId}`;
+    const prev = document.getElementById(scriptId);
+    if (prev) {
+      prev.remove();
+    }
+
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.src = vturbScriptUrl;
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      const s = document.getElementById(scriptId);
+      if (s) {
+        s.remove();
+      }
+    };
+  }, [hasVturb, vturbId, vturbScriptUrl]);
 
   return (
     <div className="w-full max-w-4xl mx-auto mt-8 animate-fade-up">
@@ -37,17 +65,26 @@ export function OfferVslPlayer({
       </div>
 
       {/* Container Principal do Player 16:9 */}
-      <div className="group relative aspect-video w-full overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-primary/40 bg-black shadow-glow">
-        {hasRealVideo && isPlaying ? (
-          <iframe
-            src={videoUrl}
-            title={`Apresentação Oficial - ${planTitle}`}
-            className="h-full w-full border-0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
+      <div className="group relative w-full overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-primary/40 bg-black shadow-glow">
+        {hasVturb ? (
+          <div
+            className="w-full"
+            dangerouslySetInnerHTML={{
+              __html: `<vturb-smartplayer id="vid-${vturbId}" style="display: block; margin: 0 auto; width: 100%;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>`,
+            }}
           />
+        ) : hasRealVideo && isPlaying ? (
+          <div className="relative aspect-video w-full">
+            <iframe
+              src={videoUrl}
+              title={`Apresentação Oficial - ${planTitle}`}
+              className="h-full w-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
         ) : (
-          <div className="relative h-full w-full">
+          <div className="relative aspect-video h-full w-full">
             {/* Imagem de Capa do Vídeo */}
             <img
               src={defaultPoster}
