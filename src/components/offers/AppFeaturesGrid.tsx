@@ -25,14 +25,14 @@ export function AppFeaturesGrid() {
     },
     {
       icon: PlaySquare,
-      tag: "AUTONOMIA",
-      title: "+1.000 Vídeos em Alta Resolução",
+      tag: "AUTONOMIA TOTAL",
+      title: "+400 Vídeos Nativos + Envie os Seus",
       description:
-        "Seus alunos assistem à execução perfeita de cada exercício direto no aplicativo, sem sair para o YouTube ou mandar dúvidas no seu WhatsApp.",
+        "A plataforma já vem com mais de 400 vídeos demonstrativos em alta definição. E você pode subir seus próprios vídeos e cadastrar modalidades personalizadas (como Kettlebell, LPO, Cross, Calistenia ou Funcional).",
       bullets: [
-        "Vídeos de execução sem anúncios",
-        "Instruções técnicas e dicas de postura",
-        "Intervalo de descanso com cronômetro",
+        "+400 vídeos demonstrativos em HD inclusos",
+        "Upload dos seus próprios vídeos gravados",
+        "Crie modalidades personalizadas (Kettlebell, etc.)",
       ],
     },
     {

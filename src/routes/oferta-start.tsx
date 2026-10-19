@@ -119,6 +119,11 @@ function OfertaStartPage() {
         "Absolutamente não! O plano mensal é de apenas R$ 44,90 por mês, sem qualquer taxa de adesão ou contrato de fidelidade. Você usa pelo tempo que quiser e pode cancelar a qualquer momento em um único clique.",
     },
     {
+      question: "Posso subir meus próprios vídeos e adicionar modalidades (ex: Kettlebell)?",
+      answer:
+        "Sim, com certeza! O aplicativo já vem nativamente com mais de 400 vídeos demonstrativos em alta resolução para os principais exercícios. Se você precisar, pode subir seus próprios vídeos gravados e cadastrar qualquer modalidade específica que você trabalhe (como Kettlebell, LPO, Cross, Calistenia, Pilates ou Reabilitação). Seus alunos assistem a tudo direto no aplicativo, sem precisar abrir o YouTube.",
+    },
+    {
       question: "Como funciona o cancelamento da assinatura?",
       answer:
         "Você tem total autonomia direto pelo botão 'Gerenciar Assinatura' na sua área de configurações. Se cancelar durante os 3 dias de teste grátis, o cancelamento é imediato com custo zero. Se cancelar após a cobrança, ela não se renova e você continua usando até fechar os 30 dias que já pagou.",

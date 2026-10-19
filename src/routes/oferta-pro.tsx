@@ -119,6 +119,11 @@ function OfertaProPage() {
         "Tudo incluso sem taxas ocultas: aplicativo exclusivo com sua logo, cores e nome da sua consultoria, alunos ilimitados, prescrição em até 3 minutos, suporte prioritário direto via WhatsApp e 2 meses grátis de economia (R$ 497/ano equivale a apenas R$ 41,41/mês).",
     },
     {
+      question: "Posso subir meus próprios vídeos e adicionar modalidades (ex: Kettlebell)?",
+      answer:
+        "Sim, com certeza! O aplicativo já vem nativamente com mais de 400 vídeos demonstrativos em alta resolução para os principais exercícios. Se você precisar, pode subir seus próprios vídeos gravados e cadastrar qualquer modalidade específica que você trabalhe (como Kettlebell, LPO, Cross, Calistenia, Pilates ou Reabilitação). Seus alunos assistem a tudo direto no aplicativo, sem precisar abrir o YouTube.",
+    },
+    {
       question: "Meus alunos precisam pagar para usar o aplicativo?",
       answer:
         "Não! O acesso para seus alunos é 100% gratuito. Eles recebem o convite, baixam o app com a sua identidade visual e você tem controle total da evolução deles.",
@@ -343,10 +348,10 @@ function OfertaProPage() {
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary font-black text-lg mb-4">
                 01
               </div>
-              <h3 className="text-lg font-bold">Guia de Precificação Premium</h3>
+              <h3 className="text-lg font-bold">2 Aulas: Como Criar um Produto e Vender</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Aprenda a estruturar seus planos de consultoria para cobrar de R$ 250 a R$ 400 por aluno
-                aproveitando o posicionamento do seu próprio aplicativo.
+                Aprenda o método prático para empacotar sua consultoria em um produto irresistível, atrair os alunos certos
+                e fechar planos de alto valor usando a autoridade do seu próprio app.
               </p>
             </div>
 
@@ -354,10 +359,10 @@ function OfertaProPage() {
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary font-black text-lg mb-4">
                 02
               </div>
-              <h3 className="text-lg font-bold">50+ Protocolos de Treino Validados</h3>
+              <h3 className="text-lg font-bold">Suporte Direto no WhatsApp</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Biblioteca pronta com fichas estruturadas de hipertrofia, emagrecimento e reabilitação
-                para você duplicar e personalizar em segundos.
+                Canal VIP e humanizado com nossa equipe pelo WhatsApp para tirar dúvidas, auxiliar nas configurações
+                e garantir que sua consultoria decole sem nenhuma trava técnica.
               </p>
             </div>
 
@@ -365,10 +370,10 @@ function OfertaProPage() {
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary font-black text-lg mb-4">
                 03
               </div>
-              <h3 className="text-lg font-bold">Implantação Visual Assistida</h3>
+              <h3 className="text-lg font-bold">Guia de Precificação Premium</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                Acompanhamento direto para cadastrar sua logo, ajustar sua paleta de cores e deixar seu
-                aplicativo pronto e impecável para os seus alunos.
+                Aprenda a estruturar seus planos de consultoria para cobrar de R$ 250 a R$ 400 por aluno
+                aproveitando o posicionamento e autoridade do seu próprio aplicativo.
               </p>
             </div>
           </div>
