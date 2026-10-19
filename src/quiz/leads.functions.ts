@@ -4,7 +4,7 @@ import { leadSchema } from "./lead-schema";
 import { calculateRecommendation } from "./questions";
 import { N8N_WEBHOOK_URL } from "./config";
 
-async function getSupabaseClient() {
+export async function getSupabaseClient() {
   const { createClient } = await import("@supabase/supabase-js");
   const envUrl = process.env["SUPABASE_URL"] || process.env["VITE_SUPABASE_URL"];
   const envKey =

@@ -23,6 +23,9 @@ describe("App routing", () => {
 
     const startMatches = router.matchRoutes("/oferta-start");
     expect(startMatches.at(-1)?.routeId).toBe("/oferta-start");
+
+    const crmMatches = router.matchRoutes("/crm");
+    expect(crmMatches.at(-1)?.routeId).toBe("/crm");
   });
 });
 

@@ -30,6 +30,7 @@ import {
 } from "@/quiz/config";
 import { buildStripeCheckoutUrl } from "@/quiz/utm";
 import { track } from "@/quiz/analytics";
+import { markLeadCheckoutStarted } from "@/quiz/crm.functions";
 
 const searchSchema = z.object({
   lead_id: z.string().optional(),
@@ -62,6 +63,9 @@ function OfertaProPage() {
 
   const handleCheckoutClick = () => {
     track("stripe_checkout_click", { plan: "whitelabel_anual", lead_id: leadId ?? "" });
+    if (leadId) {
+      markLeadCheckoutStarted({ data: { id: leadId, plan: "pro_anual" } }).catch(() => {});
+    }
   };
 
   const comparisonItems = [
