@@ -18,6 +18,7 @@ import { OfferDynamicHeadline } from "@/components/offers/OfferDynamicHeadline";
 import { OfferVslPlayer } from "@/components/offers/OfferVslPlayer";
 import { OfferSocialProof } from "@/components/offers/OfferSocialProof";
 import { OfferArguments } from "@/components/offers/OfferArguments";
+import { AppBrandingShowcase } from "@/components/offers/AppBrandingShowcase";
 import { AppMockup3DCarousel } from "@/components/offers/AppMockup3DCarousel";
 import { AppFeaturesGrid } from "@/components/offers/AppFeaturesGrid";
 import { OfferGuarantee } from "@/components/offers/OfferGuarantee";
@@ -157,7 +158,10 @@ function OfertaStartPage() {
         {/* 4. ARGUMENTOS ESTRATÉGICOS (3 MINUTOS + ENTRADA ACESSÍVEL + FIM DO WHATSAPP) */}
         <OfferArguments plan="start" />
 
-        {/* 5. CARROSSEL 3D DE TELAS E FUNCIONALIDADES DO APLICATIVO */}
+        {/* 5. APLICATIVO INSTALADO NA TELA DO ALUNO (ÍCONE, CORES E LOGO DA CONSULTORIA) */}
+        <AppBrandingShowcase plan="start" />
+
+        {/* 6. CARROSSEL 3D DE TELAS E FUNCIONALIDADES DO APLICATIVO */}
         <AppMockup3DCarousel />
 
         {/* 6. GRID DAS FUNCIONALIDADES TÉCNICAS E CIENTÍFICAS */}
