@@ -33,7 +33,10 @@ const MOCKUP_TABS = [
       { title: "Upload da Sua Logo:", desc: "Envie seu logotipo e foto profissional em segundos." },
       { title: "Nome da Sua Marca:", desc: "O nome da sua consultoria exibido no topo para todos os alunos." },
       { title: "5 Estilos de Fundo:", desc: "Midnight Slate, Pure OLED, Verde Performance, Obsidian e Clean Light." },
-      { title: "Paletas Pré-definidas:", desc: "Verde Titanium, Azul Elétrico, Roxo Ultra Violeta e Dourado Champagne." },
+      {
+        title: "Cores Prontas ou Personalizadas:",
+        desc: "Escolha entre paletas prontas (Verde Titanium, Azul, Roxo, Dourado) ou adicione a cor exata da sua marca — você tem liberdade total e não fica preso a padrões.",
+      },
     ],
   },
   {
