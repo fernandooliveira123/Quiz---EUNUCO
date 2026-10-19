@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowRight, LoaderCircle, LockKeyhole } from "lucide-react";
+import { ArrowRight, LoaderCircle, LockKeyhole, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { leadSchema, maskPhone } from "@/quiz/lead-schema";
 import { saveVipLead } from "@/quiz/leads.functions";
@@ -9,12 +9,28 @@ import type { Answers } from "@/quiz/questions";
 import { PrivacyConsent } from "./PrivacyConsent";
 
 const FIELDS = [
-  { key: "fullName", label: "Nome completo", type: "text", placeholder: "Digite seu nome completo", autoComplete: "name", inputMode: "text", max: 100 },
-  { key: "email", label: "E-mail", type: "email", placeholder: "voce@exemplo.com", autoComplete: "email", inputMode: "email", max: 255 },
-  { key: "phone", label: "Telefone com WhatsApp", type: "tel", placeholder: "(00) 00000-0000", autoComplete: "tel-national", inputMode: "tel", max: 16 },
+  { key: "fullName", label: "Nome completo", type: "text", placeholder: "Digite seu nome e sobrenome", autoComplete: "name", inputMode: "text", max: 100 },
+  { key: "phone", label: "WhatsApp (com DDD)", type: "tel", placeholder: "(00) 00000-0000", autoComplete: "tel-national", inputMode: "tel", max: 16 },
+  { key: "email", label: "E-mail profissional", type: "email", placeholder: "seuemail@exemplo.com", autoComplete: "email", inputMode: "email", max: 255 },
 ] as const;
 
-export function LeadCaptureForm({ answers, onSaved }: { answers: Answers; onSaved: (id: string) => void }) {
+interface LeadCaptureProps {
+  answers: Answers;
+  onSaved: (id: string, data?: { fullName: string; email: string; phone: string }) => void;
+  title?: string;
+  subtitle?: string;
+  badgeText?: string;
+  ctaText?: string;
+}
+
+export function LeadCaptureForm({
+  answers,
+  onSaved,
+  title = "Seu diagnóstico exclusivo está pronto!",
+  subtitle = "Informe seu WhatsApp e E-mail para desbloquear sua análise completa e acessar as condições de teste grátis com R$ 0,00 no checkout.",
+  badgeText = "Diagnóstico Concluído · Última Etapa",
+  ctaText = "VER MEU DIAGNÓSTICO E LIBERAR OFERTA",
+}: LeadCaptureProps) {
   const [values, setValues] = useState({ fullName: "", email: "", phone: "" });
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -46,34 +62,109 @@ export function LeadCaptureForm({ answers, onSaved }: { answers: Answers; onSave
     try {
       await saveVipLead({ data: parsed.data });
       track("lead_captured");
-      onSaved(parsed.data.id);
+      onSaved(parsed.data.id, {
+        fullName: parsed.data.fullName,
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+      });
     } catch {
       setErrors({ form: "Não foi possível salvar seu cadastro agora. Verifique sua conexão e tente novamente — seus dados continuam preenchidos." });
     } finally { setBusy(false); }
   }
 
   return (
-    <form ref={viewed} onSubmit={submit} noValidate className="rounded-2xl border border-border bg-background-2 p-6 sm:p-8">
-      <h2 className="text-2xl font-extrabold leading-tight">Deseja salvar seu resultado?</h2>
-      <p className="mt-3 text-[15px] text-muted-foreground">Preencha seus dados para registrar seu diagnóstico e receber atendimento prioritário sobre as ofertas.</p>
-      <div className="mt-7 space-y-5">
+    <form
+      ref={viewed}
+      onSubmit={submit}
+      noValidate
+      className="mx-auto w-full max-w-xl rounded-3xl border-2 border-primary/40 bg-card/95 p-6 sm:p-9 shadow-glow backdrop-blur-sm animate-fade-up"
+    >
+      {badgeText && (
+        <div className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-primary">
+          <Sparkles className="h-3.5 w-3.5 fill-current" /> {badgeText}
+        </div>
+      )}
+
+      <h2 className="text-2xl font-black leading-tight sm:text-3xl text-foreground">
+        {title}
+      </h2>
+      <p className="mt-2.5 text-sm sm:text-base text-muted-foreground leading-relaxed">
+        {subtitle}
+      </p>
+
+      <div className="mt-6 space-y-4">
         {FIELDS.map((f) => (
           <div key={f.key}>
-            <label htmlFor={f.key} className="mb-2 block text-sm font-semibold">{f.label}</label>
-            <input id={f.key} name={f.key} type={f.type} inputMode={f.inputMode} placeholder={f.placeholder} autoComplete={f.autoComplete} maxLength={f.max}
-              value={values[f.key]} required aria-invalid={Boolean(errors[f.key])} aria-describedby={errors[f.key] ? `${f.key}-error` : undefined}
-              onChange={(e) => setValues((v) => ({ ...v, [f.key]: f.key === "phone" ? maskPhone(e.target.value) : e.target.value }))}
-              className="h-12 w-full rounded-md border border-input bg-card px-4 text-base text-foreground placeholder:text-muted-foreground focus:border-primary" />
-            {errors[f.key] && <p id={`${f.key}-error`} className="mt-2 text-sm text-destructive">{errors[f.key]}</p>}
+            <label htmlFor={f.key} className="mb-1.5 block text-xs sm:text-sm font-bold text-foreground">
+              {f.label} <span className="text-primary">*</span>
+            </label>
+            <input
+              id={f.key}
+              name={f.key}
+              type={f.type}
+              inputMode={f.inputMode}
+              placeholder={f.placeholder}
+              autoComplete={f.autoComplete}
+              maxLength={f.max}
+              value={values[f.key]}
+              required
+              aria-invalid={Boolean(errors[f.key])}
+              aria-describedby={errors[f.key] ? `${f.key}-error` : undefined}
+              onChange={(e) =>
+                setValues((v) => ({
+                  ...v,
+                  [f.key]: f.key === "phone" ? maskPhone(e.target.value) : e.target.value,
+                }))
+              }
+              className="h-12 w-full rounded-xl border border-border bg-background px-4 text-sm sm:text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+            />
+            {errors[f.key] && (
+              <p id={`${f.key}-error`} className="mt-1.5 text-xs font-semibold text-destructive">
+                {errors[f.key]}
+              </p>
+            )}
           </div>
         ))}
-        <div hidden aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" defaultValue="" /></label></div>
-        <PrivacyConsent checked={consent} onChange={setConsent} error={errors["consent"]} />
-        {errors["form"] && <p role="alert" className="text-sm text-destructive">{errors["form"]}</p>}
-        <Button type="submit" disabled={busy} className="w-full">
-          {busy ? <><LoaderCircle className="h-5 w-5 animate-spin" /> Salvando...</> : <>SALVAR MEU DIAGNÓSTICO <ArrowRight className="h-5 w-5" /></>}
-        </Button>
-        <p className="flex items-center justify-center gap-2 text-xs text-muted-foreground"><LockKeyhole className="h-3.5 w-3.5" /> Seus dados são protegidos e não são compartilhados publicamente.</p>
+
+        <div hidden aria-hidden="true">
+          <label>Website<input name="website" tabIndex={-1} autoComplete="off" defaultValue="" /></label>
+        </div>
+
+        <div className="pt-1">
+          <PrivacyConsent checked={consent} onChange={setConsent} error={errors["consent"]} />
+        </div>
+
+        {errors["form"] && (
+          <p role="alert" className="text-sm font-semibold text-destructive text-center">
+            {errors["form"]}
+          </p>
+        )}
+
+        <div className="pt-2">
+          <Button
+            type="submit"
+            disabled={busy}
+            size="lg"
+            className="w-full h-13 py-3.5 px-6 text-sm sm:text-base font-black shadow-glow rounded-xl flex items-center justify-center gap-2"
+          >
+            {busy ? (
+              <>
+                <LoaderCircle className="h-5 w-5 animate-spin" />
+                <span>Liberando Diagnóstico...</span>
+              </>
+            ) : (
+              <>
+                <span>{ctaText}</span>
+                <ArrowRight className="h-5 w-5 shrink-0" />
+              </>
+            )}
+          </Button>
+        </div>
+
+        <p className="flex items-center justify-center gap-1.5 pt-1 text-xs text-muted-foreground text-center">
+          <LockKeyhole className="h-3.5 w-3.5 text-primary" />
+          <span>Seus dados são protegidos com sigilo e criptografia. Zero spam.</span>
+        </p>
       </div>
     </form>
   );

@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
 import { QuizIntro } from "@/components/quiz/QuizIntro";
 import { QuizContainer } from "@/components/quiz/QuizContainer";
+import { LeadCaptureForm } from "@/components/quiz/LeadCaptureForm";
 import { QuizAnalyzing } from "@/components/quiz/QuizAnalyzing";
 import { QuizResult } from "@/components/quiz/QuizResult";
 import {
@@ -48,7 +49,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Stage = "landing" | "quiz" | "processing" | "result";
+type Stage = "landing" | "quiz" | "lead_capture" | "processing" | "result";
 const KEY = "ti_quiz_progress_v3";
 
 function Index() {
@@ -83,7 +84,13 @@ function Index() {
       if (saved && typeof saved === "object" && saved.answers && saved.stage !== "landing") {
         setAnswers(saved.answers);
         setIndex(Math.min(Math.max(saved.index ?? 0, 0), QUESTIONS.length - 1));
-        setStage(saved.stage === "result" && isComplete(saved.answers) ? "result" : "quiz");
+        if (saved.stage === "lead_capture" && isComplete(saved.answers)) {
+          setStage("lead_capture");
+        } else if (saved.stage === "result" && isComplete(saved.answers)) {
+          setStage("result");
+        } else {
+          setStage("quiz");
+        }
       }
     } catch {
       /* ignore */
@@ -96,7 +103,7 @@ function Index() {
         sessionStorage.setItem(
           KEY,
           JSON.stringify({
-            stage: stage === "processing" ? "result" : stage,
+            stage: stage === "processing" ? "lead_capture" : stage,
             answers,
             index,
           }),
@@ -111,11 +118,23 @@ function Index() {
     window.scrollTo({ top: 0 });
   }, [stage]);
 
-  const handleQuizComplete = (finalAnswers: Answers) => {
+  // Chamado assim que a 16ª pergunta for respondida no questionário
+  const handleQuestionsComplete = (finalAnswers: Answers) => {
     setAnswers(finalAnswers);
+    setStage("lead_capture");
+    track("lead_form_view");
+  };
+
+  // Chamado quando o usuário preenche o nome, WhatsApp e e-mail e clica no botão
+  const handleLeadSubmit = (
+    savedId: string,
+    leadInfo?: { fullName: string; email: string; phone: string },
+  ) => {
+    setLeadId(savedId);
     setStage("processing");
-    const targetRoute = decideOfferRoute(finalAnswers);
-    const rec = calculateRecommendation(finalAnswers);
+
+    const targetRoute = decideOfferRoute(answers);
+    const rec = calculateRecommendation(answers);
     const utmData = readUtm();
 
     track("quiz_completed", {
@@ -128,10 +147,15 @@ function Index() {
     void Promise.resolve(
       supabase.from("quiz_leads").upsert(
         {
-          id: leadId,
-          answers: finalAnswers,
+          id: savedId,
+          answers,
           recommended_route: targetRoute,
-          utm: utmData ?? {},
+          utm: {
+            ...(utmData ?? {}),
+            full_name: leadInfo?.fullName,
+            email: leadInfo?.email,
+            phone: leadInfo?.phone,
+          },
         },
         { onConflict: "id" },
       ),
@@ -140,18 +164,21 @@ function Index() {
         if (res && "error" in res && res.error) {
           console.error("[quiz_leads client upsert error]", res.error.message);
         } else {
-          console.log("[quiz_leads client upsert success]", leadId);
+          console.log("[quiz_leads client upsert success]", savedId);
         }
       })
       .catch((err: unknown) => {
         console.error("[quiz_leads client catch]", err);
       });
 
-    // 2. Salva payload via serverFn e aciona o Agente IA no n8n
+    // 2. Salva payload com os dados de contato via serverFn e aciona o Agente IA no n8n
     recordQuizCompletion({
       data: {
-        id: leadId,
-        answers: finalAnswers,
+        id: savedId,
+        fullName: leadInfo?.fullName,
+        email: leadInfo?.email,
+        phone: leadInfo?.phone,
+        answers,
         recommendedRoute: targetRoute,
         utm: utmData,
       },
@@ -210,8 +237,20 @@ function Index() {
           answers={answers}
           onAnswer={setAnswers}
           onIndex={setIndex}
-          onComplete={handleQuizComplete}
+          onComplete={handleQuestionsComplete}
         />
+      )}
+      {stage === "lead_capture" && (
+        <section className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-14 animate-fade-up">
+          <LeadCaptureForm
+            answers={answers}
+            onSaved={handleLeadSubmit}
+            title="Seu diagnóstico exclusivo está pronto!"
+            subtitle="Informe seu WhatsApp e E-mail para desbloquear a análise da sua consultoria e acessar as condições de teste grátis com R$ 0,00 no checkout."
+            badgeText="Diagnóstico Concluído · Última Etapa"
+            ctaText="VER MEU DIAGNÓSTICO E LIBERAR OFERTA"
+          />
+        </section>
       )}
       {stage === "processing" && (
         <QuizAnalyzing onFinish={handleAnalyzingFinish} durationMs={3500} />

@@ -70,6 +70,9 @@ export const recordQuizCompletion = createServerFn({ method: "POST" })
     z
       .object({
         id: z.string().uuid(),
+        fullName: z.string().optional(),
+        email: z.string().optional(),
+        phone: z.string().optional(),
         answers: z.record(z.string(), z.string()),
         recommendedRoute: z.enum(["/oferta-pro", "/oferta-start"]),
         utm: z
@@ -96,6 +99,13 @@ export const recordQuizCompletion = createServerFn({ method: "POST" })
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             lead_id: data.id,
+            name: data.fullName ?? "",
+            full_name: data.fullName ?? "",
+            nome: data.fullName ?? "",
+            email: data.email ?? "",
+            phone: data.phone ?? "",
+            whatsapp: data.phone ?? "",
+            telefone: data.phone ?? "",
             answers: data.answers,
             recommended_route: data.recommendedRoute,
             utm: data.utm,
@@ -135,6 +145,9 @@ export const recordQuizCompletion = createServerFn({ method: "POST" })
           recommended_route: finalRoute,
           utm: {
             ...(data.utm ?? {}),
+            full_name: data.fullName,
+            email: data.email,
+            phone: data.phone,
             ...(aiAnalysis ? { ai_analysis: aiAnalysis } : {}),
           },
         },
