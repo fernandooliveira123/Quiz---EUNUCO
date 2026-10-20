@@ -20,6 +20,7 @@ declare global {
     fbq?: (...args: unknown[]) => void;
     gtag?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
+    clarity?: (...args: unknown[]) => void;
   }
 }
 
@@ -30,6 +31,12 @@ export function track(event: QuizEvent, params: Params = {}) {
       window.dataLayer.push({ event, ...params });
     } else {
       window.gtag?.("event", event, params);
+    }
+
+    // Microsoft Clarity: marca o evento para filtros avançados de gravações de tela
+    window.clarity?.("event", event);
+    if (params["lead_id"]) {
+      window.clarity?.("set", "lead_id", String(params["lead_id"]));
     }
 
     // 1. Evento Customizado no Meta Pixel

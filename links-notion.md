@@ -78,7 +78,19 @@ Use estes links prontos para rastrear de onde vieram seus alunos e leads no CRM:
 
 ---
 
-## ⚙️ 6. Infraestrutura & Automações
+## 🔍 6. Microsoft Clarity (Mapas de Calor & Gravação de Sessões)
+
+* **ID do Projeto Clarity:** `z0utmaa779`
+* **Painel do Clarity:** https://clarity.microsoft.com/
+* **Recursos Ativos:**
+  * Gravação de tela completa dos personal trainers respondendo ao Quiz.
+  * Mapas de calor (Heatmaps) de cliques e rolagem no Quiz e nas LPs de Oferta.
+  * Filtro por eventos customizados (`lead_captured`, `stripe_checkout_click`, `quiz_step`).
+  * Identificação de sessões por `lead_id` para ver a jornada individual de quem comprou ou abandonou.
+
+---
+
+## ⚙️ 7. Infraestrutura & Automações
 
 * **Webhook do n8n:**
   https://n8n-n8n.sb9az3.easypanel.host/webhook/treino-inteligente-quiz

@@ -128,5 +128,12 @@ export const PRODUCTS = {
 /** Meta Pixel Oficial do Facebook Ads */
 export const META_PIXEL_ID = "1689133549309619";
 
-/** Analytics: Meta Pixel ativo com ID configurado. */
-export const ANALYTICS = { enabled: true, metaPixelId: META_PIXEL_ID } as const;
+/** Microsoft Clarity - Mapas de Calor e Gravações de Sessão */
+export const CLARITY_PROJECT_ID = "z0utmaa779";
+
+/** Analytics: Meta Pixel e Microsoft Clarity ativos com IDs configurados. */
+export const ANALYTICS = {
+  enabled: true,
+  metaPixelId: META_PIXEL_ID,
+  clarityProjectId: CLARITY_PROJECT_ID,
+} as const;
