@@ -61,7 +61,11 @@ export function LeadCaptureForm({
     setBusy(true); setErrors({});
     try {
       await saveVipLead({ data: parsed.data });
-      track("lead_captured");
+      track("lead_captured", {
+        lead_id: parsed.data.id,
+        fullName: parsed.data.fullName,
+        email: parsed.data.email,
+      });
       onSaved(parsed.data.id, {
         fullName: parsed.data.fullName,
         email: parsed.data.email,

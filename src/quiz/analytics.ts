@@ -33,10 +33,18 @@ export function track(event: QuizEvent, params: Params = {}) {
       window.gtag?.("event", event, params);
     }
 
-    // Microsoft Clarity: marca o evento para filtros avançados de gravações de tela
+    // Microsoft Clarity: marca o evento e identifica o lead para gravações nominais
     window.clarity?.("event", event);
     if (params["lead_id"]) {
-      window.clarity?.("set", "lead_id", String(params["lead_id"]));
+      const leadId = String(params["lead_id"]);
+      const leadName = params["fullName"] ? String(params["fullName"]) : undefined;
+      window.clarity?.("identify", leadId, undefined, undefined, leadName);
+      window.clarity?.("set", "lead_id", leadId);
+      if (leadName) window.clarity?.("set", "lead_name", leadName);
+    }
+    if (event === "quiz_question_answered" && params["step"]) {
+      window.clarity?.("set", "quiz_step", String(params["step"]));
+      if (params["question"]) window.clarity?.("set", "current_question", String(params["question"]));
     }
 
     // 1. Evento Customizado no Meta Pixel
