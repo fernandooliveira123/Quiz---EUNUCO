@@ -8,27 +8,27 @@
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "37f65c9c-7204-432b-a8b4-e0770bcdbdbb",
+      "id": "7f64f653-0f09-4d07-a658-ac0317c424d7",
       "name": "Webhook Quiz Concluído",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -900,
-        100
+        -1264,
+        1120
       ],
       "webhookId": "d96d9799-1cb4-40ab-b971-300de44ee98a"
     },
     {
       "parameters": {
-        "jsCode": "const body = $json.body || $json;\nconst answers = body.answers || {};\nconst utm = body.utm || {};\nconst initialRoute = body.recommended_route || \"/oferta-start\";\n\n// Dicionário completo das respostas estratégicas do Quiz\nconst DICT = {\n  q1: {\n    pergunta: \"Quantidade de Alunos\",\n    opcoes: {\n      A: \"Ainda não tem alunos / conquistando primeiros\",\n      B: \"De 1 a 9 alunos\",\n      C: \"De 10 a 30 alunos\",\n      D: \"Mais de 30 alunos\"\n    }\n  },\n  q2: {\n    pergunta: \"Entrega Atual de Treinos\",\n    opcoes: {\n      A: \"Planilhas ou documentos\",\n      B: \"WhatsApp / mensagens individuais\",\n      C: \"Aplicativo de prescrição\",\n      D: \"Ferramentas dispersas e descentralizadas\"\n    }\n  },\n  q3: {\n    pergunta: \"Modelo de Atendimento\",\n    opcoes: {\n      A: \"Principalmente presencial\",\n      B: \"Consultoria online\",\n      C: \"Híbrido (presencial + online)\",\n      D: \"Ainda estruturando modelo\"\n    }\n  },\n  q4: {\n    pergunta: \"Meta Principal em 12 Meses\",\n    opcoes: {\n      A: \"Conquistar primeiros alunos\",\n      B: \"Aumentar carteira e faturamento\",\n      C: \"Organizar operação com eficiência\",\n      D: \"Fortalecer marca e autoridade\"\n    }\n  },\n  q7: {\n    pergunta: \"Tempo Gasto por Prescrição\",\n    opcoes: {\n      A: \"Até 3 minutos (rápido)\",\n      B: \"Entre 4 e 10 minutos\",\n      C: \"Entre 11 e 20 minutos\",\n      D: \"Mais de 20 minutos (Gargalo severo de tempo)\"\n    }\n  },\n  q13: {\n    pergunta: \"Preferencia sobre Marca no App\",\n    opcoes: {\n      A: \"Não se importa com a marca\",\n      B: \"Prefere a marca oficial da plataforma\",\n      C: \"Exige aplicativo com marca própria (White Label)\"\n    }\n  },\n  q14: {\n    pergunta: \"Frustração com Outros Aplicativos\",\n    opcoes: {\n      A: \"Gostaria de marca própria, mas o concorrente não oferece\",\n      B: \"Encontrou limitações de personalização e identidade visual\",\n      C: \"Personalização não foi prioridade\",\n      D: \"Não conhece plataformas o suficiente\"\n    }\n  },\n  q16: {\n    pergunta: \"Maior Interesse Imediato\",\n    opcoes: {\n      A: \"Prescrever treinos práticos e rápidos\",\n      B: \"Organizar alunos e rotina em um só lugar\",\n      C: \"Ter o app com sua identidade visual própria (White Label)\",\n      D: \"Adaptação da ferramenta à rotina profissional\"\n    }\n  }\n};\n\nconst dadosLegiveis = {\n  quantidade_alunos: DICT.q1.opcoes[answers.q1] || answers.q1 || \"Não informado\",\n  entrega_treinos_atual: DICT.q2.opcoes[answers.q2] || answers.q2 || \"Não informado\",\n  modelo_atendimento: DICT.q3.opcoes[answers.q3] || answers.q3 || \"Não informado\",\n  meta_12_meses: DICT.q4.opcoes[answers.q4] || answers.q4 || \"Não informado\",\n  tempo_por_treino: DICT.q7.opcoes[answers.q7] || answers.q7 || \"Não informado\",\n  desejo_marca_propria: DICT.q13.opcoes[answers.q13] || answers.q13 || \"Não informado\",\n  dor_concorrentes: DICT.q14.opcoes[answers.q14] || answers.q14 || \"Não informado\",\n  interesse_imediato: DICT.q16.opcoes[answers.q16] || answers.q16 || \"Não informado\"\n};\n\nreturn [{\n  json: {\n    lead_id: body.lead_id || \"\",\n    data_hora: body.created_at || new Date().toISOString(),\n    rota_previa: initialRoute,\n    dados_legiveis: dadosLegiveis,\n    utm: utm,\n    respostas_brutas: answers,\n    // Texto formatado pronto para o agente de IA analisar\n    prompt_analise: `Analise as respostas deste Personal Trainer e defina a oferta ideal:\n- Volume de Alunos: ${dadosLegiveis.quantidade_alunos}\n- Método Atual de Entrega: ${dadosLegiveis.entrega_treinos_atual}\n- Modelo de Atendimento: ${dadosLegiveis.modelo_atendimento}\n- Meta nos Próximos 12 Meses: ${dadosLegiveis.meta_12_meses}\n- Tempo Médio por Treino: ${dadosLegiveis.tempo_por_treino}\n- Desejo de Marca Própria: ${dadosLegiveis.desejo_marca_propria}\n- Insatisfação com Outros Apps: ${dadosLegiveis.dor_concorrentes}\n- Maior Interesse no Treino Inteligente: ${dadosLegiveis.interesse_imediato}`\n  }\n}];"
+        "jsCode": "const body = $json.body || $json;\nconst answers = body.answers || {};\nconst utm = body.utm || {};\nconst initialRoute = body.recommended_route || \"/oferta-start\";\nconst nome = (body.name || body.full_name || body.nome || \"Personal\").trim();\nconst primeiroNome = nome.split(\" \")[0] || \"Personal\";\nconst email = (body.email || \"\").trim();\nconst rawPhone = (body.phone || body.whatsapp || body.telefone || \"\").trim();\nlet phoneClean = rawPhone.replace(/\\D/g, \"\");\nif (phoneClean.length === 10 || phoneClean.length === 11) {\n  phoneClean = \"55\" + phoneClean;\n}\n\n// Dicionário completo das respostas estratégicas do Quiz\nconst DICT = {\n  q1: {\n    pergunta: \"Quantidade de Alunos\",\n    opcoes: {\n      A: \"Ainda não tem alunos / conquistando primeiros\",\n      B: \"De 1 a 9 alunos\",\n      C: \"De 10 a 30 alunos\",\n      D: \"Mais de 30 alunos\"\n    }\n  },\n  q2: {\n    pergunta: \"Entrega Atual de Treinos\",\n    opcoes: {\n      A: \"Planilhas ou documentos\",\n      B: \"WhatsApp / mensagens individuais\",\n      C: \"Aplicativo de prescrição\",\n      D: \"Ferramentas dispersas e descentralizadas\"\n    }\n  },\n  q3: {\n    pergunta: \"Modelo de Atendimento\",\n    opcoes: {\n      A: \"Principalmente presencial\",\n      B: \"Consultoria online\",\n      C: \"Híbrido (presencial + online)\",\n      D: \"Ainda estruturando modelo\"\n    }\n  },\n  q4: {\n    pergunta: \"Meta Principal em 12 Meses\",\n    opcoes: {\n      A: \"Conquistar primeiros alunos\",\n      B: \"Aumentar carteira e faturamento\",\n      C: \"Organizar operação com eficiência\",\n      D: \"Fortalecer marca e autoridade\"\n    }\n  },\n  q7: {\n    pergunta: \"Tempo Gasto por Prescrição\",\n    opcoes: {\n      A: \"Até 3 minutos (rápido)\",\n      B: \"Entre 4 e 10 minutos\",\n      C: \"Entre 11 e 20 minutos\",\n      D: \"Mais de 20 minutos (Gargalo severo de tempo)\"\n    }\n  },\n  q13: {\n    pergunta: \"Preferencia sobre Marca no App\",\n    opcoes: {\n      A: \"Não se importa com a marca\",\n      B: \"Prefere a marca oficial da plataforma\",\n      C: \"Exige aplicativo com marca própria\"\n    }\n  },\n  q14: {\n    pergunta: \"Frustração com Outros Aplicativos\",\n    opcoes: {\n      A: \"Gostaria de marca própria, mas o concorrente não oferece\",\n      B: \"Encontrou limitações de personalização e identidade visual\",\n      C: \"Personalização não foi prioridade\",\n      D: \"Não conhece plataformas o suficiente\"\n    }\n  },\n  q16: {\n    pergunta: \"Maior Interesse Imediato\",\n    opcoes: {\n      A: \"Prescrever treinos práticos e rápidos\",\n      B: \"Organizar alunos e rotina em um só lugar\",\n      C: \"Ter o app com sua identidade visual própria\",\n      D: \"Adaptação da ferramenta à rotina profissional\"\n    }\n  }\n};\n\nconst dadosLegiveis = {\n  quantidade_alunos: DICT.q1.opcoes[answers.q1] || answers.q1 || \"Não informado\",\n  entrega_treinos_atual: DICT.q2.opcoes[answers.q2] || answers.q2 || \"Não informado\",\n  modelo_atendimento: DICT.q3.opcoes[answers.q3] || answers.q3 || \"Não informado\",\n  meta_12_meses: DICT.q4.opcoes[answers.q4] || answers.q4 || \"Não informado\",\n  tempo_por_treino: DICT.q7.opcoes[answers.q7] || answers.q7 || \"Não informado\",\n  desejo_marca_propria: DICT.q13.opcoes[answers.q13] || answers.q13 || \"Não informado\",\n  dor_concorrentes: DICT.q14.opcoes[answers.q14] || answers.q14 || \"Não informado\",\n  interesse_imediato: DICT.q16.opcoes[answers.q16] || answers.q16 || \"Não informado\"\n};\n\nreturn [{\n  json: {\n    lead_id: body.lead_id || \"\",\n    nome: nome,\n    primeiro_nome: primeiroNome,\n    email: email,\n    whatsapp: phoneClean,\n    whatsapp_formatado: rawPhone,\n    data_hora: body.created_at || new Date().toISOString(),\n    rota_previa: initialRoute,\n    dados_legiveis: dadosLegiveis,\n    utm: utm,\n    respostas_brutas: answers,\n    prompt_analise: `Analise as respostas deste Personal Trainer e gere uma qualificação comercial precisa:\\n- Nome: ${nome} (Primeiro nome: ${primeiroNome})\\n- E-mail: ${email}\\n- WhatsApp: ${rawPhone}\\n- Volume de Alunos: ${dadosLegiveis.quantidade_alunos}\\n- Método Atual de Entrega: ${dadosLegiveis.entrega_treinos_atual}\\n- Modelo de Atendimento: ${dadosLegiveis.modelo_atendimento}\\n- Meta nos Próximos 12 Meses: ${dadosLegiveis.meta_12_meses}\\n- Tempo Médio por Treino: ${dadosLegiveis.tempo_por_treino}\\n- Desejo de Marca Própria: ${dadosLegiveis.desejo_marca_propria}\\n- Insatisfação com Outros Apps: ${dadosLegiveis.dor_concorrentes}\\n- Maior Interesse no Treino Inteligente: ${dadosLegiveis.interesse_imediato}`\n  }\n}];"
       },
-      "id": "febdee0b-5884-428b-8824-d599bdab43d0",
+      "id": "860b166f-98b0-433c-b1e3-f6b0634929a7",
       "name": "Decodificar & Estruturar Lead",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -680,
-        100
+        -1008,
+        1120
       ]
     },
     {
@@ -36,31 +36,29 @@
         "promptType": "define",
         "text": "={{ $json.prompt_analise }}",
         "options": {
-          "systemMessage": "Você é um Especialista Sênior em Estratégia Comercial e Qualificação de Leads da plataforma Treino Inteligente (SaaS/App para Personal Trainers).\n\nSEU OBJETIVO:\nAnalisar as respostas do Personal Trainer e decidir com precisão qual das 2 ofertas abaixo é ideal para ele:\n\n1. ROTA \"/oferta-pro\" -> White Label Anual (R$ 497/ano):\n- Indicado para: Personais com mais de 10 alunos (10 a 30 ou 30+), consultoria online ou híbrida já ativa, desejo explícito de marca própria (White Label / logotipo próprio), dores com concorrentes engessados ou gargalo alto de tempo na prescrição.\n- Por que: Ele já tem faturamento, precisa de autoridade de marca para cobrar mais caro e o investimento anual se paga com 1 único aluno.\n\n2. ROTA \"/oferta-start\" -> White Label Mensal (R$ 44,90/mês):\n- Indicado para: Personais no início de carreira (0 a 9 alunos), que atendem presencialmente ou estão saindo de planilhas/WhatsApp, com orçamento enxuto e foco em testar sem compromisso anual.\n- Por que: Elimina o caos de planilhas com custo mínimo e sem fidelidade.\n\nFORMATO OBRIGATÓRIO DA SUA RESPOSTA:\nResponda APENAS um objeto JSON válido (sem markdown, sem blocos ```json, apenas as chaves):\n{\n  \"rota_recomendada\": \"/oferta-pro\" ou \"/oferta-start\",\n  \"oferta_nome\": \"White Label Anual (R$ 497/ano)\" ou \"White Label Mensal (R$ 44,90/mês)\",\n  \"perfil_resumo\": \"Síntese em 1 ou 2 frases do perfil e maturidade do personal\",\n  \"score_maturidade\": número de 1 a 10,\n  \"dor_principal\": \"A maior dor que ele enfrenta hoje\",\n  \"gatilho_conversao\": \"O melhor argumento ou benefício para abordar e fechar este lead\"\n}"
+          "systemMessage": "Você é um Especialista Sênior em Estratégia Comercial da plataforma Treino Inteligente (aplicativo de prescrição em 3 minutos e posicionamento com marca própria para Personal Trainers).\n\nSEU OBJETIVO:\n1. Analisar as respostas do Personal Trainer e decidir com precisão qual das 2 ofertas é ideal para ele:\n- ROTA \"/oferta-pro\" -> Plano Anual com Sua Marca (R$ 497/ano):\n  Indicado para: Personais com mais de 10 alunos (10 a 30 ou 30+), consultoria ativa, desejo de marca própria (app exclusivo com seu logotipo), dores com concorrência ou gargalo de tempo na prescrição.\n- ROTA \"/oferta-start\" -> Plano Pro Mensal (R$ 44,90/mês):\n  Indicado para: Personais no início (0 a 9 alunos), saindo de mensagens no WhatsApp/planilhas, buscando praticidade por menos de R$ 1,50/dia sem fidelidade.\n\n2. Identificar a dor principal, o perfil e o melhor argumento de conversão.\n\nFORMATO OBRIGATÓRIO DA RESPOSTA (APENAS JSON VÁLIDO, SEM MARKDOWN, SEM BLOCOS ```):\n{\n  \"rota_recomendada\": \"/oferta-pro\" ou \"/oferta-start\",\n  \"oferta_nome\": \"Plano Anual com Sua Marca (R$ 497/ano)\" ou \"Plano Pro Mensal (R$ 44,90/mês)\",\n  \"perfil_resumo\": \"Síntese em 1 frase da maturidade e momento do personal\",\n  \"score_maturidade\": 8,\n  \"dor_principal\": \"Gargalo de tempo ou amadorismo de mensagens\",\n  \"gatilho_conversao\": \"Prescrever treinos em 3 minutos no seu aplicativo com seu logotipo\"\n}"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -440,
-        100
+        -752,
+        1120
       ],
-      "id": "c8b28976-ea59-4099-a56a-6f4c0037a907",
+      "id": "ec6e8530-40d0-49dc-933b-bc1d0b320dcb",
       "name": "AI Agent Qualificador"
     },
     {
       "parameters": {
-        "options": {
-          "model": "openai/gpt-4o-mini"
-        }
+        "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -540,
-        320
+        -800,
+        1344
       ],
-      "id": "a8ee0729-f0a1-4445-bb03-b63ddfb65378",
+      "id": "dabbec40-ac5e-46fc-9755-48b1007309b5",
       "name": "OpenRouter Chat Model",
       "credentials": {
         "openRouterApi": {
@@ -71,15 +69,15 @@
     },
     {
       "parameters": {
-        "jsCode": "// Extrai e normaliza o JSON gerado pelo Agente de IA\nconst rawOutput = $json.output || $json.text || $json.content || JSON.stringify($json);\nconst leadAnterior = $('Decodificar & Estruturar Lead').first().json;\n\nlet aiData = {};\ntry {\n  const jsonMatch = rawOutput.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    aiData = JSON.parse(jsonMatch[0]);\n  } else {\n    aiData = JSON.parse(rawOutput);\n  }\n} catch (e) {\n  // Fallback caso a IA não retorne JSON estrito\n  const isPro = rawOutput.includes('/oferta-pro') || rawOutput.includes('Anual');\n  aiData = {\n    rota_recomendada: isPro ? '/oferta-pro' : '/oferta-start',\n    oferta_nome: isPro ? 'White Label Anual (R$ 497/ano)' : 'White Label Mensal (R$ 44,90/mês)',\n    perfil_resumo: 'Análise automática de perfil',\n    score_maturidade: isPro ? 8 : 4,\n    dor_principal: 'Organização e prescrição de treinos',\n    gatilho_conversao: 'Prescrição em menos de 3 minutos'\n  };\n}\n\n// Garante que a rota seja estritamente válida\nlet rotaFinal = aiData.rota_recomendada;\nif (rotaFinal !== '/oferta-pro' && rotaFinal !== '/oferta-start') {\n  rotaFinal = leadAnterior.rota_previa || '/oferta-start';\n}\n\nreturn [{\n  json: {\n    lead_id: leadAnterior.lead_id,\n    data_hora: leadAnterior.data_hora,\n    rota_recomendada: rotaFinal,\n    oferta_nome: aiData.oferta_nome || (rotaFinal === '/oferta-pro' ? 'White Label Anual (R$ 497/ano)' : 'White Label Mensal (R$ 44,90/mês)'),\n    perfil_resumo: aiData.perfil_resumo || '',\n    score_maturidade: aiData.score_maturidade || 5,\n    dor_principal: aiData.dor_principal || '',\n    gatilho_conversao: aiData.gatilho_conversao || '',\n    dados_legiveis: leadAnterior.dados_legiveis,\n    utm: leadAnterior.utm,\n    respostas_brutas: leadAnterior.respostas_brutas\n  }\n}];"
+        "jsCode": "// Extrai e normaliza o JSON gerado pelo Agente de IA\nconst rawOutput = $json.output || $json.text || $json.content || JSON.stringify($json);\nconst leadAnterior = $('Decodificar & Estruturar Lead').first().json;\n\nlet aiData = {};\ntry {\n  const jsonMatch = rawOutput.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    aiData = JSON.parse(jsonMatch[0]);\n  } else {\n    aiData = JSON.parse(rawOutput);\n  }\n} catch (e) {\n  const isPro = rawOutput.includes('/oferta-pro') || rawOutput.includes('Anual');\n  aiData = {\n    rota_recomendada: isPro ? '/oferta-pro' : '/oferta-start',\n    oferta_nome: isPro ? 'Plano Anual com Sua Marca (R$ 497/ano)' : 'Plano Pro Mensal (R$ 44,90/mês)',\n    perfil_resumo: 'Personal Trainer em busca de otimização e organização',\n    score_maturidade: isPro ? 8 : 4,\n    dor_principal: 'Prescrição demorada e atendimento disperso',\n    gatilho_conversao: 'Prescrição em menos de 3 minutos no aplicativo com sua própria logo'\n  };\n}\n\n// Garante rota estritamente válida\nlet rotaFinal = aiData.rota_recomendada;\nif (rotaFinal !== '/oferta-pro' && rotaFinal !== '/oferta-start') {\n  rotaFinal = leadAnterior.rota_previa || '/oferta-start';\n}\n\nconst primeiroNome = leadAnterior.primeiro_nome || 'Personal';\nconst nomeCompleto = leadAnterior.nome || primeiroNome;\nconst ofertaNome = aiData.oferta_nome || (rotaFinal === '/oferta-pro' ? 'Plano Anual com Sua Marca (R$ 497/ano)' : 'Plano Pro Mensal (R$ 44,90/mês)');\nconst baseUrl = rotaFinal === '/oferta-pro' ? 'https://meuapp.treinointeligente.pro/oferta-pro' : 'https://meuapp.treinointeligente.pro/oferta-start';\nconst linkOferta = leadAnterior.lead_id ? `${baseUrl}?lead_id=${leadAnterior.lead_id}` : baseUrl;\nconst gatilho = aiData.gatilho_conversao || 'Prescrever fichas em 3 minutos e ter o app com o seu logotipo';\nconst dor = aiData.dor_principal || 'Tempo perdido na montagem e envio manual de treinos';\n\n// 1. Mensagem de WhatsApp humana, persuasiva e formatada\nconst msgWhatsapp = `Fala ${primeiroNome}, tudo bem? 💪\\n\\nAqui é da equipe do *Treino Inteligente*.\\n\\nAcabei de receber o resultado do seu diagnóstico e seu perfil foi qualificado para o:\\n🎯 *${ofertaNome}*\\n\\n⚡ *Ponto principal trabalhado:* ${dor}\\n🚀 *Como vamos resolver:* ${gatilho}\\n\\nLiberamos para você uma condição exclusiva de *3 DIAS DE TESTE GRÁTIS (R$ 0,00 cobrados hoje)* no checkout, para você testar na prática e cadastrar seus alunos sem fidelidade.\\n\\n👉 *Toque no link abaixo para ver sua análise completa e ativar seu teste grátis:*\\n${linkOferta}\\n\\nSe precisar de qualquer apoio na montagem do seu primeiro treino, é só responder direto aqui nesta mensagem!`;\n\n// 2. Assunto e Corpo HTML do E-mail (Inline CSS profissional compatível com Gmail Web e Mobile)\nconst emailAssunto = `[Diagnóstico] ${primeiroNome}, sua análise oficial no Treino Inteligente está pronta`;\n\nconst emailCorpoHtml = `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Diagnóstico Oficial Treino Inteligente</title>\n</head>\n<body style=\"margin: 0; padding: 20px 10px; background-color: #0b0f19; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;\">\n  <div style=\"max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.3); border: 1px solid #1e293b;\">\n    \n    <!-- Cabeçalho -->\n    <div style=\"background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 32px 24px; text-align: center;\">\n      <div style=\"display: inline-block; background-color: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; margin-bottom: 12px;\">\n        Diagnóstico Concluído\n      </div>\n      <h1 style=\"color: #ffffff; font-size: 24px; font-weight: 800; margin: 0; letter-spacing: -0.5px;\">\n        TREINO <span style=\"color: #10b981;\">INTELIGENTE</span>\n      </h1>\n      <p style=\"color: #94a3b8; font-size: 13px; margin: 8px 0 0 0;\">\n        Prescrição em 3 minutos & Posicionamento Profissional\n      </p>\n    </div>\n\n    <!-- Conteúdo Principal -->\n    <div style=\"padding: 32px 28px; line-height: 1.6; font-size: 15px;\">\n      <p style=\"margin: 0 0 16px 0; font-size: 18px; color: #0f172a;\">\n        Olá, <strong>${primeiroNome}</strong>!\n      </p>\n      \n      <p style=\"margin: 0 0 20px 0; color: #475569;\">\n        Analisamos com precisão as respostas que você enviou no questionário. Com base no seu volume de alunos e modelo de atendimento atual, identificamos exatamente o que você precisa para destravar tempo e valorizar a sua consultoria:\n      </p>\n\n      <!-- Card do Diagnóstico -->\n      <div style=\"background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 5px solid #10b981; border-radius: 12px; padding: 20px; margin: 24px 0;\">\n        <div style=\"font-size: 11px; font-weight: 800; color: #10b981; text-transform: uppercase; letter-spacing: 0.5px;\">\n          Plano Estratégico Indicado\n        </div>\n        <div style=\"font-size: 20px; font-weight: 800; color: #0f172a; margin: 6px 0;\">\n          ${ofertaNome}\n        </div>\n        <div style=\"font-size: 14px; color: #334155; margin-top: 10px;\">\n          <strong>Ponto de Atenção:</strong> ${dor}\n        </div>\n        <div style=\"font-size: 14px; color: #047857; margin-top: 6px;\">\n          <strong>Solução Imediata:</strong> ${gatilho}\n        </div>\n      </div>\n\n      <p style=\"margin: 20px 0; color: #475569;\">\n        Chega de perder horas montando fichas manuais, mandando mensagens soltas no WhatsApp ou usando aplicativos engessados. No Treino Inteligente, seus alunos treinam com o <strong>seu logotipo</strong> e você prescreve treinos completos em até 3 minutos.\n      </p>\n\n      <!-- Botão CTA -->\n      <div style=\"text-align: center; margin: 32px 0 24px 0;\">\n        <a href=\"${linkOferta}\" style=\"display: inline-block; background-color: #10b981; color: #ffffff !important; font-size: 15px; font-weight: 800; text-decoration: none; padding: 18px 36px; border-radius: 12px; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); text-transform: uppercase; letter-spacing: 0.5px;\">\n          TESTAR 3 DIAS GRÁTIS (R$ 0,00 HOJE) →\n        </a>\n      </div>\n\n      <!-- Garantias -->\n      <div style=\"text-align: center; color: #64748b; font-size: 13px; line-height: 1.5;\">\n        <span style=\"color: #10b981; font-weight: bold;\">✓</span> R$ 0,00 cobrados hoje &nbsp;|&nbsp; \n        <span style=\"color: #10b981; font-weight: bold;\">✓</span> Cancele em 1 clique &nbsp;|&nbsp; \n        <span style=\"color: #10b981; font-weight: bold;\">✓</span> Sem fidelidade\n      </div>\n\n    </div>\n\n    <!-- Rodapé -->\n    <div style=\"background-color: #f1f5f9; border-top: 1px solid #e2e8f0; padding: 24px; text-align: center; color: #64748b; font-size: 12px; line-height: 1.6;\">\n      <p style=\"margin: 0 0 6px 0; font-weight: 600; color: #475569;\">\n        Treino Inteligente · O aplicativo definitivo para Personal Trainers\n      </p>\n      <p style=\"margin: 0;\">\n        Precisa de ajuda ou quer tirar dúvidas? Basta responder diretamente a este e-mail.\n      </p>\n    </div>\n\n  </div>\n</body>\n</html>`;\n\nreturn [{\n  json: {\n    lead_id: leadAnterior.lead_id,\n    nome: leadAnterior.nome,\n    primeiro_nome: primeiroNome,\n    email: leadAnterior.email,\n    whatsapp: leadAnterior.whatsapp,\n    whatsapp_formatado: leadAnterior.whatsapp_formatado,\n    data_hora: leadAnterior.data_hora,\n    rota_recomendada: rotaFinal,\n    oferta_nome: ofertaNome,\n    perfil_resumo: aiData.perfil_resumo || '',\n    score_maturidade: aiData.score_maturidade || 6,\n    dor_principal: dor,\n    gatilho_conversao: gatilho,\n    link_oferta: linkOferta,\n    mensagem_whatsapp: msgWhatsapp,\n    email_assunto: emailAssunto,\n    email_corpo_html: emailCorpoHtml,\n    dados_legiveis: leadAnterior.dados_legiveis,\n    utm: leadAnterior.utm\n  }\n}];"
       },
-      "id": "extract-ai-json",
+      "id": "fd6d44d8-ac52-45d3-af46-caf1abc2b5f5",
       "name": "Extrair & Unificar Parecer da IA",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -180,
-        100
+        -432,
+        1120
       ]
     },
     {
@@ -88,14 +86,65 @@
         "responseBody": "={\n  \"status\": \"success\",\n  \"lead_id\": \"{{ $json.lead_id }}\",\n  \"recommended_route\": \"{{ $json.rota_recomendada }}\",\n  \"oferta_nome\": \"{{ $json.oferta_nome }}\",\n  \"perfil_resumo\": \"{{ $json.perfil_resumo }}\",\n  \"score_maturidade\": {{ $json.score_maturidade }},\n  \"dor_principal\": \"{{ $json.dor_principal }}\",\n  \"gatilho_conversao\": \"{{ $json.gatilho_conversao }}\"\n}",
         "options": {}
       },
-      "id": "4c6b1b2f-210e-49f1-8680-09c49264e882",
+      "id": "56a5d5ab-08a7-4fde-ad0f-4166f048ae2c",
       "name": "Responder 200 OK com Rota da IA",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        120,
-        -40
+        -112,
+        928
       ]
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Contato_Planlhas_suporte",
+        "remoteJid": "={{ $json.whatsapp }}",
+        "messageText": "={{ $json.mensagem_whatsapp }}",
+        "options_message": {
+          "delay": 1200
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        1120
+      ],
+      "id": "480a53de-5a46-4117-ba5a-4ce7fac2d3d1",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "fNTxatuHqRTB34tU",
+          "name": "Contato_Planilhas_suporte"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "={{ $json.email_assunto }}",
+        "message": "={{ $json.email_corpo_html }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "b191e9c5-0b2f-475c-9f73-aa7e1b32dc0b",
+      "name": "Enviar E-mail via Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -112,
+        1328
+      ],
+      "webhookId": "24ecc1b6-5067-4924-9284-ca66dfbe8a35",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "sVr8cjI4c7MVvLVj",
+          "name": "planilhaspersonaltrainer@gmail.com"
+        }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -121,13 +170,13 @@
         },
         "options": {}
       },
-      "id": "947295b3-9b9c-4498-b572-cd792f01481e",
-      "name": "É White Label Anual?",
+      "id": "fcdf392f-285d-4ff6-8274-c823f2595fec",
+      "name": "É Plano Anual?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        120,
-        220
+        176,
+        1120
       ]
     }
   ],
@@ -154,23 +203,23 @@
         ]
       ]
     },
-    "OpenRouter Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent Qualificador",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "AI Agent Qualificador": {
       "main": [
         [
           {
             "node": "Extrair & Unificar Parecer da IA",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent Qualificador",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -185,7 +234,23 @@
             "index": 0
           },
           {
-            "node": "É White Label Anual?",
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Enviar E-mail via Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "É Plano Anual?",
             "type": "main",
             "index": 0
           }
@@ -195,7 +260,6 @@
   },
   "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "5234b62308f332e73dab1129a5b26c8ce1c09e6ba76ac05f914569f765e08a90"
   }
 }
