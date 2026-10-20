@@ -11,7 +11,7 @@ export const answersSchema = z.record(z.string(), z.string()).refine(
 /** Converte telefone brasileiro para E.164 (+55DDDNÚMERO). Retorna null se inválido. */
 export function toE164(raw: string): string | null {
   let d = raw.replace(/\D/g, "");
-  if (d.length === 13 && d.startsWith("55")) d = d.slice(2);
+  if ((d.length === 13 || d.length === 12) && d.startsWith("55")) d = d.slice(2);
   if (d.length !== 11 && d.length !== 10) return null;
   const ddd = Number(d.slice(0, 2));
   if (ddd < 11 || ddd > 99) return null;
@@ -34,7 +34,13 @@ export const contactSchema = z.object({
   email: z.string().trim().max(255).email("Informe um e-mail válido.").transform((v) => v.toLowerCase()),
   phone: z.string().max(25).transform((v, ctx) => {
     const e = toE164(v);
-    if (!e) { ctx.addIssue({ code: "custom", message: "Informe um celular válido com DDD." }); return z.NEVER; }
+    if (!e) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Informe um WhatsApp válido com DDD e 9 dígitos (ex: 82 99999-9999).",
+      });
+      return z.NEVER;
+    }
     return e;
   }),
   consent: z.boolean().refine((v) => v, "Você precisa aceitar a Política de Privacidade para continuar."),

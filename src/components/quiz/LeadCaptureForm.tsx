@@ -47,18 +47,24 @@ export function LeadCaptureForm({
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy) return;
+    setErrors({});
     track("lead_form_submit");
     id.current ??= crypto.randomUUID();
     const website = String(new FormData(event.currentTarget).get("website") ?? "");
     const parsed = leadSchema.safeParse({ id: id.current, ...values, consent, website, answers, utm: readUtm() });
     if (!parsed.success) {
       const next: Record<string, string> = {};
-      parsed.error.issues.forEach((i) => { const k = String(i.path[0]); next[k] ??= i.message; });
-      if (next["answers"]) next["form"] = "Suas respostas não foram encontradas. Recarregue a página e refaça o questionário.";
+      parsed.error.issues.forEach((i) => {
+        const k = String(i.path[0]);
+        next[k] ??= i.message;
+      });
+      if (next["answers"]) {
+        next["form"] = "Suas respostas não foram encontradas. Recarregue a página e refaça o questionário.";
+      }
       setErrors(next);
       return;
     }
-    setBusy(true); setErrors({});
+    setBusy(true);
     try {
       await saveVipLead({ data: parsed.data });
       track("lead_captured", {
@@ -71,9 +77,17 @@ export function LeadCaptureForm({
         email: parsed.data.email,
         phone: parsed.data.phone,
       });
-    } catch {
-      setErrors({ form: "Não foi possível salvar seu cadastro agora. Verifique sua conexão e tente novamente — seus dados continuam preenchidos." });
-    } finally { setBusy(false); }
+    } catch (err: unknown) {
+      console.error("[saveVipLead error]", err);
+      const msg = err instanceof Error ? err.message : "";
+      if (msg.toLowerCase().includes("celular") || msg.toLowerCase().includes("whatsapp") || msg.toLowerCase().includes("phone")) {
+        setErrors({ phone: "Número de WhatsApp inválido. Digite seu DDD + número celular com 9 dígitos." });
+      } else {
+        setErrors({ form: "Não foi possível salvar seu cadastro agora. Verifique sua conexão e tente novamente — seus dados continuam preenchidos." });
+      }
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
