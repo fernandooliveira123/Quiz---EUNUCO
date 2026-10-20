@@ -19,6 +19,7 @@ import {
   Phone,
   Mail,
   ChevronRight,
+  Eye,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,6 +27,7 @@ import { CrmPinModal } from "@/components/crm/CrmPinModal";
 import { CrmMetricsCards } from "@/components/crm/CrmMetricsCards";
 import { CrmLeadDetailModal } from "@/components/crm/CrmLeadDetailModal";
 import { CrmWebhookModal } from "@/components/crm/CrmWebhookModal";
+import { CrmClarityModal } from "@/components/crm/CrmClarityModal";
 import {
   fetchCrmLeads,
   updateCrmLeadStatus,
@@ -67,6 +69,7 @@ function CrmDashboardPage() {
   // Modais
   const [selectedLead, setSelectedLead] = useState<CrmLead | null>(null);
   const [showWebhookModal, setShowWebhookModal] = useState(false);
+  const [showClarityModal, setShowClarityModal] = useState(false);
 
   // 1. Checa autenticação inicial do sessionStorage
   useEffect(() => {
@@ -263,6 +266,17 @@ function CrmDashboardPage() {
           </div>
 
           <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowClarityModal(true)}
+              className="hidden md:flex items-center gap-1.5 h-9 text-xs font-semibold rounded-xl border-border/80"
+              title="Gravações de Sessão e Métricas da API do Microsoft Clarity"
+            >
+              <Eye className="h-3.5 w-3.5 text-primary" />
+              <span>Clarity API</span>
+            </Button>
+
             <Button
               variant="outline"
               size="sm"
@@ -560,6 +574,13 @@ function CrmDashboardPage() {
 
       {/* Modal de Instruções de Webhook */}
       <CrmWebhookModal isOpen={showWebhookModal} onClose={() => setShowWebhookModal(false)} />
+
+      {/* Modal de Métricas e Gravações do Clarity */}
+      <CrmClarityModal
+        isOpen={showClarityModal}
+        onClose={() => setShowClarityModal(false)}
+        pin={pin ?? ""}
+      />
     </div>
   );
 }

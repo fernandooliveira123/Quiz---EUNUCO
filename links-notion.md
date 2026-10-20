@@ -78,10 +78,14 @@ Use estes links prontos para rastrear de onde vieram seus alunos e leads no CRM:
 
 ---
 
-## 🔍 6. Microsoft Clarity (Mapas de Calor & Gravação de Sessões)
+## 🔍 6. Microsoft Clarity (Mapas de Calor, Gravação de Sessões & API)
 
 * **ID do Projeto Clarity:** `z0utmaa779`
-* **Painel do Clarity:** https://clarity.microsoft.com/
+* **Painel Web do Clarity:** https://clarity.microsoft.com/
+* **API Oficial de Exportação de Dados:**
+  * Endpoint: `https://www.clarity.ms/export-data/api/v1/project-live-insights?numOfDays=1`
+  * Autenticação: `Authorization: Bearer <CLARITY_API_TOKEN>`
+  * Integrado com: Servidor backend e painel CRM (`/crm`) para métricas ao vivo de tráfego, rage clicks e dead clicks.
 * **Recursos Ativos:**
   * Gravação de tela completa dos personal trainers respondendo ao Quiz.
   * Mapas de calor (Heatmaps) de cliques e rolagem no Quiz e nas LPs de Oferta.
