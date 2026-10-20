@@ -63,7 +63,22 @@ Use estes links prontos para rastrear de onde vieram seus alunos e leads no CRM:
 
 ---
 
-## ⚙️ 5. Infraestrutura & Automações
+## 🎯 5. Meta Pixel Oficial do Facebook Ads
+
+* **ID do Pixel:** `1689133549309619`
+* **Instalação:** Global em todas as páginas (Quiz, `/oferta-pro` e `/oferta-start`) com suporte nativo a SPA.
+* **Mapeamento de Eventos Padrões (Otimização no Gerenciador de Anúncios):**
+  * **`PageView`:** Disparado em todas as páginas e navegações internas.
+  * **`Lead`:** Disparado quando o treinador preenche o formulário VIP com Nome, E-mail e WhatsApp.
+  * **`ViewContent`:** Disparado nas páginas de oferta (`value: 497.00` para Anual e `value: 44.90` para Mensal).
+  * **`InitiateCheckout`:** Disparado ao clicar em "COMEÇAR 3 DIAS GRÁTIS".
+* **Captura de UTMs & Click IDs:**
+  * Parâmetros capturados e persistidos automaticamente: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`, `gclid`.
+  * Preservados durante toda a navegação e repassados para o **Checkout da Stripe** e para o **Banco de Dados/CRM**.
+
+---
+
+## ⚙️ 6. Infraestrutura & Automações
 
 * **Webhook do n8n:**
   https://n8n-n8n.sb9az3.easypanel.host/webhook/treino-inteligente-quiz

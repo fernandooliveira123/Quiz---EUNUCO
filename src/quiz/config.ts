@@ -125,5 +125,8 @@ export const PRODUCTS = {
   },
 } as const;
 
-/** Analytics: nenhum ID configurado. Instale Meta Pixel / GA4 e os eventos serão repassados automaticamente. */
-export const ANALYTICS = { enabled: true } as const;
+/** Meta Pixel Oficial do Facebook Ads */
+export const META_PIXEL_ID = "1689133549309619";
+
+/** Analytics: Meta Pixel ativo com ID configurado. */
+export const ANALYTICS = { enabled: true, metaPixelId: META_PIXEL_ID } as const;

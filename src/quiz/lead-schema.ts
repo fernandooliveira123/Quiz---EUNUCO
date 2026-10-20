@@ -44,7 +44,17 @@ export const leadSchema = contactSchema.extend({
   id: z.string().uuid(),
   website: z.string().max(0),
   answers: answersSchema,
-  utm: z.object({ source: optional, utm_source: optional, utm_medium: optional, utm_campaign: optional, utm_content: optional, utm_term: optional }).strict(),
+  utm: z.object({
+    source: optional,
+    utm_source: optional,
+    utm_medium: optional,
+    utm_campaign: optional,
+    utm_content: optional,
+    utm_term: optional,
+    fbclid: optional,
+    gclid: optional,
+    ttclid: optional,
+  }).passthrough(),
 }).strict();
 
 export type LeadInput = z.input<typeof leadSchema>;

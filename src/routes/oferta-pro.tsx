@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -63,6 +64,10 @@ function OfertaProPage() {
   const search = Route.useSearch();
   const leadId = search.lead_id;
   const stripeUrl = buildStripeCheckoutUrl(STRIPE_CHECKOUT_PRO_URL, leadId);
+
+  useEffect(() => {
+    track("offer_page_view", { plan: "whitelabel_anual", lead_id: leadId ?? "" });
+  }, [leadId]);
 
   const handleCheckoutClick = () => {
     track("stripe_checkout_click", { plan: "whitelabel_anual", lead_id: leadId ?? "" });
