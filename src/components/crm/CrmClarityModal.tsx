@@ -57,9 +57,18 @@ export function CrmClarityModal({ isOpen, onClose, pin }: CrmClarityModalProps) 
     | { sessionsCount?: number; subTotal?: number }
     | undefined;
 
-  const scriptErrors = data?.find((m) => m.metricName === "ScriptErrorCount")?.information?.[0] as
-    | { sessionsCount?: number; subTotal?: number }
+  const scrollDepth = data?.find((m) => m.metricName === "ScrollDepth")?.information?.[0] as
+    | { averageScrollDepth?: number }
     | undefined;
+
+  const engagement = data?.find((m) => m.metricName === "EngagementTime")?.information?.[0] as
+    | { totalTime?: number; activeTime?: number }
+    | undefined;
+
+  const browsers = (data?.find((m) => m.metricName === "Browser")?.information || []) as Array<{
+    name?: string;
+    sessionsCount?: number;
+  }>;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in">
@@ -89,7 +98,7 @@ export function CrmClarityModal({ isOpen, onClose, pin }: CrmClarityModalProps) 
 
         {/* Conteúdo */}
         <div className="mt-5 space-y-4">
-          {/* Cards Rápidos de Métricas */}
+          {/* Cards Rápidos de Métricas Linha 1 */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="rounded-2xl border border-border/70 bg-background/50 p-3.5 text-center">
               <span className="text-[11px] font-semibold text-muted-foreground flex items-center justify-center gap-1">
@@ -124,6 +133,38 @@ export function CrmClarityModal({ isOpen, onClose, pin }: CrmClarityModalProps) 
               </span>
               <p className="mt-1 text-2xl font-black text-foreground">
                 {loading ? "..." : (rageClicks?.subTotal ?? 0)}
+              </p>
+            </div>
+          </div>
+
+          {/* Cards Rápidos de Métricas Linha 2 (Engajamento & Retenção) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="rounded-2xl border border-border/70 bg-background/50 p-3 text-center">
+              <span className="text-[11px] font-semibold text-muted-foreground">Profundidade Scroll</span>
+              <p className="mt-1 text-xl font-black text-emerald-400">
+                {loading
+                  ? "..."
+                  : scrollDepth?.averageScrollDepth
+                    ? `${Math.round(scrollDepth.averageScrollDepth)}%`
+                    : "0%"}
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border/70 bg-background/50 p-3 text-center">
+              <span className="text-[11px] font-semibold text-muted-foreground">Tempo Médio Sessão</span>
+              <p className="mt-1 text-xl font-black text-foreground">
+                {loading ? "..." : engagement?.totalTime ? `${engagement.totalTime}s` : "0s"}
+              </p>
+            </div>
+
+            <div className="col-span-2 sm:col-span-1 rounded-2xl border border-border/70 bg-background/50 p-3 text-center">
+              <span className="text-[11px] font-semibold text-muted-foreground">Origem Top 1</span>
+              <p className="mt-1 text-xs font-bold text-sky-400 truncate">
+                {loading
+                  ? "..."
+                  : browsers[0]?.name
+                    ? `${browsers[0].name} (${browsers[0].sessionsCount})`
+                    : "Facebook App"}
               </p>
             </div>
           </div>
