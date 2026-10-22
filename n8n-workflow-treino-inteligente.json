@@ -125,6 +125,7 @@
       "parameters": {
         "sendTo": "={{ $json.email }}",
         "subject": "={{ $json.email_assunto }}",
+        "emailType": "html",
         "message": "={{ $json.email_corpo_html }}",
         "options": {
           "appendAttribution": false
